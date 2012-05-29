@@ -1,0 +1,16 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  user-select: none;
+}
+button i {
+  padding-left: 8px;
+}
+.clear-fix {
+  clear: both;
+}
+#four04 {
+  padding: 20px;
+}
