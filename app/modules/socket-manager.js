@@ -1,0 +1,44 @@
+
+/**
+ * Socket Manager to Track Application Specific Connections
+ * Author :: Stephen Braitsch
+ */
+
+var SM = { }
+module.exports = SM;
+	
+SM.init = function(a)
+{
+	this.appName = a;
+	this.connections = { };
+	global.socket.on('connection', SM.registerSocket);
+}
+
+SM.registerSocket = function(socket)
+{
+// listen for connections events //
+	SM.onSocketConnect(socket);
+	socket.on('disconnect', function() { SM.onSocketDisconnect(socket); });
+}
+
+SM.onSocketConnect = function(socket)
+{
+	if (socket.handshake.headers.host.indexOf(SM.appName) != -1){
+		console.log('connecting ---', socket.handshake.headers.host);
+		if (SM.onConnect != undefined) SM.onConnect(socket);
+		// dispatch to clients //
+		SM.connections[socket.id] = {};
+		global.socket.sockets.emit(SM.appName + '-status', { connections:SM.connections });
+	}
+}
+
+SM.onSocketDisconnect = function(socket)
+{	
+	if (socket.handshake.headers.host.indexOf(SM.appName) != -1){
+		console.log('disconnecting --- ', socket.handshake.headers.host, socket.id);
+		if (SM.onDisconnect != undefined) SM.onDisconnect(socket);
+		// dispatch to clients //
+		delete SM.connections[socket.id];
+		global.socket.sockets.emit(SM.appName + '-status', { connections:SM.connections });
+	}
+}

@@ -8,8 +8,8 @@ module.exports = function(app) {
 				title: 'Hello - Welcome to SF-Bridge',
 			}
 		});
-	});			
- 
+	});
+
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
-	
+
 };

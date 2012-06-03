@@ -1,7 +1,7 @@
 {
     "name": "sf-bridge",
     "version": "0.0.1",    
-    "description": "",
+    "description": "A platform for recording and exchanging civic related data in real-time",
     "author": {
         "name": "Stephen Braitsch",
         "email": "stephen@braitsch.io"
