@@ -1,10 +1,7 @@
 
-var socket;
-
 $(document).ready(function() {
 	initSocket();
 	$('#test').click(function(){
-		console.log(socket);
 		socket.emit('bridge-event', { msg:'hello'});
 	})
 });

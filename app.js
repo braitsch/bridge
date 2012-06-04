@@ -4,17 +4,20 @@
  * Author :: Stephen Braitsch
  */
 
-module.exports = function(){
+var exp = require('express');
+var app = exp.createServer();
 
-	var exp = require('express');
-	var app = exp.createServer();
+global.host = 'localhost';
+global.socket = require('socket.io').listen(app);
+global.socket.set('log level', 1);
+global.socket.set('transports', [ 'websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']);
 
-	app.root = __dirname;
+app.root = __dirname;
 
-	require('./app/core/config')(app, exp);
-	require('./app/router')(app);
-	require('./app/modules/bridge-socket');
+require('./app/core/config')(app, exp);
+require('./app/router')(app);
+require('./app/modules/bridge-socket');
 
-	return app;
-
-}
+app.listen(8080, function(){
+ 	console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+});
