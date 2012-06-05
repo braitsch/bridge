@@ -32,3 +32,6 @@ button {
 .modal-form-errors li {
   color: #d8000c;
 }
+table {
+  margin: -18px 20px 0 20px;
+}

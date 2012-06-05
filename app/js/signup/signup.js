@@ -9,7 +9,8 @@ $(document).ready(function(){
 			if (sv.validatePage1() == false){
 				return false;
 			}	else{
-				p1 = data; p1.push({name:'page', value:1});
+				p1 = data.slice(0);
+				data.push({name:'page', value:1});		
 				return true;
 			}
 		},
@@ -26,18 +27,20 @@ $(document).ready(function(){
 			if (sv.validatePage2() == false){
 				return false;
 			}	else{
-				concatFormData(data);
+				for (var i=0; i < p1.length; i++) data.push(p1[i]);
+				data.push({name:'page', value:2});
+		//		console.log(data.length)
+		//		for (var i=0; i < data.length; i++) console.log(data[i]['name'], 'val = '+data[i]['value']);					
 				return true;
 			}
 		},
 		success	: function(responseText, status, xhr, $form){
-			if (status == 'success'){
-		//		for (var i=0; i < p2.length; i++) console.log(p2[i]['name'], 'val = '+p2[i]['value']);				
-				sv.showSuccess('Success!', 'Your account has been created.<br>Please wait while you are redirected.');
+			if (status == 'success'){			
+		//		sv.showSuccess('Success!', 'Your account has been created.<br>Please wait while you are redirected.');
 			} 
 		},
 		error : function(e){
-			sv.showAlert('Whoops!', "I'm sorry it looks like something went wrong.<br>Please try again later.");
+			sv.showAlert('Whoops!', "I'm sorry it looks like something went wrong :<br>"+e);
 		}
 	});
 	
@@ -52,13 +55,7 @@ $(document).ready(function(){
 	{
 		$('#signup-page-1').hide();
 		$('#signup-page-2').show();
-		$('#admin-name').find('input').focus();		
-	}
-	
-	function concatFormData(data)
-	{
-		p2 = data;
-		for (var i = p1.length - 1; i >= 0; i--) if (p1[i]['name'] == 'page') p1[i]['value'] = 2; p2.push(p1[i]);
+		$('#user-name').find('input').focus();		
 	}		
 
 	showPage1();

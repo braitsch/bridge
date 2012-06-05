@@ -7,7 +7,7 @@ function SignupValidator()
     this.error.modal({ show : false, keyboard : true, backdrop : true });
 
 	this.p1fields = [	$('#org-name'), $('#org-addy1'), $('#org-city'), $('#org-state'), $('#org-phone'), $('#org-website')];
-	this.p2fields = [	$('#admin-name'), $('#admin-position'), $('#admin-phone'), $('#admin-email'), $('#admin-user'), $('#admin-pass')];
+	this.p2fields = [	$('#user-name'), $('#user-position'), $('#user-phone'), $('#user-email'), $('#user-login'), $('#user-pass')];
 }
 
 SignupValidator.prototype.validateString = function(s)
@@ -54,6 +54,7 @@ SignupValidator.prototype.showFormErrors = function(a)
 
 SignupValidator.prototype.validatePage1 = function ()
 {	
+	return true;
 	var e = [];
 	for (var i=0; i < this.p1fields.length; i++) this.p1fields[i].removeClass('error');
 	if (this.validateString(this.p1fields[0].find('input').val()) == false) {
@@ -80,6 +81,7 @@ SignupValidator.prototype.validatePage1 = function ()
 
 SignupValidator.prototype.validatePage2 = function ()
 {	
+	return true;	
 	var e = [];
 	for (var i=0; i < this.p2fields.length; i++) this.p2fields[i].removeClass('error');
 	if (this.validateString(this.p2fields[0].find('input').val()) == false) {
