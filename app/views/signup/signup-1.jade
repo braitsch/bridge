@@ -1,0 +1,40 @@
+
+form( method="post")#signup-page-1.form-horizontal.well
+	h1 Create Your Account
+	p.subheading Please tell us a little about your organization.
+	hr
+	fieldset
+		#org-name.control-group
+			label.control-label Name
+			.controls
+				input.input-xlarge(type='text', name='org-name')
+		#org-addy1.control-group
+			label.control-label Address Line 1
+			.controls
+				input.input-xlarge(type='text', name='org-addy1')
+		#org-addy2.control-group
+			label.control-label Address Line 2
+			.controls
+				input.input-xlarge(type='text', name='org-addy2')
+		#org-city.control-group
+			label.control-label City
+			.controls
+				input.input-xlarge(type='text', name='org-city')
+		#org-state.control-group
+			label.control-label State
+			.controls
+				select.dropdown(name='org-state')
+					each item in states
+						option= item
+		hr
+		#org-phone.control-group
+			label.control-label Phone #
+			.controls
+				input.input-xlarge(type='text', name='org-phone')
+		#org-website.control-group
+			label.control-label Website
+			.controls
+				input.input-xlarge(type='text', name='org-website')
+		.form-actions
+			button(type='button')#signup-cancel.btn Cancel
+			button(type='submit')#signup-next.btn.btn-primary Next
