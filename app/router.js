@@ -31,7 +31,7 @@ module.exports = function(app) {
 	
 	function onSignupPage1(req, res)
 	{
-		AM.checkOrgExists(req.param('org-name'), function(o){
+		AM.checkOrgExists(req.param('org-name').toLowerCase(), function(o){
 			if (!o){
 				res.send('ok', 200);
 			}	else{
@@ -42,12 +42,14 @@ module.exports = function(app) {
 	
 	function onSignupPage2(req, res)
 	{
-		AM.checkUserExists(req.param('user-login'), req.param('user-email'), function(e){
+		var ul = req.param('user-login').toLowerCase();
+		var ue = req.param('user-email').toLowerCase();
+		AM.checkUserExists(ul, ue, function(e){
 			if (e){
 				res.send(e, 400);
 			}	else{
 				AM.addOrg({
-					name 	: req.param('org-name'),
+					name 	: req.param('org-name').toLowerCase(),
 					addy1 	: req.param('org-addy1'),
 					addy2 	: req.param('org-addy2'),
 					city	: req.param('org-city'),
@@ -59,13 +61,14 @@ module.exports = function(app) {
 						res.send(e, 400);
 					}	else{
 						AM.addUser({
-							org		: req.param('org-name'),				
+							org		: req.param('org-name'),
 							name 	: req.param('user-name'),
 							pos		: req.param('user-position'),
 							phone 	: req.param('user-phone'),
-							email	: req.param('user-email'),
+							email	: req.param('user-email').toLowerCase(),
 							login 	: req.param('user-login'),
-							pass	: req.param('user-pass')
+							pass	: req.param('user-pass'),
+							ukey	: req.param('user-login').toLowerCase()
 						}, function(e){
 							if (e){
 								res.send(e, 400);

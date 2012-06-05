@@ -35,13 +35,13 @@ AM.manualLogin = function(user, pass, callback)
 {
 	AM.orgs.findOne({user:user}, function(e, o) {
 		if (o == null){
-			callback('user-not-found');
+			callback('User Not Found');
 		}	else{
 			bcrypt.compare(pass, o.pass, function(err, res) {
 				if (res){
 					callback(null, o);
 				}	else{
-					callback('invalid-password');				
+					callback('Invalid Password');				
 				}
 			});
 		}
@@ -64,20 +64,20 @@ AM.addUser = function(o, callback){
 	});
 }
 
-AM.checkOrgExists = function(name, callback)
+AM.checkOrgExists = function(oname, callback)
 {
-	AM.orgs.findOne({name:name}, function(e, o){ callback(o); });
+	AM.orgs.findOne({name:oname}, function(e, o){ callback(o); });
 }
 
-AM.checkUserExists = function(login, email, callback)
+AM.checkUserExists = function(ul, ue, callback)
 {
-	AM.usrs.findOne({login:login}, function(e, o) {	
+	AM.usrs.findOne({ukey:ul}, function(e, o) {	
 		if (o){
-			callback('username-taken');
+			callback('Username Taken');
 		}	else{
-			AM.usrs.findOne({email:email}, function(e, o) {
+			AM.usrs.findOne({email:ue}, function(e, o) {
 				if (o){
-					callback('email-taken');
+					callback('Email Taken');
 				}	else{
 					callback( null );
 				}

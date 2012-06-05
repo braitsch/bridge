@@ -28,19 +28,17 @@ $(document).ready(function(){
 				return false;
 			}	else{
 				for (var i=0; i < p1.length; i++) data.push(p1[i]);
-				data.push({name:'page', value:2});
-		//		console.log(data.length)
-		//		for (var i=0; i < data.length; i++) console.log(data[i]['name'], 'val = '+data[i]['value']);					
+				data.push({name:'page', value:2});				
 				return true;
 			}
 		},
 		success	: function(responseText, status, xhr, $form){
 			if (status == 'success'){			
-		//		sv.showSuccess('Success!', 'Your account has been created.<br>Please wait while you are redirected.');
+				sv.showSuccess('Success!', 'Your account has been created.<br>Please wait while you are redirected.');
 			} 
 		},
 		error : function(e){
-			sv.showAlert('Whoops!', "I'm sorry it looks like something went wrong :<br>"+e);
+			sv.showAlert('Whoops!', "I'm sorry it looks like something went wrong :<br>"+e.responseText);
 		}
 	});
 	

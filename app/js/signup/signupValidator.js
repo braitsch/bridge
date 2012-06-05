@@ -54,7 +54,7 @@ SignupValidator.prototype.showFormErrors = function(a)
 
 SignupValidator.prototype.validatePage1 = function ()
 {	
-	return true;
+//	return true;
 	var e = [];
 	for (var i=0; i < this.p1fields.length; i++) this.p1fields[i].removeClass('error');
 	if (this.validateString(this.p1fields[0].find('input').val()) == false) {
@@ -81,7 +81,7 @@ SignupValidator.prototype.validatePage1 = function ()
 
 SignupValidator.prototype.validatePage2 = function ()
 {	
-	return true;	
+//	return true;	
 	var e = [];
 	for (var i=0; i < this.p2fields.length; i++) this.p2fields[i].removeClass('error');
 	if (this.validateString(this.p2fields[0].find('input').val()) == false) {
