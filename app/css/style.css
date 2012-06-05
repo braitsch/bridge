@@ -5,6 +5,40 @@ body {
   height: 100%;
   user-select: none;
 }
+#login-container {
+  width: 340px;
+  margin: 160px auto;
+}
+#login-container label {
+  margin: 15px 0 5px 5px;
+}
+#login-container button {
+  width: 150px;
+  padding: 6px 40px 6px 40px;
+  float: left;
+  margin-top: 15px;
+}
+#login-container .checkbox {
+  margin: 23px 0 0 180px;
+}
+#login-container .btm-links {
+  text-align: center;
+  margin-top: 10px;
+}
+#login-container #create-account {
+  float: right;
+  margin-right: 13px;
+}
+#login-container #forgot-password {
+  float: left;
+  margin-left: 10px;
+}
+#btn-logout {
+  width: 100px;
+  top: 1px;
+  right: 8px;
+  position: absolute;
+}
 #signup-container {
   width: 460px;
   margin: 100px auto;
@@ -18,20 +52,23 @@ body {
 #signup-container .form-horizontal .control-label {
   width: 90px;
 }
-button {
-  width: 60px;
-}
-.well {
-  margin: 0;
-  padding-bottom: 5px;
-}
-.form-horizontal .form-actions {
+#signup-container .form-horizontal .form-actions {
   margin: 0;
   padding-left: 255px;
 }
 .modal-form-errors li {
   color: #d8000c;
 }
-table {
-  margin: -18px 20px 0 20px;
+.well {
+  margin: 0;
+  padding-bottom: 5px;
+}
+.well button {
+  width: 60px;
+}
+.form-horizontal {
+  margin: 0;
+}
+button i {
+  padding-left: 8px;
 }

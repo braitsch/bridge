@@ -1,0 +1,20 @@
+
+div.navbar.navbar-fixed-top
+	div.navbar-inner
+		div.container-fluid
+			ul#global-nav.nav.pull-left
+				a(href='#').brand Control Panel
+			button#btn-logout.btn.btn-primary
+				i.icon-lock.icon-white
+				| Sign Out
+
+div(style='margin:60px 0 0 20px') 
+	p Welcome #{data.name} !
+	button#skt-button.btn.btn-primary
+		i.icon-lock.icon-white
+		| Click Me!
+
+
+script(src='/vendor/jquery.min.js')
+script(src='/socket.io/socket.io.js')
+script(src='/js/home.js')

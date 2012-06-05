@@ -5,53 +5,54 @@ ul.nav.nav-tabs(style='margin:20px')
 	li#tab-usrs
 		a(href="#") users
 
-#print-orgs
-	table.table.table-bordered.table-striped
-		thead
-			tr
-				th #
-				th Name
-				th Address
-				th City
-				th State
-				th Phone
-				th Website
-				th Date Created
-		tbody
-		- for (var i = 0; i < orgs.length; i++)
-			tr
-				td= i+1
-				td= orgs[i].name
-				td= orgs[i].addy1 + orgs[i].addy2
-				td= orgs[i].city
-				td= orgs[i].state
-				td= orgs[i].phone
-				td= orgs[i].website
-				td= orgs[i].date
+div(style='margin:-18px 20px 0 20px')
+	#print-orgs
+		table.table.table-bordered.table-striped
+			thead
+				tr
+					th #
+					th Name
+					th Address
+					th City
+					th State
+					th Phone
+					th Website
+					th Date Created
+			tbody
+			- for (var i = 0; i < orgs.length; i++)
+				tr
+					td= i+1
+					td= orgs[i].name
+					td= orgs[i].addy1 + orgs[i].addy2
+					td= orgs[i].city
+					td= orgs[i].state
+					td= orgs[i].phone
+					td= orgs[i].website
+					td= orgs[i].date
 
-#print-usrs
-	table.table.table-bordered.table-striped
-		thead
-			tr
-				th #
-				th Name
-				th Organization
-				th Position
-				th Phone
-				th Email
-				th Login
-				th Date Created
-		tbody
-		- for (var i = 0; i < users.length; i++)
-			tr
-				td= i+1
-				td= users[i].name
-				td= users[i].org
-				td= users[i].pos
-				td= users[i].phone
-				td= users[i].email
-				td= users[i].login
-				td= users[i].date
+	#print-usrs
+		table.table.table-bordered.table-striped
+			thead
+				tr
+					th #
+					th Name
+					th Organization
+					th Position
+					th Phone
+					th Email
+					th Login
+					th Date Created
+			tbody
+			- for (var i = 0; i < users.length; i++)
+				tr
+					td= i+1
+					td= users[i].name
+					td= users[i].org
+					td= users[i].pos
+					td= users[i].phone
+					td= users[i].email
+					td= users[i].login
+					td= users[i].date
 
 script(src='/vendor/jquery.min.js')
 script(src='/js/print.js')

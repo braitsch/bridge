@@ -58,6 +58,6 @@ $(document).ready(function(){
 
 	showPage1();
 	$('#signup-back').click(function(){ showPage1() });
-	$('#signup-cancel').click(function(){ window.location.href = '/' });	
+	$('#signup-cancel').click(function(){ window.location.href = '/login' });	
 
 });

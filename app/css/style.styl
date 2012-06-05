@@ -8,8 +8,47 @@ html, body
 	padding: 0
 	height: 100%
 	user-select: none
-    
-// account form on signup & home page //
+  
+// account login //
+
+#login-container{
+	width 340px
+	margin 160px auto	
+	label{
+		margin 15px 0 5px 5px
+	}
+	button{
+		width 150px
+		padding 6px 40px 6px 40px
+		float left
+		margin-top 15px
+	}
+	.checkbox{
+		margin 23px 0 0 180px
+	}
+	.btm-links{
+		text-align center
+		margin-top 10px
+	}
+	#create-account{
+		float:right
+		margin-right:13px
+	}	
+	#forgot-password{
+		float:left
+		margin-left:10px
+	}
+}
+
+// control panel //
+
+#btn-logout
+	width 100px
+	top 1px
+	right 8px
+	position absolute
+	
+// signup & update form  //
 
 #signup-container{
 	width 460px
@@ -22,23 +61,30 @@ html, body
 	}
 	.form-horizontal .control-label{
 		width 90px
+	}
+	.form-horizontal .form-actions{
+		margin 0	
+		padding-left 255px
 	}	
 }
 
-button
-	width 60px
+// alerts & errors //
+
+.modal-form-errors li
+	color #D8000C
+
+
+// generic form stuff //
 
 .well
 	margin 0
 	padding-bottom 5px
+.well button
+	width 60px
+.form-horizontal
+	margin 0
+button i
+	padding-left 8px
 
-.form-horizontal .form-actions{
-	margin 0	
-	padding-left 255px
-}
 
-.modal-form-errors li
-	color #D8000C
 	
-table
-	margin -18px 20px 0 20px

@@ -64,11 +64,6 @@ AM.addUser = function(o, callback){
 	});
 }
 
-AM.checkOrgExists = function(oname, callback)
-{
-	AM.orgs.findOne({name:oname}, function(e, o){ callback(o); });
-}
-
 AM.checkUserExists = function(ul, ue, callback)
 {
 	AM.usrs.findOne({ukey:ul}, function(e, o) {	
@@ -118,6 +113,16 @@ AM.delete = function(id, callback)
 }
 
 // print methods //
+
+AM.getOrg = function(on, callback)
+{
+	AM.orgs.findOne({name:on}, function(e, o){ callback(o); });
+}
+
+AM.getUser = function(uk, callback)
+{
+	AM.orgs.findOne({ukey:uk}, function(e, o){ callback(o); });
+}
 
 AM.getAllOrgs = function(callback) 
 {

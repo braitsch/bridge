@@ -13,6 +13,54 @@ module.exports = function(app) {
 		});
 	});
 	
+// account login //	
+	
+	app.get('/login', function(req, res){
+	// check if the user's credentials are saved in a cookie //
+		if (req.cookies.user == undefined || req.cookies.pass == undefined){
+			res.render('account/login', { locals: { title: 'Hello - Please Login To Your Account' }});
+		}	else{
+	// attempt automatic login //
+			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
+				if (o != null){
+				    req.session.user = o;
+					res.redirect('account/home');
+				}	else{
+					res.render('account/login', { locals: { title: 'Hello - Please Login To Your Account' }});
+				}
+			});
+		}
+	});
+	
+	app.post('/login', function(req, res){
+		if (req.param('email') != null){
+			AM.getEmail(req.param('email'), function(o){
+				if (o){
+					res.send('ok', 200);
+					EM.send(o, function(e, m){ console.log('error : '+e, 'msg : '+m)});	
+				}	else{
+					res.send('email-not-found', 400);
+				}
+			});
+		}	else{
+		// attempt manual login //
+			AM.manualLogin(req.param('user'), req.param('pass'), function(e, o){
+				if (!o){
+					res.send(e, 400);
+				}	else{
+				    req.session.user = o;
+					if (req.param('remember-me') == 'true'){
+						res.cookie('user', o.user, { maxAge: 900000 });
+						res.cookie('pass', o.pass, { maxAge: 900000 });
+					}			
+					res.send(o, 200);
+				}
+			});
+		}
+	});	
+		
+// account creation //	
+	
 	app.get('/signup', function(req, res){
 		res.render('signup/signup', { 
 			locals: {
@@ -31,7 +79,7 @@ module.exports = function(app) {
 	
 	function onSignupPage1(req, res)
 	{
-		AM.checkOrgExists(req.param('org-name').toLowerCase(), function(o){
+		AM.getOrg(req.param('org-name').toLowerCase(), function(o){
 			if (!o){
 				res.send('ok', 200);
 			}	else{
@@ -82,6 +130,8 @@ module.exports = function(app) {
 		});
 	}
 	
+// aux methods //	
+	
 	app.get('/print', function(req, res) {
 		AM.getAllOrgs( function(e, orgs){
 			AM.getAllUsers( function(e, users){
@@ -96,13 +146,16 @@ module.exports = function(app) {
 	});	
 
 	app.get('*', function(req, res) { 
-		var accountName = req.url.substring(1);
-		// look up accountName in database
-			// if found check cookie for login credentials
-				// if they validate, render accountHome page and set session id.
-			// if not found redirect to 404	
-	//	console.log('accountName = '+accountName);
-		res.render('404', { title: 'Page Not Found'}); 
+		var s = req.url.substring(1);
+		s = s.replace('-', ' ');
+// parse url and attempt to redirect to control panel if user is logged in //			
+		AM.getOrg(s, function(o){
+			if (o == null){
+				res.render('404', { title: 'Page Not Found'});
+			}	else{
+				res.render('account/home', { locals: { title : 'Control Panel', data : o } });
+			}
+		})
 	});
 
 };
