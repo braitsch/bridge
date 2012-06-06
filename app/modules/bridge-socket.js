@@ -5,7 +5,7 @@ var SM = require('./socket-manager');
 
 var onBridgeEvent = function(socket, data)
 {
-	console.log(onBridgeEvent, data);
+//	console.log(onBridgeEvent, data);
 // append this socket's id so we know who is talking //
 	data.id = socket.id;
 	socket.broadcast.emit('bridge-event', data);

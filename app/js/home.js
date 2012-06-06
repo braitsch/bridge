@@ -11,12 +11,14 @@ HomeController = function()
 	var org = JSON.parse($("#org").val());
 	var inv = org.inv;
 	
+// capitalize every word in name //		
+	var oName = org.name.replace('-', ' ')
+	oName = oName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	$('.brand').text('Control Panel - '+oName)
+	
 	$('#btn-logout').click(function(){	
 		console.log('logging out')
-	})	
-	$('#skt-button').click(function(){
-		socket.emit('bridge-event', { msg:'hello'});
-	})	
+	})
 	$('#top img').click(function(e){
 		var n = $(e.target).closest('.span4').attr('id');
 		setActiveCollection(n);
@@ -56,7 +58,7 @@ HomeController = function()
 			inv[catName]['total'][0] = parseInt(inv[catName]['total'][0]) + n;
 		$('#'+catName+' .inventory').text(inv[catName]['total'][0] +' / '+inv[catName]['total'][1]);
 		d.find('.inventory').text(inv[catName][subName][0] +' / '+inv[catName][subName][1]);
-		
+	
 	// update the outside world //	
 		postToSockets(catName)
 		postToDatabase(catName);
@@ -64,13 +66,13 @@ HomeController = function()
 	
 	var postToSockets = function(catName)
 	{
-	//	socket.emit();
+		socket.emit('bridge-event', {org:org.name, cat:catName, inv:inv[catName]});
 	}	
 	
 	var postToDatabase = function(catName)
 	{
 		$.ajax({
-			url: org.name.replace(' ', '-'),
+			url: org.name,
 			type: "POST",
 			data: {cat:catName, inv:inv[catName]},
 			success: function(data){
@@ -78,7 +80,7 @@ HomeController = function()
 			},
 			error: function(jqXHR){
 				console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText);
-			}		
+			}
 		});
 	}
 	

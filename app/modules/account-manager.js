@@ -67,6 +67,8 @@ AM.addUser = function(o, callback){
 	});
 }
 
+// retrieval methods //
+
 AM.getOrg = function(orgName, callback)
 {
 	orgName = orgName.replace(' ', '-').toLowerCase();
@@ -78,6 +80,18 @@ AM.getUser = function(usrEmail, callback)
 	usrEmail = usrEmail.toLowerCase();	
 	AM.usrs.findOne({email:usrEmail}, function(e, o){ callback(o); });
 }
+
+AM.getAllOrgs = function(callback) 
+{
+	AM.orgs.find().toArray( function(e, res) { callback(e, res) });
+};
+
+AM.getAllUsers = function(callback) 
+{
+	AM.usrs.find().toArray( function(e, res) { callback(e, res) });
+};
+
+// password stuff //
 
 AM.setPassword = function(oldp, newp, callback)
 {
@@ -105,7 +119,7 @@ AM.saltAndHash = function(pass, callback)
 	});
 }
 
-AM.delete = function(id, callback) 
+AM.deleteAccount = function(id, callback) 
 {
 	AM.orgs.remove({_id: this.getObjectId(id)}, callback);
 }
@@ -135,18 +149,6 @@ AM.updateInventory = function(org, cat, inv, callback)
 		}
 	});
 }
-
-// print methods //
-
-AM.getAllOrgs = function(callback) 
-{
-	AM.orgs.find().toArray( function(e, res) { callback(null, res) });
-};
-
-AM.getAllUsers = function(callback) 
-{
-	AM.usrs.find().toArray( function(e, res) { callback(null, res) });
-};
 
 // auxiliary methods //
 

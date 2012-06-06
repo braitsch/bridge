@@ -11,6 +11,16 @@ label {
   -moz-text-shadow: -1px 1px 0 #fff;
   -webkit-text-shadow: -1px 1px 0 #fff;
 }
+#orgs {
+  padding: 20px;
+}
+#orgs .orgName {
+  font-size: 18px;
+  font-weight: bold;
+}
+#orgs table {
+  margin: 0 0 5px 0;
+}
 #login-container {
   width: 340px;
   margin: 160px auto;
@@ -38,6 +48,9 @@ label {
 #login-container #forgot-password {
   float: left;
   margin-left: 10px;
+}
+#controls {
+  margin-top: 100px;
 }
 #btn-logout {
   width: 100px;

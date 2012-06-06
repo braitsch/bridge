@@ -1,6 +1,44 @@
-div(style='padding:20px') 
-	p Hello !
-	#connection-count
+#orgs
+	- for (var i = 0; i < orgs.length; i++)
+		p.orgName= orgs[i].name
+			table#beds.table.table-bordered.table-striped
+				thead
+					tr
+						th Available Beds
+						th Male Beds
+						th Female Beds
+						th Family Beds
+				tbody
+					tr
+						td #{orgs[i].inv.beds.total[0]} / #{orgs[i].inv.beds.total[1]}
+						td #{orgs[i].inv.beds.male[0]} / #{orgs[i].inv.beds.male[1]}
+						td #{orgs[i].inv.beds.female[0]} / #{orgs[i].inv.beds.female[1]}
+						td #{orgs[i].inv.beds.family[0]} / #{orgs[i].inv.beds.family[1]}
+			table#showers.table.table-bordered.table-striped
+				thead
+					tr
+						th Available Showers
+						th Male Showers
+						th Female Showers
+				tbody
+					tr
+						td #{orgs[i].inv.showers.total[0]} / #{orgs[i].inv.showers.total[1]}
+						td #{orgs[i].inv.showers.male[0]} / #{orgs[i].inv.showers.male[1]}
+						td #{orgs[i].inv.showers.female[0]} / #{orgs[i].inv.showers.female[1]}
+			table#meals.table.table-bordered.table-striped
+				thead
+					tr
+						th Available Meals
+						th Breakfast
+						th Lunch
+						th Dinner
+				tbody
+					tr
+						td #{orgs[i].inv.meals.total[0]} / #{orgs[i].inv.meals.total[1]}
+						td #{orgs[i].inv.meals.bfast[0]} / #{orgs[i].inv.meals.bfast[1]}
+						td #{orgs[i].inv.meals.lunch[0]} / #{orgs[i].inv.meals.lunch[1]}
+						td #{orgs[i].inv.meals.dinner[0]} / #{orgs[i].inv.meals.dinner[1]}
+		hr
 
 script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')

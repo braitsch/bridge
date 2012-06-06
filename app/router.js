@@ -5,10 +5,13 @@ var AM = require('./modules/account-manager');
 module.exports = function(app) {
 	
 	app.get('/', function(req, res){
-		console.log('home')
-		res.render('index', { 
-			locals: {
-				title: 'Hello - Welcome to SF-Bridge',
+		AM.getAllOrgs( function(e, orgs){
+			if (e){
+				res.send('eek! something went wrong', 400);
+			}	else{
+				res.render('index', {
+					title: 'Welcome to SF-Bridge', orgs : orgs
+				});
 			}
 		});
 	});
