@@ -79,25 +79,23 @@ module.exports = function(app) {
 	
 	function onSignupPage1(req, res)
 	{
-		AM.getOrg(req.param('org-name').toLowerCase(), function(o){
-			if (!o){
-				res.send('ok', 200);
+		AM.getOrg(req.param('org-name'), function(o){
+			if (o){
+				res.send('org-name-taken', 400);				
 			}	else{
-				res.send('organization exists', 400);
+				res.send('ok', 200);
 			}
 		});
 	}
 	
 	function onSignupPage2(req, res)
 	{
-		var ul = req.param('user-login').toLowerCase();
-		var ue = req.param('user-email').toLowerCase();
-		AM.checkUserExists(ul, ue, function(e){
-			if (e){
-				res.send(e, 400);
+		AM.getUser(req.param('user-email'), function(o){
+			if (o){
+				res.send('email-taken', 400);
 			}	else{
 				AM.addOrg({
-					name 	: req.param('org-name').toLowerCase(),
+					name 	: req.param('org-name'),
 					addy1 	: req.param('org-addy1'),
 					addy2 	: req.param('org-addy2'),
 					city	: req.param('org-city'),
@@ -113,10 +111,8 @@ module.exports = function(app) {
 							name 	: req.param('user-name'),
 							pos		: req.param('user-position'),
 							phone 	: req.param('user-phone'),
-							email	: req.param('user-email').toLowerCase(),
-							login 	: req.param('user-login'),
-							pass	: req.param('user-pass'),
-							ukey	: req.param('user-login').toLowerCase()
+							email	: req.param('user-email'),
+							pass	: req.param('user-pass1'),
 						}, function(e){
 							if (e){
 								res.send(e, 400);
@@ -137,7 +133,7 @@ module.exports = function(app) {
 			showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
 			meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
 		};
-		AM.setInventory('glide memorial', inv, function(e){
+		AM.setInventory('glide-memorial', inv, function(e){
 			if (e){
 				res.send(e, 400);
 			}	else{
@@ -162,10 +158,8 @@ module.exports = function(app) {
 	});	
 
 	app.get('*', function(req, res) { 
-		var s = req.url.substring(1);
-		s = s.replace('-', ' ');
 // parse url and attempt to redirect to control panel if user is logged in //			
-		AM.getOrg(s, function(org){
+		AM.getOrg(req.url.substring(1), function(org){
 			if (org == null){
 				res.render('404', { title: 'Page Not Found'});
 			}	else{
@@ -175,9 +169,7 @@ module.exports = function(app) {
 	});
 	
 	app.post('*', function(req, res) { 
-		var org = req.url.substring(1);
-			org = org.replace('-', ' ');
-		AM.updateInventory(org, req.param('cat'), req.param('inv'), function(e){
+		AM.updateInventory(req.url.substring(1), req.param('cat'), req.param('inv'), function(e){
 			if (e){
 				res.send(e, 400);
 			}	else{

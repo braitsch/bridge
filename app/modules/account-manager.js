@@ -52,33 +52,31 @@ AM.manualLogin = function(user, pass, callback)
 
 AM.addOrg = function(o, callback){
 	o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+	o.name = o.name.replace(' ', '-').toLowerCase();
 	AM.orgs.insert(o, callback(null));
 }
 
 AM.addUser = function(o, callback){
 	AM.saltAndHash(o.pass, function(hash){
 		o.pass = hash;
+		o.email = o.email.toLowerCase();
+		o.org = o.org.replace(' ', '-').toLowerCase();		
 	// append date stamp when record was created //	
 		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 		AM.usrs.insert(o, callback(null));
 	});
 }
 
-AM.checkUserExists = function(ul, ue, callback)
+AM.getOrg = function(orgName, callback)
 {
-	AM.usrs.findOne({ukey:ul}, function(e, o) {	
-		if (o){
-			callback('Username Taken');
-		}	else{
-			AM.usrs.findOne({email:ue}, function(e, o) {
-				if (o){
-					callback('Email Taken');
-				}	else{
-					callback( null );
-				}
-			});
-		}
-	});
+	orgName = orgName.replace(' ', '-').toLowerCase();
+	AM.orgs.findOne({name:orgName}, function(e, o){ callback(o); });
+}
+
+AM.getUser = function(usrEmail, callback)
+{
+	usrEmail = usrEmail.toLowerCase();	
+	AM.usrs.findOne({email:usrEmail}, function(e, o){ callback(o); });
 }
 
 AM.setPassword = function(oldp, newp, callback)
@@ -139,16 +137,6 @@ AM.updateInventory = function(org, cat, inv, callback)
 }
 
 // print methods //
-
-AM.getOrg = function(on, callback)
-{
-	AM.orgs.findOne({name:on}, function(e, o){ callback(o); });
-}
-
-AM.getUser = function(uk, callback)
-{
-	AM.orgs.findOne({ukey:uk}, function(e, o){ callback(o); });
-}
 
 AM.getAllOrgs = function(callback) 
 {

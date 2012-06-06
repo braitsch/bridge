@@ -1,4 +1,5 @@
-textShadow()
+raiseText()
+	color grey
 	text-shadow: -1px 1px 0 white
 	-moz-text-shadow: -1px 1px 0 white
 	-webkit-text-shadow: -1px 1px 0 white
@@ -8,7 +9,10 @@ html, body
 	padding: 0
 	height: 100%
 	user-select: none
-  
+	
+label
+	raiseText()
+
 // account login //
 
 #login-container{
@@ -98,14 +102,16 @@ img
 	.form-horizontal .form-actions{
 		margin 0	
 		padding-left 255px
-	}	
+	}
+	.two-line{
+		margin-top -9px
+	}
 }
 
 // alerts & errors //
 
 .modal-form-errors li
 	color #D8000C
-
 
 // generic form stuff //
 

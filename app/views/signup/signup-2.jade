@@ -5,7 +5,7 @@ form( method="post")#signup-page-2.form-horizontal.well
 	hr
 	fieldset
 		#user-name.control-group
-			label.control-label  Your Name
+			label.control-label Your Name
 			.controls
 				input#org-name-tf.input-xlarge(type='text', name='user-name')
 		#user-position.control-group
@@ -21,15 +21,14 @@ form( method="post")#signup-page-2.form-horizontal.well
 			.controls
 				input.input-xlarge(type='text', name='user-email')
 		hr
-		p.subheading Please choose your username & password.
-		#user-login.control-group
-			label.control-label Username
+		#user-pass1.control-group
+			label.control-label.two-line Choose Password
 			.controls
-				input.input-xlarge(type='text', name='user-login')
-		#user-pass.control-group
-			label.control-label Password
+				input.input-xlarge(type='password', name='user-pass1')
+		#user-pass2.control-group
+			label.control-label.two-line Retype Password
 			.controls
-				input.input-xlarge(type='password', name='user-pass')
+				input.input-xlarge(type='password', name='user-pass2')
 		.form-actions
 			button(type='button')#signup-back.btn Back
 			button(type='submit')#signup-next.btn.btn-primary Next

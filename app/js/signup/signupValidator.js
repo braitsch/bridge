@@ -7,7 +7,7 @@ function SignupValidator()
     this.error.modal({ show : false, keyboard : true, backdrop : true });
 
 	this.p1fields = [	$('#org-name'), $('#org-addy1'), $('#org-city'), $('#org-state'), $('#org-phone'), $('#org-website')];
-	this.p2fields = [	$('#user-name'), $('#user-position'), $('#user-phone'), $('#user-email'), $('#user-login'), $('#user-pass')];
+	this.p2fields = [	$('#user-name'), $('#user-position'), $('#user-phone'), $('#user-email'), $('#user-pass1'), $('#user-pass2')];
 }
 
 SignupValidator.prototype.validateString = function(s)
@@ -24,6 +24,11 @@ SignupValidator.prototype.validateEmail = function(e)
 SignupValidator.prototype.validatePhone = function(s)
 {
 	return s.length == 10 || s.length == 12;	
+}
+
+SignupValidator.prototype.validatePassword = function(s)
+{
+	return s.length >= 8;
 }
 
 SignupValidator.prototype.showAlert = function(h, m)
@@ -96,11 +101,11 @@ SignupValidator.prototype.validatePage2 = function ()
 	if (this.validateEmail(this.p2fields[3].find('input').val()) == false) {
 		this.p2fields[3].addClass('error'); e.push('Please Enter Your Email Address');
 	}
-	if (this.validateString(this.p2fields[4].find('input').val()) == false) {
-		this.p2fields[4].addClass('error'); e.push("Please Choose a Username");
+	if (this.validatePassword(this.p2fields[4].find('input').val()) == false) {
+		this.p2fields[4].addClass('error'); e.push("Your password should be at least 8 characters");
 	}
-	if (this.validateString(this.p2fields[5].find('input').val()) == false) {
-		this.p2fields[5].addClass('error'); e.push("Please Choose a Password");
+	if (this.p2fields[5].find('input').val() != this.p2fields[4].find('input').val()){
+		this.p2fields[5].addClass('error'); e.push("Your passwords do not match");
 	}
 	if (e.length) this.showFormErrors(e);
 	return e.length === 0;

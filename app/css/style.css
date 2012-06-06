@@ -5,6 +5,12 @@ body {
   height: 100%;
   user-select: none;
 }
+label {
+  color: #808080;
+  text-shadow: -1px 1px 0 #fff;
+  -moz-text-shadow: -1px 1px 0 #fff;
+  -webkit-text-shadow: -1px 1px 0 #fff;
+}
 #login-container {
   width: 340px;
   margin: 160px auto;
@@ -99,6 +105,9 @@ img {
 #signup-container .form-horizontal .form-actions {
   margin: 0;
   padding-left: 255px;
+}
+#signup-container .two-line {
+  margin-top: -9px;
 }
 .modal-form-errors li {
   color: #d8000c;
