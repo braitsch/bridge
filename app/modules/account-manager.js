@@ -112,6 +112,32 @@ AM.delete = function(id, callback)
 	AM.orgs.remove({_id: this.getObjectId(id)}, callback);
 }
 
+// inventory //
+
+AM.setInventory = function(org, inv, callback)
+{
+	AM.getOrg(org, function(o){
+		if (o){
+			o.inv = inv;
+			AM.orgs.save(o); callback(null);
+		}	else{
+			callback('AM.setInventory : failed - organization not found.');
+		}
+	});
+}
+
+AM.updateInventory = function(org, cat, inv, callback)
+{
+	AM.getOrg(org, function(o){
+		if (o){
+			o.inv[cat] = inv;
+			AM.orgs.save(o); callback(null);
+		}	else{
+			callback('AM.updateInventory : failed - organization not found.');
+		}
+	});
+}
+
 // print methods //
 
 AM.getOrg = function(on, callback)

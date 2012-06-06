@@ -8,7 +8,8 @@ $(document).ready(function(){
 HomeController = function()
 {
 	var ac; // active collection //
-	var iv = JSON.parse($("#inv").val());
+	var org = JSON.parse($("#org").val());
+	var inv = org.inv;
 	
 	$('#btn-logout').click(function(){	
 		console.log('logging out')
@@ -46,18 +47,39 @@ HomeController = function()
 	
 	var onInventoryClick = function(d, n)
 	{
+	// update the admin panel and data modal //	
 		var a = d.attr('id').split('-')
 		var catName = a[0];
 		var subName = a[1];
-		if ((iv[catName][subName][0] == 0 && n == -1) || (iv[catName][subName][0] == iv[catName][subName][1]) && n == 1) return;
-			iv[catName][subName][0] += n;
-			iv[catName]['total'][0] += n;
-		$('#'+catName+' .inventory').text(iv[catName]['total'][0] +' / '+iv[catName]['total'][1]);
-		d.find('.inventory').text(iv[catName][subName][0] +' / '+iv[catName][subName][1]);
+		if ((inv[catName][subName][0] == 0 && n == -1) || (inv[catName][subName][0] == inv[catName][subName][1]) && n == 1) return;
+			inv[catName][subName][0] = parseInt(inv[catName][subName][0]) + n;
+			inv[catName]['total'][0] = parseInt(inv[catName]['total'][0]) + n;
+		$('#'+catName+' .inventory').text(inv[catName]['total'][0] +' / '+inv[catName]['total'][1]);
+		d.find('.inventory').text(inv[catName][subName][0] +' / '+inv[catName][subName][1]);
 		
-		// update database //
-		// dispatch socket event //
-		
+	// update the outside world //	
+		postToSockets(catName)
+		postToDatabase(catName);
+	}
+	
+	var postToSockets = function(catName)
+	{
+	//	socket.emit();
 	}	
+	
+	var postToDatabase = function(catName)
+	{
+		$.ajax({
+			url: org.name.replace(' ', '-'),
+			type: "POST",
+			data: {cat:catName, inv:inv[catName]},
+			success: function(data){
+	 			console.log('success', data);
+			},
+			error: function(jqXHR){
+				console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText);
+			}		
+		});
+	}
 	
 }

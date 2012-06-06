@@ -130,6 +130,22 @@ module.exports = function(app) {
 		});
 	}
 	
+	app.get('/inv', function(req, res){
+	// test data model //	
+		var inv = {
+			beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
+			showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
+			meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
+		};
+		AM.setInventory('glide memorial', inv, function(e){
+			if (e){
+				res.send(e, 400);
+			}	else{
+				res.send('ok', 200);
+			}
+		});
+	});
+	
 // aux methods //	
 	
 	app.get('/print', function(req, res) {
@@ -149,18 +165,25 @@ module.exports = function(app) {
 		var s = req.url.substring(1);
 		s = s.replace('-', ' ');
 // parse url and attempt to redirect to control panel if user is logged in //			
-		AM.getOrg(s, function(o){
-			if (o == null){
+		AM.getOrg(s, function(org){
+			if (org == null){
 				res.render('404', { title: 'Page Not Found'});
 			}	else{
-				var inv = {
-					beds	:{ male	:[2, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
-					showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
-					meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
-				};
-				res.render('account/home', { locals: { title : 'Control Panel', data : o, inv:inv } });
+				res.render('account/home', { locals: { title : 'Control Panel', org:org} });
 			}
 		})
 	});
+	
+	app.post('*', function(req, res) { 
+		var org = req.url.substring(1);
+			org = org.replace('-', ' ');
+		AM.updateInventory(org, req.param('cat'), req.param('inv'), function(e){
+			if (e){
+				res.send(e, 400);
+			}	else{
+				res.send('ok', 200);
+			}
+		});
+	});	
 
 };
