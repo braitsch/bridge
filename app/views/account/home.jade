@@ -1,4 +1,7 @@
 
+- invs = JSON.stringify(inv)
+input(type='hidden', value=invs)#inv
+
 div.navbar.navbar-fixed-top
 	div.navbar-inner
 		div.container-fluid
@@ -19,24 +22,24 @@ div(style='margin:60px 0 0 20px')
 		#beds.span4
 			.header	
 				.name beds
-				.inventory 143
+				.inventory #{inv.beds.total[0]} / #{inv.beds.total[1]}
 			img(src='/img/admin/bed.png')
 		#showers.span4
 			.header	
 				.name showers
-				.inventory 143
+				.inventory #{inv.showers.total[0]} / #{inv.showers.total[1]}
 			img(src='/img/admin/shower.png')
 		#meals.span4
 			.header	
 				.name meals
-				.inventory 143
+				.inventory #{inv.meals.total[0]} / #{inv.meals.total[1]}
 			img(src='/img/admin/meals.png')
 
 	#beds-o.row
 		#beds-male.span4.opt
 			.header
 				.name male beds
-				.inventory 143
+				.inventory #{inv.beds.male[0]} / #{inv.beds.male[1]}
 			.image
 				img(src='/img/admin/bed-male.png').ib
 				img(src='/img/admin/bed-male-left.png').slice.il
@@ -44,7 +47,7 @@ div(style='margin:60px 0 0 20px')
 		#beds-female.span4.opt
 			.header
 				.name female beds
-				.inventory 143
+				.inventory #{inv.beds.female[0]} / #{inv.beds.female[1]}
 			.image
 				img(src='/img/admin/bed-female.png').ib
 				img(src='/img/admin/bed-female-left.png').slice.il
@@ -52,7 +55,7 @@ div(style='margin:60px 0 0 20px')
 		#beds-family.span4.opt
 			.header
 				.name family beds
-				.inventory 143
+				.inventory #{inv.beds.family[0]} / #{inv.beds.family[1]}
 			.image
 				img(src='/img/admin/bed-family.png').ib
 				img(src='/img/admin/bed-family-left.png').slice.il
@@ -62,7 +65,7 @@ div(style='margin:60px 0 0 20px')
 		#showers-male.offset2.span4.opt
 			.header
 				.name male showers
-				.inventory 143
+				.inventory #{inv.showers.male[0]} / #{inv.showers.male[1]}
 			.image
 				img(src='/img/admin/shower-male.png').ib
 				img(src='/img/admin/shower-male-left.png').slice.il
@@ -70,7 +73,7 @@ div(style='margin:60px 0 0 20px')
 		#showers-female.span4.opt
 			.header
 				.name female showers
-				.inventory 143
+				.inventory #{inv.showers.female[0]} / #{inv.showers.female[1]}
 			.image
 				img(src='/img/admin/shower-female.png').ib
 				img(src='/img/admin/shower-female-left.png').slice.il
@@ -80,7 +83,7 @@ div(style='margin:60px 0 0 20px')
 		#meals-bfast.span4.opt
 			.header
 				.name breakfast
-				.inventory 143
+				.inventory  #{inv.meals.bfast[0]} / #{inv.meals.bfast[1]}
 			.image
 				img(src='/img/admin/meals-breakfast.png').ib
 				img(src='/img/admin/meals-breakfast-left.png').slice.il
@@ -88,7 +91,7 @@ div(style='margin:60px 0 0 20px')
 		#meals-lunch.span4.opt
 			.header
 				.name lunch
-				.inventory 143
+				.inventory #{inv.meals.lunch[0]} / #{inv.meals.lunch[1]}
 			.image
 				img(src='/img/admin/meals-lunch.png').ib
 				img(src='/img/admin/meals-lunch-left.png').slice.il
@@ -96,7 +99,7 @@ div(style='margin:60px 0 0 20px')
 		#meals-dinner.span4.opt
 			.header
 				.name dinner
-				.inventory 143
+				.inventory #{inv.meals.dinner[0]} / #{inv.meals.dinner[1]}
 			.image
 				img(src='/img/admin/meals-dinner.png').ib
 				img(src='/img/admin/meals-dinner-left.png').slice.il

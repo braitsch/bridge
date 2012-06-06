@@ -153,7 +153,12 @@ module.exports = function(app) {
 			if (o == null){
 				res.render('404', { title: 'Page Not Found'});
 			}	else{
-				res.render('account/home', { locals: { title : 'Control Panel', data : o } });
+				var inv = {
+					beds	:{ male	:[2, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
+					showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
+					meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
+				};
+				res.render('account/home', { locals: { title : 'Control Panel', data : o, inv:inv } });
 			}
 		})
 	});
