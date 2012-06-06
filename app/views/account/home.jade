@@ -14,6 +14,94 @@ div(style='margin:60px 0 0 20px')
 		i.icon-lock.icon-white
 		| Click Me!
 
+.container
+	#top.row
+		#beds.span4
+			.header	
+				.name beds
+				.inventory 143
+			img(src='/img/admin/bed.png')
+		#showers.span4
+			.header	
+				.name showers
+				.inventory 143
+			img(src='/img/admin/shower.png')
+		#meals.span4
+			.header	
+				.name meals
+				.inventory 143
+			img(src='/img/admin/meals.png')
+
+	#beds-o.row
+		#beds-male.span4.opt
+			.header
+				.name male beds
+				.inventory 143
+			.image
+				img(src='/img/admin/bed-male.png').ib
+				img(src='/img/admin/bed-male-left.png').slice.il
+				img(src='/img/admin/bed-male-right.png').slice.ir
+		#beds-female.span4.opt
+			.header
+				.name female beds
+				.inventory 143
+			.image
+				img(src='/img/admin/bed-female.png').ib
+				img(src='/img/admin/bed-female-left.png').slice.il
+				img(src='/img/admin/bed-female-right.png').slice.ir
+		#beds-family.span4.opt
+			.header
+				.name family beds
+				.inventory 143
+			.image
+				img(src='/img/admin/bed-family.png').ib
+				img(src='/img/admin/bed-family-left.png').slice.il
+				img(src='/img/admin/bed-family-right.png').slice.ir
+
+	#showers-o.row
+		#showers-male.offset2.span4.opt
+			.header
+				.name male showers
+				.inventory 143
+			.image
+				img(src='/img/admin/shower-male.png').ib
+				img(src='/img/admin/shower-male-left.png').slice.il
+				img(src='/img/admin/shower-male-right.png').slice.ir
+		#showers-female.span4.opt
+			.header
+				.name female showers
+				.inventory 143
+			.image
+				img(src='/img/admin/shower-female.png').ib
+				img(src='/img/admin/shower-female-left.png').slice.il
+				img(src='/img/admin/shower-female-right.png').slice.ir
+
+	#meals-o.row
+		#meals-bfast.span4.opt
+			.header
+				.name breakfast
+				.inventory 143
+			.image
+				img(src='/img/admin/meals-breakfast.png').ib
+				img(src='/img/admin/meals-breakfast-left.png').slice.il
+				img(src='/img/admin/meals-breakfast-right.png').slice.ir
+		#meals-lunch.span4.opt
+			.header
+				.name lunch
+				.inventory 143
+			.image
+				img(src='/img/admin/meals-lunch.png').ib
+				img(src='/img/admin/meals-lunch-left.png').slice.il
+				img(src='/img/admin/meals-lunch-right.png').slice.ir
+		#meals-dinner.span4.opt
+			.header
+				.name dinner
+				.inventory 143
+			.image
+				img(src='/img/admin/meals-dinner.png').ib
+				img(src='/img/admin/meals-dinner-left.png').slice.il
+				img(src='/img/admin/meals-dinner-right.png').slice.ir
+
 
 script(src='/vendor/jquery.min.js')
 script(src='/socket.io/socket.io.js')

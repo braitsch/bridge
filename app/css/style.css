@@ -39,6 +39,50 @@ body {
   right: 8px;
   position: absolute;
 }
+#top .header {
+  height: 20px;
+  padding: 15px;
+  background-color: #eee;
+}
+#top img {
+  padding: 0 10px 0 10px;
+}
+.opt {
+  display: none;
+}
+.opt .header {
+  height: 20px;
+  padding: 10px;
+  background-color: #eee;
+}
+.opt .image {
+  margin-left: 32.5px;
+}
+.opt .slice {
+  opacity: 0;
+}
+.opt .slice,
+.ib {
+  position: absolute;
+}
+.opt .ir {
+  margin-left: 117px;
+}
+#beds-o,
+#meals-o,
+#showers-o {
+  top: 400px;
+  position: absolute;
+}
+img {
+  cursor: pointer;
+}
+.name {
+  float: left;
+}
+.inventory {
+  text-align: right;
+}
 #signup-container {
   width: 460px;
   margin: 100px auto;
