@@ -53,7 +53,7 @@ AM.manualLogin = function(user, pass, callback)
 AM.addOrg = function(o, callback){
 	o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 	o.name = o.name.replace(' ', '-').toLowerCase();
-	AM.orgs.insert(o, callback(null));
+	AM.orgs.insert(o, callback(o));
 }
 
 AM.addUser = function(o, callback){
@@ -63,7 +63,7 @@ AM.addUser = function(o, callback){
 		o.org = o.org.replace(' ', '-').toLowerCase();		
 	// append date stamp when record was created //	
 		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-		AM.usrs.insert(o, callback(null));
+		AM.usrs.insert(o, callback(o));
 	});
 }
 

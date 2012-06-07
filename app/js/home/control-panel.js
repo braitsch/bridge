@@ -16,9 +16,6 @@ HomeController = function()
 	oName = oName.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 	$('.brand').text('Control Panel - '+oName)
 	
-	$('#btn-logout').click(function(){	
-		console.log('logging out')
-	})
 	$('#top img').click(function(e){
 		var n = $(e.target).closest('.span4').attr('id');
 		setActiveCollection(n);

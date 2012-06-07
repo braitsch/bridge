@@ -17,19 +17,38 @@ module.exports = function(app) {
 	});
 	
 // account login //	
+
+	app.get('/login2', function(req, res){
+		AM.getUser('stephen@quietless.com', function(u){
+			if (!u){
+				res.send('user-not-found', 400);
+			}	else{
+				AM.getOrg(u.org, function(o){
+					if (!o){
+						res.send('org-not-found', 400);
+					}	else{
+						console.log('ok')
+				    	req.session.org = o;						
+				    	req.session.user = u;						
+						res.redirect('/control-panel');
+					}
+				});
+			}
+		});
+	});
 	
 	app.get('/login', function(req, res){
 	// check if the user's credentials are saved in a cookie //
 		if (req.cookies.user == undefined || req.cookies.pass == undefined){
-			res.render('account/login', { locals: { title: 'Hello - Please Login To Your Account' }});
+			res.render('login', { title: 'Hello - Please Login To Your Account' });
 		}	else{
 	// attempt automatic login //
 			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
 				if (o != null){
 				    req.session.user = o;
-					res.redirect('account/home');
+					res.redirect('/control-panel');
 				}	else{
-					res.render('account/login', { locals: { title: 'Hello - Please Login To Your Account' }});
+					res.render('login', { title: 'Hello - Please Login To Your Account' });
 				}
 			});
 		}
@@ -66,9 +85,7 @@ module.exports = function(app) {
 	
 	app.get('/signup', function(req, res){
 		res.render('signup/signup', { 
-			locals: {
-				title : 'Join SF-Bridge', states : ST 
-			}
+			title : 'Join SF-Bridge', states : ST 
 		});
 	});
 
@@ -105,8 +122,8 @@ module.exports = function(app) {
 					state 	: req.param('org-state'),
 					phone	: req.param('org-phone'),
 					website	: req.param('org-website')
-				}, function(e){
-					if (e){
+				}, function(o){
+					if (!o){
 						res.send(e, 400);
 					}	else{
 						AM.addUser({
@@ -116,10 +133,12 @@ module.exports = function(app) {
 							phone 	: req.param('user-phone'),
 							email	: req.param('user-email'),
 							pass	: req.param('user-pass1'),
-						}, function(e){
-							if (e){
+						}, function(u){
+							if (!u){
 								res.send(e, 400);
 							}	else{
+								req.session.org = o;								
+								req.session.user = u;
 								res.send('ok', 200);
 							}
 						});
@@ -129,28 +148,61 @@ module.exports = function(app) {
 		});
 	}
 	
-	app.get('/inv', function(req, res){
-	// test data model //	
-		var inv = {
-			beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
-			showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
-			meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
-		};
-		AM.setInventory('glide-memorial', inv, function(e){
+// control panel //	
+	
+	app.get('/control-panel', function(req, res) { 
+	    if (req.session.user == null || req.session.org == null){
+			res.redirect('/login');
+		}	else{
+			res.render('home/control-panel', { title : 'Control Panel', org:req.session.org, user:req.session.user });
+		}
+	});
+	
+	app.post('/control-panel', function(req, res) {
+		AM.updateInventory(req.session.org.name, req.param('cat'), req.param('inv'), function(e){
 			if (e){
 				res.send(e, 400);
 			}	else{
 				res.send('ok', 200);
 			}
 		});
+	});	
+	
+// inventory //
+	
+	app.get('/control-panel/inventory', function(req, res){
+	    if (req.session.user == null || req.session.org == null){
+			res.redirect('/login');
+		}	else{
+		// dummy data //
+			var inv = {
+				beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
+				showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
+				meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
+			};
+			AM.setInventory(req.session.org.name, inv, function(e){
+				if (e){
+					res.send(e, 400);
+				}	else{
+					res.render('control-panel/inventory', { title : 'Inventory' } );
+				}
+			});
+		}
 	});
 	
 // aux methods //	
+
+	app.post('/logout', function(req, res) {
+		console.log('logout')
+		res.clearCookie('org');
+		res.clearCookie('user');
+		req.session.destroy(function(e){ res.send('ok', 200); });
+	});
 	
 	app.get('/print', function(req, res) {
 		AM.getAllOrgs( function(e, orgs){
 			AM.getAllUsers( function(e, users){
-				res.render('print', { locals: { title : 'Accounts', orgs : orgs, users : users } });		
+				res.render('print', { title : 'Accounts', orgs : orgs, users : users } );		
 			})
 		})
 	});
@@ -161,24 +213,7 @@ module.exports = function(app) {
 	});	
 
 	app.get('*', function(req, res) { 
-// parse url and attempt to redirect to control panel if user is logged in //			
-		AM.getOrg(req.url.substring(1), function(org){
-			if (org == null){
-				res.render('404', { title: 'Page Not Found'});
-			}	else{
-				res.render('account/home', { locals: { title : 'Control Panel', org:org} });
-			}
-		})
+		res.render('404', { title: 'Page Not Found'});
 	});
-	
-	app.post('*', function(req, res) { 
-		AM.updateInventory(req.url.substring(1), req.param('cat'), req.param('inv'), function(e){
-			if (e){
-				res.send(e, 400);
-			}	else{
-				res.send('ok', 200);
-			}
-		});
-	});	
 
 };
