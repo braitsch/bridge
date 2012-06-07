@@ -20,24 +20,24 @@ module.exports = AM;
 
 // logging in //
 
-AM.autoLogin = function(user, pass, callback)
+AM.autoLogin = function(e, p, callback)
 {
-	AM.orgs.findOne({user:user}, function(e, o) {
-		if (o){
-			o.pass == pass ? callback(o) : callback(null);
+	AM.usrs.findOne({email:e}, function(e, o) {
+		if (!o){
+			callback(null);	
 		}	else{
-			callback(null);
+			o.passw == p ? callback(o) : callback(null);
 		}
 	});
 }
 
-AM.manualLogin = function(user, pass, callback)
+AM.manualLogin = function(e, p, callback)
 {
-	AM.orgs.findOne({user:user}, function(e, o) {
-		if (o == null){
+	AM.usrs.findOne({email:e}, function(e, o) {
+		if (!o){
 			callback('User Not Found');
 		}	else{
-			bcrypt.compare(pass, o.pass, function(err, res) {
+			bcrypt.compare(p, o.passw, function(err, res) {
 				if (res){
 					callback(null, o);
 				}	else{
@@ -52,15 +52,15 @@ AM.manualLogin = function(user, pass, callback)
 
 AM.addOrg = function(o, callback){
 	o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-	o.name = o.name.replace(' ', '-').toLowerCase();
+	o.name = o.name.toLowerCase();
 	AM.orgs.insert(o, callback(o));
 }
 
 AM.addUser = function(o, callback){
-	AM.saltAndHash(o.pass, function(hash){
-		o.pass = hash;
+	AM.saltAndHash(o.passw, function(hash){
+		o.passw = hash;
+		o.org = o.org.toLowerCase();		
 		o.email = o.email.toLowerCase();
-		o.org = o.org.replace(' ', '-').toLowerCase();		
 	// append date stamp when record was created //	
 		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 		AM.usrs.insert(o, callback(o));
@@ -71,7 +71,7 @@ AM.addUser = function(o, callback){
 
 AM.getOrg = function(orgName, callback)
 {
-	orgName = orgName.replace(' ', '-').toLowerCase();
+	orgName = orgName.toLowerCase();
 	AM.orgs.findOne({name:orgName}, function(e, o){ callback(o); });
 }
 

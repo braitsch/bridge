@@ -16,70 +16,58 @@ module.exports = function(app) {
 		});
 	});
 	
-// account login //	
-
-	app.get('/login2', function(req, res){
-		AM.getUser('stephen@quietless.com', function(u){
-			if (!u){
-				res.send('user-not-found', 400);
-			}	else{
-				AM.getOrg(u.org, function(o){
-					if (!o){
-						res.send('org-not-found', 400);
-					}	else{
-						console.log('ok')
-				    	req.session.org = o;						
-				    	req.session.user = u;						
-						res.redirect('/control-panel');
-					}
-				});
-			}
-		});
-	});
+// account login //
 	
 	app.get('/login', function(req, res){
 	// check if the user's credentials are saved in a cookie //
-		if (req.cookies.user == undefined || req.cookies.pass == undefined){
+		if (req.cookies.email == undefined || req.cookies.passw == undefined){
 			res.render('login', { title: 'Hello - Please Login To Your Account' });
 		}	else{
 	// attempt automatic login //
-			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
-				if (o != null){
-				    req.session.user = o;
-					res.redirect('/control-panel');
-				}	else{
+			AM.autoLogin(req.cookies.email, req.cookies.passw, function(u){
+				if (u == null){
 					res.render('login', { title: 'Hello - Please Login To Your Account' });
+				}	else{
+					AM.getOrg(u.org, function(o){
+					    req.session.org = o;
+					    req.session.user = u;
+						res.redirect('/control-panel');
+					});
 				}
 			});
 		}
 	});
 	
 	app.post('/login', function(req, res){
-		if (req.param('email') != null){
-			AM.getEmail(req.param('email'), function(o){
-				if (o){
-					res.send('ok', 200);
-					EM.send(o, function(e, m){ console.log('error : '+e, 'msg : '+m)});	
-				}	else{
-					res.send('email-not-found', 400);
-				}
-			});
-		}	else{
-		// attempt manual login //
-			AM.manualLogin(req.param('user'), req.param('pass'), function(e, o){
-				if (!o){
-					res.send(e, 400);
-				}	else{
-				    req.session.user = o;
+	// attempt manual login //
+		AM.manualLogin(req.param('email'), req.param('passw'), function(e, u){
+			if (!u){
+				res.send(e, 400);
+			}	else{
+				AM.getOrg(u.org, function(o){
+				    req.session.org = o;
+				    req.session.user = u;
 					if (req.param('remember-me') == 'true'){
-						res.cookie('user', o.user, { maxAge: 900000 });
-						res.cookie('pass', o.pass, { maxAge: 900000 });
-					}			
+						res.cookie('email', u.email, { maxAge: 900000 });
+						res.cookie('passw', u.passw, { maxAge: 900000 });
+					}
 					res.send(o, 200);
-				}
-			});
-		}
-	});	
+				});
+			}
+		});
+	});
+	
+	app.post('/email-password', function(req, res){
+		res.send('ok', 200);
+		// AM.getEmail(req.param('email'), function(o){
+		// 	if (o){
+		// 		res.send('ok', 200);
+		// 		EM.send(o, function(e, m){ console.log('error : '+e, 'msg : '+m)});	
+		// 	}	else{
+		// 		res.send('email-not-found', 400);
+		// 	}
+		// });
+	})
 		
 // account creation //	
 	
@@ -132,7 +120,7 @@ module.exports = function(app) {
 							pos		: req.param('user-position'),
 							phone 	: req.param('user-phone'),
 							email	: req.param('user-email'),
-							pass	: req.param('user-pass1'),
+							passw	: req.param('user-pass1'),
 						}, function(u){
 							if (!u){
 								res.send(e, 400);
@@ -174,28 +162,30 @@ module.exports = function(app) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-		// dummy data //
-			var inv = {
-				beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
-				showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
-				meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
-			};
-			AM.setInventory(req.session.org.name, inv, function(e){
-				if (e){
-					res.send(e, 400);
-				}	else{
-					res.render('control-panel/inventory', { title : 'Inventory' } );
-				}
-			});
+			res.render('home/inventory', { title : 'Inventory', org:req.session.org, user:req.session.user } );
 		}
 	});
+	
+			// var inv = {
+			// 	beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
+			// 	showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
+			// 	meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
+			// };
+			// AM.setInventory(req.session.org.name, inv, function(e){
+			// 	if (e){
+			// 		res.send(e, 400);
+			// 	}	else{
+			// 		res.render('home/inventory', { title : 'Inventory' } );
+			// 	}
+			// });	
+	
 	
 // aux methods //	
 
 	app.post('/logout', function(req, res) {
 		console.log('logout')
-		res.clearCookie('org');
-		res.clearCookie('user');
+		res.clearCookie('email');
+		res.clearCookie('passw');
 		req.session.destroy(function(e){ res.send('ok', 200); });
 	});
 	

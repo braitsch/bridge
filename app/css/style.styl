@@ -10,7 +10,7 @@ html, body
 	height: 100%
 	user-select: none
 	
-label
+label, .subheading
 	raiseText()
 	
 // public homepage //
@@ -52,6 +52,36 @@ label
 	#forgot-password{
 		float:left
 		margin-left:10px
+	}
+}
+
+// retrieve password //
+
+.modal-single-input{
+	width 452px
+	margin -200px 0 0 -232px
+	form{
+		raiseText()
+		margin-bottom 0
+ 		button{
+			width 80px
+			top 213px
+			position absolute
+		}
+		#cancel{
+			right 110px
+		}
+		#submit{
+			right 18px
+		}
+	}
+	.modal-body{
+		height 140px
+		overflow hidden
+		padding-bottom 0
+	}	
+	.modal-footer{
+		height 20px
 	}
 }
 
@@ -107,6 +137,9 @@ img
 	.dropdown{
 		width 280px
 	}
+	.well{
+		padding-bottom 5px
+	}
 	.form-horizontal .controls{
 		margin-left 100px
 	}
@@ -127,15 +160,14 @@ img
 .modal-form-errors li
 	color #D8000C
 
+.well, .form-horizontal
+	margin 0
+	
 // generic form stuff //
 
-.well
-	margin 0
-	padding-bottom 5px
+
 .well button
 	width 60px
-.form-horizontal
-	margin 0
 button i
 	padding-left 8px
 

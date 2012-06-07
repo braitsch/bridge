@@ -5,7 +5,8 @@ body {
   height: 100%;
   user-select: none;
 }
-label {
+label,
+.subheading {
   color: #808080;
   text-shadow: -1px 1px 0 #fff;
   -moz-text-shadow: -1px 1px 0 #fff;
@@ -48,6 +49,36 @@ label {
 #login-container #forgot-password {
   float: left;
   margin-left: 10px;
+}
+.modal-single-input {
+  width: 452px;
+  margin: -200px 0 0 -232px;
+}
+.modal-single-input form {
+  color: #808080;
+  text-shadow: -1px 1px 0 #fff;
+  -moz-text-shadow: -1px 1px 0 #fff;
+  -webkit-text-shadow: -1px 1px 0 #fff;
+  margin-bottom: 0;
+}
+.modal-single-input form button {
+  width: 80px;
+  top: 213px;
+  position: absolute;
+}
+.modal-single-input form #cancel {
+  right: 110px;
+}
+.modal-single-input form #submit {
+  right: 18px;
+}
+.modal-single-input .modal-body {
+  height: 140px;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+.modal-single-input .modal-footer {
+  height: 20px;
 }
 #controls {
   margin-top: 100px;
@@ -109,6 +140,9 @@ img {
 #signup-container .dropdown {
   width: 280px;
 }
+#signup-container .well {
+  padding-bottom: 5px;
+}
 #signup-container .form-horizontal .controls {
   margin-left: 100px;
 }
@@ -125,15 +159,12 @@ img {
 .modal-form-errors li {
   color: #d8000c;
 }
-.well {
+.well,
+.form-horizontal {
   margin: 0;
-  padding-bottom: 5px;
 }
 .well button {
   width: 60px;
-}
-.form-horizontal {
-  margin: 0;
 }
 button i {
   padding-left: 8px;

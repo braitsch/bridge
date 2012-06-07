@@ -1,7 +1,6 @@
 
 function SignupValidator()
 {
-
 	this.alert = $('.modal-alert');
 	this.error = $('.modal-form-errors');
     this.error.modal({ show : false, keyboard : true, backdrop : true });
@@ -28,7 +27,7 @@ SignupValidator.prototype.validatePhone = function(s)
 
 SignupValidator.prototype.validatePassword = function(s)
 {
-	return s.length >= 8;
+	return s.length >= 6;
 }
 
 SignupValidator.prototype.showAlert = function(h, m)
@@ -102,7 +101,7 @@ SignupValidator.prototype.validatePage2 = function ()
 		this.p2fields[3].addClass('error'); e.push('Please Enter Your Email Address');
 	}
 	if (this.validatePassword(this.p2fields[4].find('input').val()) == false) {
-		this.p2fields[4].addClass('error'); e.push("Your password should be at least 8 characters");
+		this.p2fields[4].addClass('error'); e.push("Your password should be at least 6 characters");
 	}
 	if (this.p2fields[5].find('input').val() != this.p2fields[4].find('input').val()){
 		this.p2fields[5].addClass('error'); e.push("Your passwords do not match");
