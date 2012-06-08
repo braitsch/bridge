@@ -8,8 +8,7 @@ $(document).ready(function(){
 HomeController = function()
 {
 	var ac; // active collection //
-	var org = JSON.parse($("#org").val());
-	var inv = org.inv;
+	var inv = ORG_DATA.inv;
 	
 	$('#top img').click(function(e){
 		var n = $(e.target).closest('.span4').attr('id');
@@ -58,13 +57,13 @@ HomeController = function()
 	
 	var postToSockets = function(catName)
 	{
-		socket.emit('bridge-event', {org:org.name, cat:catName, inv:inv[catName]});
+		socket.emit('bridge-event', {org:ORG_DATA.name, cat:catName, inv:inv[catName]});
 	}	
 	
 	var postToDatabase = function(catName)
 	{
 		$.ajax({
-			url: org.name,
+			url: ORG_DATA.name,
 			type: "POST",
 			data: {cat:catName, inv:inv[catName]},
 			success: function(data){

@@ -103,6 +103,7 @@ module.exports = function(app) {
 				res.send('email-taken', 400);
 			}	else{
 				AM.addOrg({
+					inv		: [],
 					name 	: req.param('org-name'),
 					addy1 	: req.param('org-addy1'),
 					addy2 	: req.param('org-addy2'),
@@ -142,8 +143,8 @@ module.exports = function(app) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			if (req.session.org.inv == null){
-				res.redirect('/inv');
+			if (req.session.org.inv.length == 0){
+				res.redirect('/inventory');
 			}	else{
 				res.render('home/control-panel', { title : 'Control Panel', org:req.session.org, user:req.session.user });
 			}
@@ -151,7 +152,7 @@ module.exports = function(app) {
 	});
 	
 	app.post('/control-panel', function(req, res) {
-		AM.updateInventory(req.session.org.name, req.param('cat'), req.param('inv'), function(e){
+		AM.setInventory(req.session.org.name, req.param('inv'), function(e){
 			if (e){
 				res.send(e, 400);
 			}	else{
@@ -159,8 +160,6 @@ module.exports = function(app) {
 			}
 		});
 	});	
-	
-// inventory //
 	
 	app.get('/inventory', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
@@ -170,28 +169,15 @@ module.exports = function(app) {
 		}
 	});
 	
-	app.post('/inventory/update', function(req, res){
-		var inv = req.param('inv');		
-		console.log('updating ::: ', req.param('org'), inv.name);
-		for (var i=0; i < inv.vals.length; i++) {
-			console.log(inv.vals[i].name, inv.vals[i].total)
-		};
-	})
-	
-	app.get('/inv', function(req, res){
-		var inv = {
-			beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
-			showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
-			meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
-		};
-		AM.setInventory(req.session.org.name, inv, function(e){
+	app.post('/inventory', function(req, res){
+		AM.setInventory(req.session.org.name, req.param('inv'), function(e){
 			if (e){
 				res.send(e, 400);
 			}	else{
-				res.redirect('/control-panel');
+				res.send('ok', 200);
 			}
 		});
-	});	
+	})
 	
 // account-settings //	
 

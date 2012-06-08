@@ -44,8 +44,8 @@ SignupValidator.prototype.showSuccess = function(h, m)
 	this.alert.find('.modal-header h3').text(h);
 	this.alert.find('.modal-body p').html(m);
 	this.alert.modal('show');	
-	this.alert.find('button').click(function(){ window.location.href = '/control-panel/inventory'; })
-	setTimeout(function(){window.location.href = '/control-panel/inventory';}, 3000);
+	this.alert.find('button').click(function(){ window.location.href = '/inventory'; })
+	setTimeout(function(){window.location.href = '/inventory';}, 3000);
 }
 
 SignupValidator.prototype.showFormErrors = function(a)

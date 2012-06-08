@@ -126,28 +126,34 @@ AM.deleteAccount = function(id, callback)
 
 // inventory //
 
-AM.setInventory = function(org, inv, callback)
+AM.setInventory = function(orgName, newCat, callback)
 {
-	AM.getOrg(org, function(o){
-		if (o){
-			o.inv = inv;
-			AM.orgs.save(o); callback(null);
+	AM.getOrg(orgName, function(org){
+		var index;
+		for (var i = org.inv.length - 1; i >= 0; i--) if (org.inv[i].name == newCat.name) index = i;
+		if (index == null){
+			org.inv.push(newCat);
 		}	else{
-			callback('AM.setInventory : failed - organization not found.');
+		// overwrite //
+			org.inv[index] = newCat;
 		}
-	});
+		AM.orgs.save(org); callback(null);
+		// AM.getOrg(org.name, function(o){
+		// 	console.log('----------------------------')
+		// 	for (var i = o.inv.length - 1; i >= 0; i--){
+		// 		var cat = o.inv[i];
+		// 		console.log(cat.name+' :::::');
+		// 		for (var k = cat.fields.length - 1; k >= 0; k--){
+		// 			console.log(cat.fields[k].name, cat.fields[k].avail, cat.fields[k].total);
+		// 		};
+		// 	};
+		// })		
+	})
 }
 
-AM.updateInventory = function(org, cat, inv, callback)
+AM.getInventoryCategory = function(org, cat)
 {
-	AM.getOrg(org, function(o){
-		if (o){
-			o.inv[cat] = inv;
-			AM.orgs.save(o); callback(null);
-		}	else{
-			callback('AM.updateInventory : failed - organization not found.');
-		}
-	});
+	for (var i = org.inv.length - 1; i >= 0; i--) if (org.inv[i].name == cat.name) return org.inv[i];
 }
 
 // auxiliary methods //

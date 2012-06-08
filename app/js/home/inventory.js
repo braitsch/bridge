@@ -1,16 +1,16 @@
 
 // data that will eventually come in from db //
 var invModel = [
-	{name : 'beds', opts : ['male', 'female', 'family', 'veteran']},
-	{name : 'showers', opts : ['male', 'female']},
-	{name : 'meals', opts : ['breakfast', 'lunch', 'dinner']},	
+	{name : 'beds', fields : ['male', 'female', 'family', 'veteran']},
+	{name : 'showers', fields : ['male', 'female']},
+	{name : 'meals', fields : ['breakfast', 'lunch', 'dinner']},	
 ]
 
 $(document).ready(function(){
 	
 	window.InventoryController = new function(){
 
-		var category;
+		var orgData, locData; 
 
 		var buildInventoryView = function()
 		{
@@ -24,30 +24,49 @@ $(document).ready(function(){
 		
 		var openEditor = function(e)
 		{
+			var n = e.target.name;
 			for (var i = invModel.length - 1; i >= 0; i--) {
-				if (e.target.name == invModel[i]['name']) { category = invModel[i]; break; }
+				if (n == invModel[i]['name']) {
+					locData = invModel[i]; break;
+				}
 			}
+			var orgHasCategory = false;
+			for (var i = ORG_DATA.inv.length - 1; i >= 0; i--){
+				if (n == ORG_DATA.inv[i]['name']){
+					orgHasCategory = true;
+					orgData = ORG_DATA.inv[i]; break;
+				}
+			};
+			if (!orgHasCategory) { orgData = { name : n, fields : [] }; ORG_DATA.inv.push(orgData); }
 			$('.modal-inventory fieldset').empty();
-			$('.modal-inventory h3').text(capitalize(category.name));
-			for (var i=0; i < category.opts.length; i++) {
-				var opt = '<label>'+category.opts[i];
-					opt+= '<input class="input.input-xlarge", type="text", onkeydown="restrictInputFieldToNumbers(event)" />';
+			$('.modal-inventory h3').text(capitalize(locData.name));
+			for (var i=0; i < locData.fields.length; i++) {
+				var val = orgData.fields[i] ? orgData.fields[i].total : 0;
+				var opt = '<label>'+locData.fields[i];
+					opt+= '<input class="input.input-xlarge", type="text", value="'+val+'", onkeydown="restrictInputFieldToNumbers(event)" />';
 					opt+="</label>";
 				$('.modal-inventory fieldset').append(opt);
 			};
 			editor.modal('show');
     	}
 
-		var sendInventory = function()
+		var updateInventory = function()
 		{
-			var data = { org : 'test', inv : { name : category.name, vals : [] } };
 			$('.modal-inventory label').each(function(i, o){
-				data.inv.vals.push({name : $(o).text(), total : $(o).find('input').val()});
+				var fieldExists = false;				
+				for (var i = orgData.fields.length - 1; i >= 0; i--){
+					if (orgData.fields[i].name == $(o).text()){
+						fieldExists = true;
+						orgData.fields[i].total = $(o).find('input').val(); break;
+					}
+				};
+			// add the new field to the locData array //	
+				if (!fieldExists) orgData.fields.push({name : $(o).text(), avail : 0, total : $(o).find('input').val()})				
 			});
 			$.ajax({
-				url: '/inventory/update',
+				url: '/inventory',
 				type : "POST",
-				data : data,
+				data : {inv : orgData},
 				success: function(data){
 					console.log('ok');
 				},
@@ -56,12 +75,12 @@ $(document).ready(function(){
 				}
 			});
 		}
-		
+
 		var editor = $('.modal-inventory');
     		editor.modal({ show : false, keyboard : true, backdrop : true });
 			editor.on('shown', function() { $('.modal-inventory input')[0].focus(); });
 		$('#categories img').click(openEditor);
-		$('.modal-inventory #submit').click(sendInventory);
+		$('.modal-inventory #submit').click(updateInventory);
 
 		buildInventoryView();
 		
