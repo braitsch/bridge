@@ -198,6 +198,31 @@ label,
   width: 100%;
   height: 100%;
 }
+.modal-inventory {
+  width: 300px;
+  margin: -250px 0 0 -150px;
+}
+.modal-inventory .well {
+  width: 230px;
+  padding-bottom: 8px;
+}
+.modal-inventory form button {
+  width: 80px;
+}
+.modal-inventory .modal-footer {
+  height: 25px;
+}
+#inv-editor label {
+  width: 60px;
+  text-align: right;
+  margin-bottom: 15px;
+}
+#inv-editor input {
+  width: 50px;
+  padding-right: 10px;
+  text-align: right;
+  margin: -23px 0 0 75px;
+}
 .modal-form-errors li {
   color: #d8000c;
 }

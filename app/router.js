@@ -89,7 +89,7 @@ module.exports = function(app) {
 	{
 		AM.getOrg(req.param('org-name'), function(o){
 			if (o){
-				res.send('org-name-taken', 400);				
+				res.send('org-name-taken', 400);
 			}	else{
 				res.send('ok', 200);
 			}
@@ -125,7 +125,7 @@ module.exports = function(app) {
 							if (!u){
 								res.send(e, 400);
 							}	else{
-								req.session.org = o;								
+								req.session.org = o;
 								req.session.user = u;
 								res.send('ok', 200);
 							}
@@ -169,6 +169,14 @@ module.exports = function(app) {
 			res.render('home/inventory', { title : 'Inventory', org:req.session.org, user:req.session.user } );
 		}
 	});
+	
+	app.post('/inventory/update', function(req, res){
+		var inv = req.param('inv');		
+		console.log('updating ::: ', req.param('org'), inv.name);
+		for (var i=0; i < inv.vals.length; i++) {
+			console.log(inv.vals[i].name, inv.vals[i].total)
+		};
+	})
 	
 	app.get('/inv', function(req, res){
 		var inv = {

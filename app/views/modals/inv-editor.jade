@@ -1,0 +1,16 @@
+
+.modal-inventory.modal.hide.fade
+	.modal-header 
+		button.close(data-dismiss='modal') x
+		h3
+	.modal-body
+		p Please tell us how many you have of each :
+		form( method="post")#inv-editor.well.span4
+			fieldset
+				label Name
+					input.input-xlarge(type='text', value='0')
+				label Time
+					input.input-xlarge(type='text', value='0')
+	.modal-footer
+		button(data-dismiss="modal")#cancel.btn Cancel
+		button(type="submit")#submit.btn.btn-primary Submit
