@@ -1,3 +1,6 @@
+header_height = 40px
+footer_height = 20px
+
 raiseText()
 	color grey
 	text-shadow: -1px 1px 0 white
@@ -20,7 +23,6 @@ label, .subheading
 #orgs .orgName 
 	font-size 18px
 	font-weight bold
-	
 #orgs table
 	margin 0 0 5px 0
 
@@ -55,6 +57,32 @@ label, .subheading
 	}
 }
 
+// account signup   //
+
+#signup-container{
+	width 460px
+	margin 100px auto
+	.dropdown{
+		width 280px
+	}
+	.well{
+		padding-bottom 5px
+	}
+	.form-horizontal .controls{
+		margin-left 100px
+	}
+	.form-horizontal .control-label{
+		width 90px
+	}
+	.form-horizontal .form-actions{
+		margin 0	
+		padding-left 255px
+	}
+	.two-line{
+		margin-top -9px
+	}
+}
+
 // retrieve password //
 
 .modal-single-input{
@@ -85,89 +113,111 @@ label, .subheading
 	}
 }
 
-// control panel //
+// ------account area------//
 
-#controls
-	margin-top 100px
+#logged-in-user-name
+	top 11px
+	right 130px
+	text-align right
+	position absolute
 
 #btn-logout
 	width 100px
 	top 1px
 	right 8px
 	position absolute
-	
-#top .header
+
+// control panel //
+
+#controls
+	margin-top 100px
+#controls #top .header
 	height 20px
 	padding 15px
 	background-color #EEE
-#top img
+#controls #top img
 	padding 0 10px 0 10px
-
-.opt
+#controls .opt
 	display none
-.opt .header
+#controls .opt .header
 	height 20px
 	padding 10px
 	background-color #EEE
-.opt .image
+#controls .opt .image
 	margin-left (65px / 2)
-.opt .slice
+#controls .opt .slice
 	opacity 0
-.opt .slice, .ib
+#controls .opt .slice, .ib
 	position absolute
-.opt .ir
+#controls .opt .ir
 	margin-left 117px
-	
-#beds-o, #meals-o, #showers-o
+#controls .name	
+	float left
+#controls .inventory
+	text-align right
+#controls #beds-o, #meals-o, #showers-o
 	top 400px
 	position absolute
-
-img
-	cursor pointer
-.name	
-	float left
-.inventory
-	text-align right
 	
-// signup & update form  //
-
-#signup-container{
-	width 460px
-	margin 100px auto
-	.dropdown{
-		width 280px
-	}
-	.well{
-		padding-bottom 5px
-	}
-	.form-horizontal .controls{
-		margin-left 100px
-	}
-	.form-horizontal .control-label{
-		width 90px
-	}
-	.form-horizontal .form-actions{
-		margin 0	
-		padding-left 255px
-	}
-	.two-line{
-		margin-top -9px
-	}
-}
+// inventory //
+#inventory .heading
+	raiseText()
+	font-size 1.4em
+#categories
+	float left
+	height 100%
+	width 200px
+	background #eaeaea
+	border-right thin double #ccc;
+#categories .heading
+	padding 20px 0 0 0
+	text-align center
+#categories img
+	float left
+	margin 0 20px 10px 20px
+	width 160px
+#offerings
+	height 100%	
+	width 100%
+	background #eee
+#offerings .wrap2
+	margin-left 220px
+	padding 20px
+#offerings .heading
+	margin-left 20px	
+#offerings .content
+	width 100%
+	height 100%
 
 // alerts & errors //
 
 .modal-form-errors li
 	color #D8000C
-
-.well, .form-horizontal
-	margin 0
 	
-// generic form stuff //
-
-
-.well button
-	width 60px
+// generic stuff //
+img
+	cursor pointer	
 button i
 	padding-left 8px
-
+.well button
+	width 60px
+.well, .form-horizontal
+	margin 0
+.header-push
+	position fixed
+	top 0px
+	width 100%
+	height header_height
+.page-container
+	position fixed
+	background #eee
+	top header_height
+	bottom footer_height
+	width 100%
+	overflow auto /* Makes the Content scrollable if its required */	
+.footer-push
+	position fixed
+	height footer_height
+	bottom 0
+	width 100%
+	background #222;

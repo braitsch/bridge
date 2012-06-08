@@ -1,4 +1,23 @@
 
 include home-header
 
-div(style='padding:60px 0 0 20px') ok! we made you some stuff
+.header-push
+	#inventory.page-container
+		#categories
+			.heading Categories
+			hr
+			img(src='/img/inv/option-beds.png', title='beds', name='beds')
+			img(src='/img/inv/option-showers.png', title='showers', name='showers')
+			img(src='/img/inv/option-meals.png', title='meals', name='meals')
+		#offerings
+			.wrap2
+				.heading Our Offerings
+				hr
+				.content
+					img(src='/img/inv/option-meals.png', title='meals', name='meals')
+
+.footer-push
+
+script(src='/vendor/jquery.min.js')
+script(src='/js/home/home-header.js')
+script(src='/js/home/inventory.js')

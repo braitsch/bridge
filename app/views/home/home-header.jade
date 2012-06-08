@@ -6,7 +6,18 @@ div.navbar.navbar-fixed-top
 	div.navbar-inner
 		div.container-fluid
 			ul#global-nav.nav.pull-left
-				a(href='#').brand
+				.brand
+				li.divider-vertical
+				li
+					a(href='/control-panel') Control Panel
+				li.divider-vertical
+				li 
+					a(href='/inventory') Inventory
+				li.divider-vertical
+				li 
+					a(href='/account-settings') Account Settings
+				li.divider-vertical
 			button#btn-logout.btn.btn-primary
 				i.icon-lock.icon-white
 				| Sign Out
+	#logged-in-user-name Welcome : #{user.name}

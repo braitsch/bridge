@@ -142,7 +142,11 @@ module.exports = function(app) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/control-panel', { title : 'Control Panel', org:req.session.org, user:req.session.user });
+			if (req.session.org.inv == null){
+				res.redirect('/inv');
+			}	else{
+				res.render('home/control-panel', { title : 'Control Panel', org:req.session.org, user:req.session.user });
+			}
 		}
 	});
 	
@@ -158,7 +162,7 @@ module.exports = function(app) {
 	
 // inventory //
 	
-	app.get('/control-panel/inventory', function(req, res){
+	app.get('/inventory', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
@@ -166,18 +170,30 @@ module.exports = function(app) {
 		}
 	});
 	
-			// var inv = {
-			// 	beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
-			// 	showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
-			// 	meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
-			// };
-			// AM.setInventory(req.session.org.name, inv, function(e){
-			// 	if (e){
-			// 		res.send(e, 400);
-			// 	}	else{
-			// 		res.render('home/inventory', { title : 'Inventory' } );
-			// 	}
-			// });	
+	app.get('/inv', function(req, res){
+		var inv = {
+			beds	:{ male	:[50, 100], female	:[50, 100], family:[50, 100], total:[150, 300] },
+			showers	:{ male	:[50, 100], female	:[50, 100], total:[100, 200] },
+			meals	:{ bfast:[50, 100], lunch	:[50, 100], dinner:[50, 100], total:[150, 300] }
+		};
+		AM.setInventory(req.session.org.name, inv, function(e){
+			if (e){
+				res.send(e, 400);
+			}	else{
+				res.redirect('/control-panel');
+			}
+		});
+	});	
+	
+// account-settings //	
+
+	app.get('/account-settings', function(req, res){
+	    if (req.session.user == null || req.session.org == null){
+			res.redirect('/login');
+		}	else{
+			res.render('home/settings', { title : 'Account Settings', org:req.session.org, user:req.session.user } );
+		}
+	});
 	
 	
 // aux methods //	

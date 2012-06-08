@@ -15,4 +15,9 @@ $(document).ready(function(){
 		});
 	})
 	
+//capitalize every word in organization name //
+	var org = JSON.parse($("#org").val()).name;
+	var cap = org.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	$('.brand').text(cap);
+
 })
