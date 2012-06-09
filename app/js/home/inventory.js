@@ -8,6 +8,7 @@ var invModel = [
 
 $(document).ready(function(){
 	
+	socket = io.connect();
 	window.InventoryController = new function(){
 
 		var category, catSchema; 
@@ -67,10 +68,22 @@ $(document).ready(function(){
 			category.total = 0;
 			for (var i = category.fields.length - 1; i >= 0; i--) category.total += parseInt(category.fields[i].total);
 			
+		// update the outside world //	
+			postToSockets()
+			postToDatabase();
+		}
+		
+		var postToSockets = function(catName)
+		{
+			socket.emit('bridge-event', ORG_DATA);
+		}
+	
+		var postToDatabase = function(catName)
+		{
 			$.ajax({
 				url: '/inventory',
 				type : "POST",
-				data : {inv : category},
+				data : { inv : category },
 				success: function(data){
 					editor.modal('hide');
 				},
@@ -79,7 +92,7 @@ $(document).ready(function(){
 					console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText);
 				}
 			});
-		}
+		}		
 
 		var editor = $('.modal-inventory');
     		editor.modal({ show : false, keyboard : true, backdrop : true });
