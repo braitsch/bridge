@@ -47,11 +47,10 @@ HomeController = function()
 				var activeField = category.fields[i]; break;
 			}
 		};
-		console.log(activeField.name, activeField.avail)
 		if ((activeField.avail == 0 && n == -1) || (activeField.avail == activeField.total) && n == 1) return;
+			category.avail = parseInt(category.avail) + n;
 			activeField.avail = parseInt(activeField.avail) + n;
-		//	inv[catName].avail = parseInt(inv[catName].avail) + n;
-	//	$('#'+catName+' .inventory').text(inv[catName]['total'][0] +' / '+inv[catName]['total'][1]);
+		$('#'+category.name+' .inventory').text(category.avail +' / '+category.total);
 		d.find('.inventory').text(activeField.avail +' / '+activeField.total);
 	
 	// update the outside world //	

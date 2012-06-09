@@ -10,7 +10,7 @@ $(document).ready(function(){
 	
 	window.InventoryController = new function(){
 
-		var orgData, locData; 
+		var category, catSchema; 
 
 		var buildInventoryView = function()
 		{
@@ -27,22 +27,22 @@ $(document).ready(function(){
 			var n = e.target.name;
 			for (var i = invModel.length - 1; i >= 0; i--) {
 				if (n == invModel[i]['name']) {
-					locData = invModel[i]; break;
+					catSchema = invModel[i]; break;
 				}
 			}
 			var orgHasCategory = false;
 			for (var i = ORG_DATA.inv.length - 1; i >= 0; i--){
 				if (n == ORG_DATA.inv[i]['name']){
 					orgHasCategory = true;
-					orgData = ORG_DATA.inv[i]; break;
+					category = ORG_DATA.inv[i]; break;
 				}
 			};
-			if (!orgHasCategory) { orgData = { name : n, fields : [] }; ORG_DATA.inv.push(orgData); }
+			if (!orgHasCategory) { category = { name : n, avail : 0, total : 0, fields : [] }; ORG_DATA.inv.push(category); }
 			$('.modal-inventory fieldset').empty();
-			$('.modal-inventory h3').text(capitalize(locData.name));
-			for (var i=0; i < locData.fields.length; i++) {
-				var val = orgData.fields[i] ? orgData.fields[i].total : 0;
-				var opt = '<label>'+locData.fields[i];
+			$('.modal-inventory h3').text(capitalize(catSchema.name));
+			for (var i=0; i < catSchema.fields.length; i++) {
+				var val = category.fields[i] ? category.fields[i].total : 0;
+				var opt = '<label>'+catSchema.fields[i];
 					opt+= '<input class="input.input-xlarge", type="text", value="'+val+'", onkeydown="restrictInputFieldToNumbers(event)" />';
 					opt+="</label>";
 				$('.modal-inventory fieldset').append(opt);
@@ -54,19 +54,23 @@ $(document).ready(function(){
 		{
 			$('.modal-inventory label').each(function(i, o){
 				var fieldExists = false;				
-				for (var i = orgData.fields.length - 1; i >= 0; i--){
-					if (orgData.fields[i].name == $(o).text()){
+				for (var i = category.fields.length - 1; i >= 0; i--){
+					if (category.fields[i].name == $(o).text()){
 						fieldExists = true;
-						orgData.fields[i].total = $(o).find('input').val(); break;
+						category.fields[i].total = $(o).find('input').val(); break;
 					}
 				};
-			// add the new field to the locData array //	
-				if (!fieldExists) orgData.fields.push({name : $(o).text(), avail : 0, total : $(o).find('input').val()});
+		// add the new field to the catSchema array //	
+				if (!fieldExists) category.fields.push({name : $(o).text(), avail : 0, total : $(o).find('input').val()});
 			});
+		// finally update this categories total //
+			category.total = 0;
+			for (var i = category.fields.length - 1; i >= 0; i--) category.total += parseInt(category.fields[i].total);
+			
 			$.ajax({
 				url: '/inventory',
 				type : "POST",
-				data : {inv : orgData},
+				data : {inv : category},
 				success: function(data){
 					editor.modal('hide');
 				},

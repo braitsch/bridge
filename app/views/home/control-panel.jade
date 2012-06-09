@@ -4,21 +4,31 @@ include home-header
 #controls.container
 	#top.row
 		- for (var i = 0; i < org.inv.length; i++)
-			div(id=org.inv[i].name).span4
+			- var spacer = ''
+			- if (i == 0 && org.inv.length == 2){
+			- 	spacer = 'offset2';
+			- }	else if (i == 0 && org.inv.length == 1){
+			-	spacer = 'offset4';
+			- }
+			div(id=org.inv[i].name, class=spacer).span4
 				.header
 					.name= org.inv[i].name
-					.inventory #{org.inv[i].fields[0].avail} / #{org.inv[i].fields[0].total}
+					.inventory #{org.inv[i].avail} / #{org.inv[i].total}
 				img(src='/img/services/'+org.inv[i].name+'/'+org.inv[i].name+'.png')
 
 	- for (var i = 0; i < org.inv.length; i++)
 		- var category = org.inv[i];
 		div(id=category.name+'-o').row
 			- for (var k = 0; k < category.fields.length; k++)
-				//- temp nonsense to space out showers ...	
-				- var dbl = (category.fields.length == 2 && k==0) ? 'offset2' : '';
+				- var spacer = ''
+				- if (k == 0 && category.fields.length == 2){
+				- 	spacer = 'offset2';
+				- }	else if (k == 0 && category.fields.length == 1){
+				-	spacer = 'offset4';
+				- }
 				- var field = category.fields[k];
 				- if (field.name == 'veteran') continue;
-				div(id=category.name+'-'+field.name, class=dbl).span4.opt
+				div(id=category.name+'-'+field.name, class=spacer).span4.opt
 					.header
 						.name #{field.name} #{category.name}
 						.inventory #{field.avail} / #{field.total}
