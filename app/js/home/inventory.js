@@ -61,16 +61,17 @@ $(document).ready(function(){
 					}
 				};
 			// add the new field to the locData array //	
-				if (!fieldExists) orgData.fields.push({name : $(o).text(), avail : 0, total : $(o).find('input').val()})				
+				if (!fieldExists) orgData.fields.push({name : $(o).text(), avail : 0, total : $(o).find('input').val()});
 			});
 			$.ajax({
 				url: '/inventory',
 				type : "POST",
 				data : {inv : orgData},
 				success: function(data){
-					console.log('ok');
+					editor.modal('hide');
 				},
 				error: function(jqXHR){
+					editor.modal('hide');
 					console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText);
 				}
 			});

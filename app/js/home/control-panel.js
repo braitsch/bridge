@@ -7,8 +7,7 @@ $(document).ready(function(){
 
 HomeController = function()
 {
-	var ac; // active collection //
-	var inv = ORG_DATA.inv;
+	var catDiv, category;
 	
 	$('#top img').click(function(e){
 		var n = $(e.target).closest('.span4').attr('id');
@@ -31,41 +30,46 @@ HomeController = function()
 		$(e.currentTarget).fadeTo(200, 0);
 	}	
 
-	var setActiveCollection = function(nc)
+	var setActiveCollection = function(newDiv)
 	{
-		$('#'+ac+'-o .opt').each(function(i, o){ $(o).fadeOut(); })
-		$('#'+nc+'-o .opt').each(function(i, o){ $(o).delay(i * 100).fadeIn(); })
-		ac = nc;
+		$('#'+catDiv+'-o .opt').each(function(i, o){ $(o).fadeOut(); })
+		$('#'+newDiv+'-o .opt').each(function(i, o){ $(o).delay(i * 100).fadeIn(); })
+		catDiv = newDiv;
+		for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) if (ORG_DATA.inv[i].name == newDiv) category = ORG_DATA.inv[i];
 	}
 	
 	var onInventoryClick = function(d, n)
 	{
 	// update the admin panel and data modal //	
-		var a = d.attr('id').split('-')
-		var catName = a[0];
-		var subName = a[1];
-		if ((inv[catName][subName][0] == 0 && n == -1) || (inv[catName][subName][0] == inv[catName][subName][1]) && n == 1) return;
-			inv[catName][subName][0] = parseInt(inv[catName][subName][0]) + n;
-			inv[catName]['total'][0] = parseInt(inv[catName]['total'][0]) + n;
-		$('#'+catName+' .inventory').text(inv[catName]['total'][0] +' / '+inv[catName]['total'][1]);
-		d.find('.inventory').text(inv[catName][subName][0] +' / '+inv[catName][subName][1]);
+		var field = d.attr('id').split('-')[1];
+		for (var i = category.fields.length - 1; i >= 0; i--){
+			if (category.fields[i].name == field) {
+				var activeField = category.fields[i]; break;
+			}
+		};
+		console.log(activeField.name, activeField.avail)
+		if ((activeField.avail == 0 && n == -1) || (activeField.avail == activeField.total) && n == 1) return;
+			activeField.avail = parseInt(activeField.avail) + n;
+		//	inv[catName].avail = parseInt(inv[catName].avail) + n;
+	//	$('#'+catName+' .inventory').text(inv[catName]['total'][0] +' / '+inv[catName]['total'][1]);
+		d.find('.inventory').text(activeField.avail +' / '+activeField.total);
 	
 	// update the outside world //	
-		postToSockets(catName)
-		postToDatabase(catName);
+		postToSockets()
+		postToDatabase();
 	}
 	
 	var postToSockets = function(catName)
 	{
-		socket.emit('bridge-event', {org:ORG_DATA.name, cat:catName, inv:inv[catName]});
+		socket.emit('bridge-event', {org:ORG_DATA.name, inv:category});
 	}	
 	
 	var postToDatabase = function(catName)
 	{
 		$.ajax({
-			url: ORG_DATA.name,
+			url: '/control-panel',
 			type: "POST",
-			data: {cat:catName, inv:inv[catName]},
+			data: { inv : category },
 			success: function(data){
 	 			console.log('success', data);
 			},

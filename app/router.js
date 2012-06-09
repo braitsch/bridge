@@ -152,11 +152,12 @@ module.exports = function(app) {
 	});
 	
 	app.post('/control-panel', function(req, res) {
-		AM.setInventory(req.session.org.name, req.param('inv'), function(e){
-			if (e){
-				res.send(e, 400);
-			}	else{
+		AM.setInventory(req.session.org.name, req.param('inv'), function(org){
+			if (org){
+				req.session.org = org;
 				res.send('ok', 200);
+			}	else{
+				res.send('error updating inventory', 400);				
 			}
 		});
 	});	
@@ -170,11 +171,12 @@ module.exports = function(app) {
 	});
 	
 	app.post('/inventory', function(req, res){
-		AM.setInventory(req.session.org.name, req.param('inv'), function(e){
-			if (e){
-				res.send(e, 400);
-			}	else{
+		AM.setInventory(req.session.org.name, req.param('inv'), function(org){
+			if (org){
+				req.session.org = org;
 				res.send('ok', 200);
+			}	else{
+				res.send('error updating inventory', 400);				
 			}
 		});
 	})

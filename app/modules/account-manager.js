@@ -137,7 +137,7 @@ AM.setInventory = function(orgName, newCat, callback)
 		// overwrite //
 			org.inv[index] = newCat;
 		}
-		AM.orgs.save(org); callback(null);
+		AM.orgs.save(org); callback(org);
 		// AM.getOrg(org.name, function(o){
 		// 	console.log('----------------------------')
 		// 	for (var i = o.inv.length - 1; i >= 0; i--){

@@ -3,91 +3,29 @@ include home-header
 
 #controls.container
 	#top.row
-		#beds.span4
-			.header	
-				.name beds
-				.inventory #{org.inv.beds.total[0]} / #{org.inv.beds.total[1]}
-			img(src='/img/admin/bed.png')
-		#showers.span4
-			.header	
-				.name showers
-				.inventory #{org.inv.showers.total[0]} / #{org.inv.showers.total[1]}
-			img(src='/img/admin/shower.png')
-		#meals.span4
-			.header	
-				.name meals
-				.inventory #{org.inv.meals.total[0]} / #{org.inv.meals.total[1]}
-			img(src='/img/admin/meals.png')
+		- for (var i = 0; i < org.inv.length; i++)
+			div(id=org.inv[i].name).span4
+				.header
+					.name= org.inv[i].name
+					.inventory #{org.inv[i].fields[0].avail} / #{org.inv[i].fields[0].total}
+				img(src='/img/services/'+org.inv[i].name+'/'+org.inv[i].name+'.png')
 
-	#beds-o.row
-		#beds-male.span4.opt
-			.header
-				.name male beds
-				.inventory #{org.inv.beds.male[0]} / #{org.inv.beds.male[1]}
-			.image
-				img(src='/img/admin/bed-male.png').ib
-				img(src='/img/admin/bed-male-left.png').slice.il
-				img(src='/img/admin/bed-male-right.png').slice.ir
-		#beds-female.span4.opt
-			.header
-				.name female beds
-				.inventory #{org.inv.beds.female[0]} / #{org.inv.beds.female[1]}
-			.image
-				img(src='/img/admin/bed-female.png').ib
-				img(src='/img/admin/bed-female-left.png').slice.il
-				img(src='/img/admin/bed-female-right.png').slice.ir
-		#beds-family.span4.opt
-			.header
-				.name family beds
-				.inventory #{org.inv.beds.family[0]} / #{org.inv.beds.family[1]}
-			.image
-				img(src='/img/admin/bed-family.png').ib
-				img(src='/img/admin/bed-family-left.png').slice.il
-				img(src='/img/admin/bed-family-right.png').slice.ir
-
-	#showers-o.row
-		#showers-male.offset2.span4.opt
-			.header
-				.name male showers
-				.inventory #{org.inv.showers.male[0]} / #{org.inv.showers.male[1]}
-			.image
-				img(src='/img/admin/shower-male.png').ib
-				img(src='/img/admin/shower-male-left.png').slice.il
-				img(src='/img/admin/shower-male-right.png').slice.ir
-		#showers-female.span4.opt
-			.header
-				.name female showers
-				.inventory #{org.inv.showers.female[0]} / #{org.inv.showers.female[1]}
-			.image
-				img(src='/img/admin/shower-female.png').ib
-				img(src='/img/admin/shower-female-left.png').slice.il
-				img(src='/img/admin/shower-female-right.png').slice.ir
-
-	#meals-o.row
-		#meals-bfast.span4.opt
-			.header
-				.name breakfast
-				.inventory  #{org.inv.meals.bfast[0]} / #{org.inv.meals.bfast[1]}
-			.image
-				img(src='/img/admin/meals-breakfast.png').ib
-				img(src='/img/admin/meals-breakfast-left.png').slice.il
-				img(src='/img/admin/meals-breakfast-right.png').slice.ir
-		#meals-lunch.span4.opt
-			.header
-				.name lunch
-				.inventory #{org.inv.meals.lunch[0]} / #{org.inv.meals.lunch[1]}
-			.image
-				img(src='/img/admin/meals-lunch.png').ib
-				img(src='/img/admin/meals-lunch-left.png').slice.il
-				img(src='/img/admin/meals-lunch-right.png').slice.ir
-		#meals-dinner.span4.opt
-			.header
-				.name dinner
-				.inventory #{org.inv.meals.dinner[0]} / #{org.inv.meals.dinner[1]}
-			.image
-				img(src='/img/admin/meals-dinner.png').ib
-				img(src='/img/admin/meals-dinner-left.png').slice.il
-				img(src='/img/admin/meals-dinner-right.png').slice.ir
+	- for (var i = 0; i < org.inv.length; i++)
+		- var category = org.inv[i];
+		div(id=category.name+'-o').row
+			- for (var k = 0; k < category.fields.length; k++)
+				//- temp nonsense to space out showers ...	
+				- var dbl = (category.fields.length == 2 && k==0) ? 'offset2' : '';
+				- var field = category.fields[k];
+				- if (field.name == 'veteran') continue;
+				div(id=category.name+'-'+field.name, class=dbl).span4.opt
+					.header
+						.name #{field.name} #{category.name}
+						.inventory #{field.avail} / #{field.total}
+					.image
+						img(src='/img/services/'+category.name+'/'+field.name+'.png').ib
+						img(src='/img/services/'+category.name+'/'+field.name+'-left.png').slice.il
+						img(src='/img/services/'+category.name+'/'+field.name+'-right.png').slice.ir
 
 
 script(src='/vendor/jquery.min.js')
