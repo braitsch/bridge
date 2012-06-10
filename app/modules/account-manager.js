@@ -119,9 +119,23 @@ AM.saltAndHash = function(pass, callback)
 	});
 }
 
-AM.deleteAccount = function(id, callback) 
+AM.deleteAccount = function(user, org, callback) 
 {
-	AM.orgs.remove({_id: this.getObjectId(id)}, callback);
+	AM.usrs.remove({_id: AM.getObjectId(user._id)}, function(){
+		console.log('deleted user :', user.name);
+		AM.orgs.remove({_id: AM.getObjectId(org._id)}, function(){	
+			console.log('deleted org :', org.name);			
+			callback();
+		});
+	});
+}
+
+AM.ok = function(callback){
+	AM.getOrg('test', function(org){	
+		org.inv = [];
+		AM.orgs.save(org); 
+		callback(org);
+	});
 }
 
 // inventory //
@@ -134,8 +148,13 @@ AM.setInventory = function(orgName, newCat, callback)
 		if (index == null){
 			org.inv.push(newCat);
 		}	else{
-		// overwrite //
-			org.inv[index] = newCat;
+			if (newCat.total > 0){
+			// overwrite //				
+				org.inv[index] = newCat;				
+			}	else{
+			// remove category from inventory array //	
+				for (var i = org.inv.length - 1; i >= 0; i--) if (org.inv[i].name == newCat.name) org.inv.splice(i, 1);
+			}
 		}
 		AM.orgs.save(org); callback(org);
 		// AM.getOrg(org.name, function(o){
@@ -166,7 +185,7 @@ AM.getEmail = function(email, callback)
 AM.getObjectId = function(id)
 {
 // this is necessary for id lookups, just passing the id fails for some reason //	
-	return AM.orgs.db.bson_serializer.ObjectID.createFromHexString(id)
+	return AM.db.bson_serializer.ObjectID.createFromHexString(id)
 }
 
 AM.delAllRecords = function(id, callback) 

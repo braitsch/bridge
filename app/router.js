@@ -1,5 +1,6 @@
 
 var ST = require('./modules/us-state-list');
+var SV = require('./modules/all-services');
 var AM = require('./modules/account-manager');
 
 module.exports = function(app) {
@@ -166,7 +167,7 @@ module.exports = function(app) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/inventory', { title : 'Inventory', org:req.session.org, user:req.session.user } );
+			res.render('home/inventory', { title : 'Inventory', org:req.session.org, user:req.session.user, services:SV } );
 		}
 	});
 	
@@ -183,6 +184,13 @@ module.exports = function(app) {
 	
 // account-settings //	
 
+	app.get('/test', function(req, res){
+		AM.ok(function(org){
+			req.session.org = org;
+			res.send('ok', 200);
+		})
+	});
+
 	app.get('/account-settings', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
@@ -190,12 +198,18 @@ module.exports = function(app) {
 			res.render('home/settings', { title : 'Account Settings', org:req.session.org, user:req.session.user } );
 		}
 	});
-	
+
+	app.post('/delete', function(req, res) {
+		AM.deleteAccount(req.session.user, req.session.org, function(){
+			res.clearCookie('email');
+			res.clearCookie('passw');
+			req.session.destroy(function(e){ res.send('ok', 200); });	
+		})
+	});
 	
 // aux methods //	
 
 	app.post('/logout', function(req, res) {
-		console.log('logout')
 		res.clearCookie('email');
 		res.clearCookie('passw');
 		req.session.destroy(function(e){ res.send('ok', 200); });

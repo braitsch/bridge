@@ -1,7 +1,20 @@
 
 include home-header
 
-div(style='padding:60px 0 0 20px') coming soon
+div(style='padding:60px 0 0 20px')
+	p Organization
+	hr
+	p Name : #{org.name}
+	p Address : #{org.addy1} #{org.addy2}
+	p City : #{org.city} 
+	p State : #{org.state} 
+	p Phone : #{org.phone}
+	p Website : 
+		a(href='#{org.website}') #{org.website}
+
+	hr
+	button#delete.btn.btn-danger delete account
 
 script(src='/vendor/jquery.min.js')
 script(src='/js/home/home-header.js')
+script(src='/js/home/settings.js')

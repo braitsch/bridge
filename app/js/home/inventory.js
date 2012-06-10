@@ -1,50 +1,35 @@
 
-// data that will eventually come in from db //
-var invModel = [
-	{name : 'beds', fields : ['male', 'female', 'family', 'veteran']},
-	{name : 'showers', fields : ['male', 'female']},
-	{name : 'meals', fields : ['breakfast', 'lunch', 'dinner']},	
-]
-
 $(document).ready(function(){
+
+// global data object that describes the available services //
+	SERVICES = JSON.parse($("#services").val())
 	
 	socket = io.connect();
 	window.InventoryController = new function(){
 
 		var category, catSchema; 
 
-		var buildInventoryView = function()
-		{
-			for (var i = invModel.length - 1; i >= 0; i--){
-				var n = invModel[i]['name'];
-				var img = $("<img src='/img/inv/option-"+n+".png' name='"+n+"' title='"+n+"'/>")
-					img.click(openEditor);
-				$('#offerings .content').append(img);
-			};
-		}
-		
 		var openEditor = function(e)
 		{
 			var n = e.target.name;
-			for (var i = invModel.length - 1; i >= 0; i--) {
-				if (n == invModel[i]['name']) {
-					catSchema = invModel[i]; break;
+			for (var i = SERVICES.length - 1; i >= 0; i--) {
+				if (n == SERVICES[i]['name']) {
+					catSchema = SERVICES[i]; break;
 				}
 			}
-			var orgHasCategory = false;
+			category = null;
 			for (var i = ORG_DATA.inv.length - 1; i >= 0; i--){
-				if (n == ORG_DATA.inv[i]['name']){
-					orgHasCategory = true;
+				if (n == ORG_DATA.inv[i]['name']) {
 					category = ORG_DATA.inv[i]; break;
 				}
 			};
-			if (!orgHasCategory) { category = { name : n, avail : 0, total : 0, fields : [] }; ORG_DATA.inv.push(category); }
 			$('.modal-inventory fieldset').empty();
 			$('.modal-inventory h3').text(capitalize(catSchema.name));
 			for (var i=0; i < catSchema.fields.length; i++) {
-				var val = category.fields[i] ? category.fields[i].total : 0;
-				var opt = '<label>'+catSchema.fields[i];
-					opt+= '<input class="input.input-xlarge", type="text", value="'+val+'", onkeydown="restrictInputFieldToNumbers(event)" />';
+				var fld = catSchema.fields[i];
+				var val = getOrgFieldData(fld);
+				var opt = '<label>' + fld;
+					opt+= '<input class="input.input-xlarge", type="text", value="'+(val ? val.total : 0)+'", onkeydown="restrictInputFieldToNumbers(event)" />';
 					opt+="</label>";
 				$('.modal-inventory fieldset').append(opt);
 			};
@@ -53,27 +38,79 @@ $(document).ready(function(){
 
 		var updateInventory = function()
 		{
-			$('.modal-inventory label').each(function(i, o){
-				var fieldExists = false;				
-				for (var i = category.fields.length - 1; i >= 0; i--){
-					if (category.fields[i].name == $(o).text()){
-						fieldExists = true;
-						category.fields[i].total = $(o).find('input').val(); break;
-					}
-				};
-		// add the new field to the catSchema array //	
-				if (!fieldExists) category.fields.push({name : $(o).text(), avail : 0, total : $(o).find('input').val()});
-			});
-		// finally update this categories total //
-			category.total = 0;
-			for (var i = category.fields.length - 1; i >= 0; i--) category.total += parseInt(category.fields[i].total);
-			
-		// update the outside world //	
-			postToSockets()
-			postToDatabase();
+			if (category == null){
+				addNewService();
+			}	else{
+				updateService();
+			}
 		}
 		
-		var postToSockets = function(catName)
+		var addNewService = function()
+		{
+			category = { name : catSchema.name, avail : 0, total : 0, fields : [] };
+			$('.modal-inventory label').each(function(i, o){
+				var n = $(o).text();
+				var v = $(o).find('input').val();	
+				if (v != 0) category.fields.push({ name : n, avail : 0, total : v });
+			});
+			category.total = 0;
+			for (var i = category.fields.length - 1; i >= 0; i--) category.total += parseInt(category.fields[i].total);
+			if (category.total == 0){
+				editor.modal('hide');
+				removeItemFromView(category.name);				
+			}	else{
+			// update the outside world //	
+				ORG_DATA.inv.push(category);			
+				postToSockets()
+				postToDatabase();
+				appendItemToView(category.name);			
+			}
+		}
+		
+		var updateService = function()
+		{
+			$('.modal-inventory label').each(function(i, o){
+				var n = $(o).text();
+				var v = $(o).find('input').val();
+				var f = getOrgFieldData(n);
+				if (f){
+					if (v != 0){
+						f.total = v
+					}	else{
+						// splice field from category //						
+						for (var i = category.fields.length - 1; i >= 0; i--) {
+							if (category.fields[i].name == n) category.fields.splice(i, 1);
+						};
+					}
+				}	else {
+					if (v != 0){
+					// field did not previously exist //	
+						category.fields.push({ name : n, avail : 0, total : v });	
+					}
+				}
+			});	
+			category.total = 0;
+			for (var i = category.fields.length - 1; i >= 0; i--) category.total += parseInt(category.fields[i].total);
+			if (category.total == 0){
+			//	remove category from org's inventory //
+				removeItemFromView(category.name);
+				for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) if (ORG_DATA.inv[i].name == category.name) ORG_DATA.inv.splice(i, 1);
+			}
+		// update the outside world //	
+			postToSockets()
+			postToDatabase();					
+		}
+		
+		var getOrgFieldData = function(n)
+		{
+			if (category){
+				for (var i = category.fields.length - 1; i >= 0; i--){
+					if (category.fields[i].name == n) return category.fields[i]; 
+				}
+			}
+		}
+		
+		var postToSockets = function()
 		{
 			socket.emit('bridge-event', ORG_DATA);
 		}
@@ -92,7 +129,22 @@ $(document).ready(function(){
 					console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText);
 				}
 			});
-		}		
+		}	
+		
+		var appendItemToView = function(n)
+		{
+			var img = $("<img src='/img/inv/option-"+n+".png' name='"+n+"' title='"+n+"'/>")
+				img.click(openEditor);
+			$('#offerings .content').append(img);			
+		}	
+		
+		var removeItemFromView = function(n)
+		{
+			$('#offerings .content img').each(function(i, o){
+				var k = $(o);
+				if (k.attr('name') == n) k.remove();
+			})
+		}
 
 		var editor = $('.modal-inventory');
     		editor.modal({ show : false, keyboard : true, backdrop : true });
@@ -100,7 +152,8 @@ $(document).ready(function(){
 		$('#categories img').click(openEditor);
 		$('.modal-inventory #submit').click(updateInventory);
 
-		buildInventoryView();
+		// build our offerings list //
+		for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) appendItemToView(ORG_DATA.inv[i]['name']);
 		
 	}
 });

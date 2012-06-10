@@ -1,4 +1,7 @@
 
+// store data from express in hidden field for js //
+input(type='hidden', value=JSON.stringify(services))#services
+
 include home-header
 
 .header-push
@@ -6,9 +9,9 @@ include home-header
 		#categories
 			.heading Categories
 			hr
-			img(src='/img/inv/option-beds.png', title='beds', name='beds')
-			img(src='/img/inv/option-showers.png', title='showers', name='showers')
-			img(src='/img/inv/option-meals.png', title='meals', name='meals')
+			- for (var i = 0; i < services.length; i++)
+				- var service = services[i].name;
+				img(src='/img/inv/option-'+service+'.png', title=service, name=service)
 		#offerings
 			.wrap2
 				.heading Our Offerings
