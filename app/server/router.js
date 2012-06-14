@@ -1,4 +1,5 @@
 
+var BS = require('./modules/bridge-socket');
 var ST = require('./modules/us-state-list');
 var SV = require('./modules/all-services');
 var AM = require('./modules/account-manager');

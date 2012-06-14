@@ -14,9 +14,8 @@ global.socket.set('transports', [ 'websocket', 'flashsocket', 'htmlfile', 'xhr-p
 
 app.root = __dirname;
 
-require('./app/core/config')(app, exp);
-require('./app/router')(app);
-require('./app/modules/bridge-socket');
+require('./app/config')(app, exp);
+require('./app/server/router')(app);
 
 app.listen(8080, function(){
  	console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

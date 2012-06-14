@@ -1,12 +1,11 @@
 
 $(document).ready(function() {
 	
-	socket = io.connect();
+	socket = io.connect('/bridge');
 	window.DashboardController = new function(){
 		
-		socket.on('bridge-status', function (data) {
-			var c = data.connections;
-			var i=0; for (p in c) i++;
+		socket.on('status', function (connections) {
+			var i=0; for (p in connections) i++;
 			var s = i > 1 ? ' are '+i+' People ' : ' is '+i+' Person ';
 			$('#connection-count').html('There '+s+' Currently Connected');
 		});
