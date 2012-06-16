@@ -12,15 +12,50 @@ label,
   -moz-text-shadow: -1px 1px 0 #fff;
   -webkit-text-shadow: -1px 1px 0 #fff;
 }
-#orgs {
-  padding: 20px;
+#orgs .org {
+  margin: 20px;
+  height: 140px;
 }
-#orgs .orgName {
+#orgs p {
   font-size: 18px;
   font-weight: bold;
 }
+#orgs .orgName {
+  float: left;
+  margin-right: 10px;
+}
+#orgs .orgAddy {
+  color: #27a3fa;
+}
+#orgs hr {
+  clear: both;
+}
 #orgs table {
   margin: 0 0 5px 0;
+}
+#orgs .service {
+  float: left;
+  margin-right: 10px;
+}
+#orgs .service .text {
+  margin: 0 10px 0 10px;
+}
+#orgs .service .text .name {
+  float: left;
+}
+#orgs .service .text .avail {
+  text-align: right;
+}
+#orgs .img {
+  width: 160px;
+  height: 100px;
+  background-color: #eee;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+#orgs .img img {
+  margin-left: 30px;
 }
 #login-container {
   width: 340px;

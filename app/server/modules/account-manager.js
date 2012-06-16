@@ -9,6 +9,7 @@ var dbName = 'sf-bridge';
 
 // use moment.js for pretty date-stamping //
 var moment = require('moment');
+var dummies = require('./dummy-data');
 
 var AM = {}; 
 	AM.db = new Db(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}, {}));
@@ -73,6 +74,34 @@ AM.addUser = function(o, callback){
 	});
 }
 
+// dummy data for testing purposes //
+
+var numUsers = 0;
+AM.addDummyData = function(){
+	AM.delAllRecords( );	
+	for (var i = dummies.orgs.length - 1; i >= 0; i--){
+		var o = dummies.orgs[i];
+		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+		o.name = o.name.toLowerCase();
+		AM.orgs.insert(o);
+	};
+	AM.addDummyUser();
+}
+AM.addDummyUser = function(callback)
+{
+	if (numUsers < dummies.usrs.length){
+		var o = dummies.usrs[numUsers ++];
+		AM.saltAndHash(o.passw, function(hash){
+			o.passw = hash;
+			o.org = o.org.toLowerCase();		
+			o.email = o.email.toLowerCase();
+		// append date stamp when record was created //	
+			o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+			AM.usrs.insert(o, AM.addDummyUser);
+		});		
+	}	
+}
+
 // retrieval methods //
 
 AM.getOrg = function(orgName, callback)
@@ -133,14 +162,6 @@ AM.deleteAccount = function(user, org, callback)
 			console.log('deleted org :', org.name);			
 			callback();
 		});
-	});
-}
-
-AM.ok = function(callback){
-	AM.getOrg('test', function(org){	
-		org.inv = [];
-		AM.orgs.save(org); 
-		callback(org);
 	});
 }
 

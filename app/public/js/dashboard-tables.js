@@ -3,7 +3,6 @@ $(document).ready(function() {
 	
 	socket = io.connect('/bridge');
 	window.DashboardController = new function(){
-		
 		socket.on('status', function (connections) {
 			var i=0; for (p in connections) i++;
 			var s = i > 1 ? ' are '+i+' People ' : ' is '+i+' Person ';
@@ -13,7 +12,6 @@ $(document).ready(function() {
 			var oid = org.name.replace(' ', '-');
 			var div = $('#'+oid);
 				div.empty();
-				console.log(org.inv.length)
 			var dta = '<p class="orgName">'+ capitalize(org.name) +'</p>';
 			for (var i = org.inv.length - 1; i >= 0; i--){
 				var cat = org.inv[i];		

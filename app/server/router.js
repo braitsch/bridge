@@ -11,7 +11,7 @@ module.exports = function(app) {
 			if (e){
 				res.send('eek! something went wrong', 400);
 			}	else{
-				res.render('index', {
+				res.render('dashboard', {
 					title: 'Welcome to SF-Bridge', orgs : orgs
 				});
 			}
@@ -159,7 +159,7 @@ module.exports = function(app) {
 				req.session.org = org;
 				res.send('ok', 200);
 			}	else{
-				res.send('error updating inventory', 400);				
+				res.send('error updating inventory', 400);
 			}
 		});
 	});	
@@ -178,19 +178,12 @@ module.exports = function(app) {
 				req.session.org = org;
 				res.send('ok', 200);
 			}	else{
-				res.send('error updating inventory', 400);				
+				res.send('error updating inventory', 400);
 			}
 		});
 	})
 	
-// account-settings //	
-
-	app.get('/test', function(req, res){
-		AM.ok(function(org){
-			req.session.org = org;
-			res.send('ok', 200);
-		})
-	});
+// account-settings //
 
 	app.get('/account-settings', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
@@ -204,7 +197,7 @@ module.exports = function(app) {
 		AM.deleteAccount(req.session.user, req.session.org, function(){
 			res.clearCookie('email');
 			res.clearCookie('passw');
-			req.session.destroy(function(e){ res.send('ok', 200); });	
+			req.session.destroy(function(e){ res.send('ok', 200); });
 		})
 	});
 	
@@ -219,7 +212,7 @@ module.exports = function(app) {
 	app.get('/print', function(req, res) {
 		AM.getAllOrgs( function(e, orgs){
 			AM.getAllUsers( function(e, users){
-				res.render('print', { title : 'Accounts', orgs : orgs, users : users } );		
+				res.render('print', { title : 'Accounts', orgs : orgs, users : users } );
 			})
 		})
 	});
@@ -227,7 +220,12 @@ module.exports = function(app) {
 	app.get('/reset', function(req, res) {
 		AM.delAllRecords( );
 		res.redirect('/print');
-	});	
+	});
+	
+	app.get('/dummy', function(req, res){
+		AM.addDummyData( );
+		res.redirect('/print');
+	});
 
 	app.get('*', function(req, res) { 
 		res.render('404', { title: 'Page Not Found'});

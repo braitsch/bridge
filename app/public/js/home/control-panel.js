@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-	socket = io.connect();
+	socket = io.connect('/bridge');
 	window.HomeController = new function(){
 		
 		var catDiv, category;
