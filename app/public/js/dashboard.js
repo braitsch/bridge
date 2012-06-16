@@ -25,6 +25,8 @@ $(document).ready(function() {
 			}
 			div.append(dta);
 		});
+		
+		$('#btn-sign-in').click(function(){ window.location = '/login/'; });
 	}
 	
 });
