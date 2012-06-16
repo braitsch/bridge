@@ -210,6 +210,20 @@ label,
   -webkit-text-shadow: -1px 1px 0 #fff;
   font-size: 1.4em;
 }
+#inventory .img {
+  float: left;
+  width: 160px;
+  height: 100px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 10px 10px 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+#inventory img {
+  margin-left: 30px;
+}
 #categories {
   float: left;
   height: 100%;
@@ -221,10 +235,8 @@ label,
   padding: 20px 0 0 0;
   text-align: center;
 }
-#categories img {
-  float: left;
-  margin: 0 20px 10px 20px;
-  width: 160px;
+#categories .img {
+  margin-left: 20px;
 }
 #offerings {
   height: 100%;

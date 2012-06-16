@@ -11,7 +11,8 @@ include home-header
 			hr
 			- for (var i = 0; i < services.length; i++)
 				- var service = services[i].name;
-				img(src='/img/inv/option-'+service+'.png', title=service, name=service)
+				.img
+					img(src='/img/icons/'+service+'.png', title=service, name=service)
 		#offerings
 			.wrap2
 				.heading Our Offerings

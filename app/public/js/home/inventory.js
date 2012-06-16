@@ -133,7 +133,7 @@ $(document).ready(function(){
 		
 		var appendItemToView = function(n)
 		{
-			var img = $("<img src='/img/inv/option-"+n+".png' name='"+n+"' title='"+n+"'/>")
+			var img = $("<div class='img'><img src='/img/icons/"+n+".png' name='"+n+"' title='"+n+"'/></div>")
 				img.click(openEditor);
 			$('#offerings .content').append(img);			
 		}	
