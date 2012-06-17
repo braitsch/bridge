@@ -107,8 +107,14 @@ label,
   width: 460px;
   margin: 100px auto;
 }
+#signup-container #signup-page-2 {
+  display: hidden;
+}
 #signup-container .dropdown {
   width: 280px;
+}
+#signup-container .two-line {
+  margin-top: -9px;
 }
 #signup-container .well {
   padding-bottom: 5px;
@@ -122,9 +128,6 @@ label,
 #signup-container .form-horizontal .form-actions {
   margin: 0;
   padding-left: 255px;
-}
-#signup-container .two-line {
-  margin-top: -9px;
 }
 .modal-single-input {
   width: 452px;
