@@ -107,17 +107,20 @@ label,
   width: 460px;
   margin: 100px auto;
 }
+#signup-container #signup-page-1 {
+  display: none;
+}
 #signup-container #signup-page-2 {
-  display: hidden;
+  display: none;
+}
+#signup-container .well {
+  padding-bottom: 5px;
 }
 #signup-container .dropdown {
   width: 280px;
 }
 #signup-container .two-line {
   margin-top: -9px;
-}
-#signup-container .well {
-  padding-bottom: 5px;
 }
 #signup-container .form-horizontal .controls {
   margin-left: 100px;
