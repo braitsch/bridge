@@ -11,10 +11,13 @@ div(style='padding:60px 0 0 20px')
 	p Phone : #{org.phone}
 	p Website : 
 		a(href='#{org.website}') #{org.website}
-
 	hr
 	button#delete.btn.btn-danger delete account
 
+include ../modals/confirm
+
 script(src='/vendor/jquery.min.js')
+script(src='/vendor/bootstrap-modal.js')
+script(src='/vendor/bootstrap-transition.js')
 script(src='/js/home/home-header.js')
 script(src='/js/home/settings.js')

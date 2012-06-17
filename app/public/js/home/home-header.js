@@ -6,8 +6,7 @@ $(document).ready(function(){
 			url: '/logout',
 			type: "POST",
 			success: function(data){
-		// todo - display modal window confirming logout //
-				window.location.href = '/login';
+				onLogoutSuccess();
 			},
 			error: function(jqXHR){
 				console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText);
@@ -15,6 +14,17 @@ $(document).ready(function(){
 		});
 	})
 	
+	function onLogoutSuccess()
+	{
+		$('.modal-alert').modal({ show : false, keyboard : false, backdrop : 'static' });
+		$('.modal-alert .modal-header h3').text('Success!');
+		$('.modal-alert .modal-body p').html('You are now logged out.<br>Redirecting you back to the dashboard.');
+		$('.modal-alert button').click(function(){window.location.href = '/';})
+		$('.modal-alert').modal('show');
+		setTimeout(function(){window.location.href = '/';}, 3000);
+	}
+
+
 // global data object that describes the organization //
 	ORG_DATA = JSON.parse($("#org").val())
 	$('.brand').text(capitalize(ORG_DATA.name));

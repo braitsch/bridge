@@ -291,6 +291,14 @@ label,
 .modal-form-errors li {
   color: #d8000c;
 }
+.modal-alert {
+  width: 310px;
+  margin: -200px 0 0 -150px;
+}
+.modal-confirm {
+  width: 400px;
+  margin: -200px 0 0 -200px;
+}
 img {
   cursor: pointer;
 }
