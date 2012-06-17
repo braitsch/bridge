@@ -25,8 +25,13 @@ $(document).ready(function() {
 			}
 			div.append(dta);
 		});
-		
+
+		$('#btn-about').click(function(){ aboutModal.modal('show'); });
 		$('#btn-sign-in').click(function(){ window.location = '/login/'; });
+		
+		var aboutModal = $('.modal-about');
+    	aboutModal.modal({ show : false, keyboard : true, backdrop : true });
+		
 	}
 	
 });

@@ -6,6 +6,8 @@ div.navbar.navbar-fixed-top
 		div.container-fluid
 			.nav.pull-left
 				.brand San Francisco Bridge – Public Dashboard
+			button#btn-about.btn.btn-primary
+				i.icon-question-sign.icon-white
 			button#btn-sign-in.btn.btn-primary
 				i.icon-lock.icon-white
 				| Service Providers
@@ -27,7 +29,11 @@ div.navbar.navbar-fixed-top
 							img(src='/img/icons/'+c.name+'.png')
 		hr
 
+include modals/about
+
 script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')
+script(src='/vendor/bootstrap-modal.js')
+script(src='/vendor/bootstrap-transition.js')
 script(src='/js/dashboard.js')
 script(src='/js/utils/globals.js')
