@@ -218,11 +218,6 @@ module.exports = function(app) {
 	});
 	
 	app.get('/reset', function(req, res) {
-		AM.delAllRecords( );
-		res.redirect('/print');
-	});
-	
-	app.get('/dummy', function(req, res){
 		AM.addDummyData( );
 		res.redirect('/print');
 	});
