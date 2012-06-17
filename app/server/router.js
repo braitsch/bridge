@@ -141,7 +141,7 @@ module.exports = function(app) {
 	
 // control panel //	
 	
-	app.get('/control-panel', function(req, res) { 
+	app.get('/control-panel', function(req, res) { 		
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
@@ -195,8 +195,8 @@ module.exports = function(app) {
 
 	app.post('/delete', function(req, res) {
 		AM.deleteAccount(req.session.user, req.session.org, function(){
-			res.clearCookie('email');
-			res.clearCookie('passw');
+			res.clearCookie('email', {path:'/'});
+			res.clearCookie('passw', {path:'/'});
 			req.session.destroy(function(e){ res.send('ok', 200); });
 		})
 	});
@@ -204,8 +204,8 @@ module.exports = function(app) {
 // aux methods //	
 
 	app.post('/logout', function(req, res) {
-		res.clearCookie('email');
-		res.clearCookie('passw');
+		res.clearCookie('email', {path:'/'});
+		res.clearCookie('passw', {path:'/'});
 		req.session.destroy(function(e){ res.send('ok', 200); });
 	});
 	
