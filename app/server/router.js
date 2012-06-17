@@ -50,8 +50,8 @@ module.exports = function(app) {
 				    req.session.org = o;
 				    req.session.user = u;
 					if (req.param('remember-me') == 'true'){
-						res.cookie('email', u.email, { maxAge: 900000 });
-						res.cookie('passw', u.passw, { maxAge: 900000 });
+						res.cookie('email', u.email, { maxAge: 900000, path : '/login' });
+						res.cookie('passw', u.passw, { maxAge: 900000, path : '/login' });
 					}
 					res.send(o, 200);
 				});
@@ -195,17 +195,17 @@ module.exports = function(app) {
 
 	app.post('/delete', function(req, res) {
 		AM.deleteAccount(req.session.user, req.session.org, function(){
-			res.clearCookie('email', {path:'/'});
-			res.clearCookie('passw', {path:'/'});
+			res.clearCookie('email', {path : '/login' });
+			res.clearCookie('passw', {path : '/login' });
 			req.session.destroy(function(e){ res.send('ok', 200); });
 		})
 	});
 	
-// aux methods //	
+// aux methods //
 
 	app.post('/logout', function(req, res) {
-		res.clearCookie('email', {path:'/'});
-		res.clearCookie('passw', {path:'/'});
+		res.clearCookie('email', {path : '/login' });
+		res.clearCookie('passw', {path : '/login' });
 		req.session.destroy(function(e){ res.send('ok', 200); });
 	});
 	

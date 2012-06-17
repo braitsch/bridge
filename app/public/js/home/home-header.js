@@ -6,7 +6,7 @@ $(document).ready(function(){
 			url: '/logout',
 			type: "POST",
 			success: function(data){
-		// todo - display modal window confirming logout //		
+		// todo - display modal window confirming logout //
 				window.location.href = '/login';
 			},
 			error: function(jqXHR){
