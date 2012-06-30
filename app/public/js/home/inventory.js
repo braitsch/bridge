@@ -9,9 +9,8 @@ $(document).ready(function(){
 
 		var category, catSchema;
 
-		var openEditor = function(e)
+		var openTotalEditor = function(n)
 		{
-			var n = e.target.name;
 			for (var i = SERVICES.length - 1; i >= 0; i--) {
 				if (n == SERVICES[i]['name']) {
 					catSchema = SERVICES[i]; break;
@@ -36,6 +35,53 @@ $(document).ready(function(){
 			editor.modal('show');
     	}
 
+		var openAvailEditor = function(n)
+		{
+			$('#edit-avail .heading').text('Our '+capitalize(n));
+			for (var i = ORG_DATA.inv.length - 1; i >= 0; i--){
+				if (n == ORG_DATA.inv[i]['name']) {
+					category = ORG_DATA.inv[i]; break;
+				}
+			};
+			$('#edit-avail .services').empty();
+			for (var i = category.fields.length - 1; i >= 0; i--){
+				var f = category.fields[i];
+				var s = "<div class='service' style='display:none'>";
+					s+= "<div class='text'>"+capitalize(f.name)+"</div>";
+					s+= "<div class='avail'>"+f.avail+' / '+f.total+"</div>";
+					s+= "<hr>";
+					s+= "<div class='icon'><img src='/img/icons/"+n+".png' name='"+n+"' title='"+n+"'/></div>";
+					s+= "<div class='icon-del'><i class='icon-minus-sign'></i></div>";
+					s+= "<div class='icon-add'><i class='icon-plus-sign'></i></div>";
+					s+= "<div class='del' name='"+f.name+"'></div>";
+					s+= "<div class='add' name='"+f.name+"'></div></div>";
+				$('#edit-avail .services').append(s);
+			};
+			$('#edit-avail .services .service').each(function(n, o){ $(this).delay(n*100).fadeIn(200); })
+			$("#edit-avail .del, .add").hover(handlerIn, handlerOut);
+			$("#edit-avail .del, .add").click(onAvailInventoryChange);
+			$('#edit-avail').show();
+		}
+		
+		var handlerIn = function(e)
+		{
+			$(e.currentTarget).fadeTo(200, .15);
+		}
+
+		var handlerOut = function(e)
+		{
+			$(e.currentTarget).fadeTo(200, 0);
+		}
+		
+		var onAvailInventoryChange = function(e)
+		{
+			console.log(category.name);
+			var el = $(e.target);
+			var c = el.attr('class');
+			var n = el.attr('name');
+			console.log(c, n)
+		}
+
 		var updateInventory = function()
 		{
 			if (category == null){
@@ -50,7 +96,7 @@ $(document).ready(function(){
 			category = { name : catSchema.name, avail : 0, total : 0, fields : [] };
 			$('.modal-inventory label').each(function(i, o){
 				var n = $(o).text();
-				var v = $(o).find('input').val();	
+				var v = $(o).find('input').val();
 				if (v != 0) category.fields.push({ name : n, avail : 0, total : v });
 			});
 			category.total = 0;
@@ -105,7 +151,7 @@ $(document).ready(function(){
 		{
 			if (category){
 				for (var i = category.fields.length - 1; i >= 0; i--){
-					if (category.fields[i].name == n) return category.fields[i]; 
+					if (category.fields[i].name == n) return category.fields[i];
 				}
 			}
 		}
@@ -135,12 +181,13 @@ $(document).ready(function(){
 		{
 			var s = "<div class='service'>";
 				s+= "<div class='text'>"+capitalize(service.name)+"</div>";
-				s+= "<div class='avail'>"+service.avail+' / '+service.total+"</div>";
+				s+= "<div class='avail'><i class='icon-pencil' name='"+service.name+"'></i>"+service.avail+' / '+service.total+"</div>";
 				s+= "<hr>";
-				s+= "<div class='icon'><img src='/img/icons/"+service.name+".png' name='"+service.name+"' title='"+service.name+"'/></div></div>";
-			var img = $(s);
-			img.click(openEditor);
-			$('#offerings .content').append(img);
+				s+= "<div class='icon' name='"+service.name+"' title='"+service.name+"'><img src='/img/icons/"+service.name+".png'/></div></div>";
+			var service = $(s);
+			service.find('i').click(function(e){ openTotalEditor($(e.target).attr('name')) });
+			service.find('.icon').click(function(e){ openAvailEditor($(e.currentTarget).attr('name')) });
+			$('#our-services #all .services').append(service);
 		}	
 		
 		var removeItemFromView = function(n)
@@ -154,7 +201,7 @@ $(document).ready(function(){
 		var editor = $('.modal-inventory');
     		editor.modal({ show : false, keyboard : true, backdrop : true });
 			editor.on('shown', function() { $('.modal-inventory input')[0].focus(); });
-		$('#services img').click(openEditor);
+		$('#all-services .icon').click(function(e){ openTotalEditor(e.target.name); });
 		$('.modal-inventory #submit').click(updateInventory);
 
 		// build our offerings list //

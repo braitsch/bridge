@@ -8,7 +8,7 @@ include home-header
 
 .header-push
 	#inventory.page-container
-		#services
+		#all-services
 			.heading All Services
 			hr
 			- for (var i = 0; i < services.length; i++)
@@ -18,15 +18,16 @@ include home-header
 					hr
 					.icon
 						img(src='/img/icons/'+service+'.png', title=service, name=service)
-		#offerings
+		#our-services
 			#offset
 				#all
 					.heading Our Offerings
 					hr
-					.content
-				#edit
-					.heading Our Beds
+					.services
+				#edit-avail
+					.heading
 					hr
+					.services
 .footer-push
 
 include ../modals/inv-editor

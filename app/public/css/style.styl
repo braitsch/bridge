@@ -6,11 +6,17 @@ raiseText()
 	text-shadow: -1px 1px 0 white
 	-moz-text-shadow: -1px 1px 0 white
 	-webkit-text-shadow: -1px 1px 0 white
+disableText()
+	-webkit-touch-callout none
+	-webkit-user-select none
+	-khtml-user-select none
+	-moz-user-select none
+	-ms-user-select none
+	user-select none
 
 html, body 
 	margin: 0
 	padding: 0
-	height: 100%
 	user-select: none
 	
 label, .subheading
@@ -205,21 +211,20 @@ label, .subheading
 #inventory .heading
 	raiseText()
 	font-size 1.4em
-
-#inventory #services
+#inventory #all-services
 	float left
-	height 100%
 	width 180px
+	height 100%
 	background #eaeaea
 	border-right thin double #ccc;
-#inventory #services .heading
+#inventory #all-services .heading
 	padding 20px 0 0 0
 	text-align center
 
-#offerings
+#inventory #our-services
 	margin-left 180px
 	padding 0 20px 0 20px
-#offerings .heading
+#inventory #our-services .heading
 	padding 20px 0 0 20px
 	
 // service elements shared by both services & offerings
@@ -232,31 +237,54 @@ label, .subheading
 	background-color white
 	border 1px solid #ddd
 	border-radius 5px
+	disableText()
 	-moz-border-radius 5px
 	-webkit-border-radius 5px
 #inventory .service hr
 	margin 5px 0 3px 0
+#inventory .service .icon
+	width 100%
+	cursor pointer
 
-// specific to services
-#services .service .text
+// specific to all-services
+#inventory #all-services .service .text
 	text-align center
 
-// specific to offerings
-#offerings .service
+// specific to our-services
+#inventory #our-services .service
+	position relative
 	float left
 	width 180px
 	margin-left 10px
-#offerings .service .text
+#inventory #our-services .service .text
 	float left
 	text-align left
-#offerings .service .avail
+#inventory #our-services .service .avail
 	text-align right
-#offerings .service .icon
-	width 100px
-	margin auto
-#offerings .content
+#inventory #our-services .service i
+	margin-right 5px
+#inventory #our-services .service img
+	margin-left 40px
+#inventory #our-services .services
 	height auto
 	overflow auto
+#inventory #our-services #edit-avail
+	display none
+#inventory #our-services #edit-avail .del, .add
+	position absolute
+	top 34px
+	width 90px
+	height 110px
+	opacity 0
+	cursor pointer
+	background-color #333
+#inventory #our-services #edit-avail .add
+	margin-left 90px
+#inventory #our-services #edit-avail .icon-add, .icon-del
+	position absolute
+	bottom 10px
+#inventory #our-services #edit-avail .icon-add
+	right 18px
 
 // inventory editor //
 
@@ -292,8 +320,7 @@ label, .subheading
 	margin -200px 0 0 -200px
 	
 // generic stuff //
-img
-	cursor pointer	
+
 button i
 	padding-left 8px
 .well button

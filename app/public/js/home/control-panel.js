@@ -50,7 +50,7 @@ $(document).ready(function(){
 			$('#'+category.name+' .inventory').text(category.avail +' / '+category.total);
 			d.find('.inventory').text(activeField.avail +' / '+activeField.total);
 	
-		// update the outside world //	
+		// update the outside world //
 			postToSockets()
 			postToDatabase();
 		}
