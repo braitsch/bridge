@@ -10,7 +10,11 @@ function getInventory()
 				{name : 'meals', avail : 300, total : 300, fields : 
 					[ 	{name :'breakfast', avail : 100, total : 100},
 						{name :'lunch', avail : 100, total : 100},
-						{name :'dinner', avail : 100, total : 100} ] }
+						{name :'dinner', avail : 100, total : 100} ] },
+				{name : 'medical', avail : 150, total : 225, fields : 
+					[ 	{name :'male', avail : 50, total : 75},
+						{name :'female', avail : 50, total : 75},
+						{name :'veteran', avail : 50, total : 75} ] }
 	 		]
 }
 
@@ -54,7 +58,7 @@ module.exports.orgs = [
 		city	: 'San Francisco',
 		state 	: 'California',
 		phone	: '415.821.2798',
-		website	: '' }							
+		website	: '' }
 ]
 
 module.exports.usrs = [
@@ -87,5 +91,5 @@ module.exports.usrs = [
 		pos		: 'admin',
 		phone 	: '415-333-3333',
 		email	: 'dolores@bridge.org',
-		passw	: 'sfbridge' }							
+		passw	: 'sfbridge' }
 ]

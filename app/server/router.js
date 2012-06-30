@@ -33,7 +33,7 @@ module.exports = function(app) {
 					AM.getOrg(u.org, function(o){
 					    req.session.org = o;
 					    req.session.user = u;
-						res.redirect('/control-panel');
+						res.redirect('/inventory');
 					});
 				}
 			});
@@ -141,28 +141,28 @@ module.exports = function(app) {
 	
 // control panel //
 
-	app.get('/control-panel', function(req, res) {
-	    if (req.session.user == null || req.session.org == null){
-			res.redirect('/login');
-		}	else{
-			if (req.session.org.inv.length == 0){
-				res.redirect('/inventory');
-			}	else{
-				res.render('home/control-panel', { title : 'Control Panel', org:req.session.org, user:req.session.user });
-			}
-		}
-	});
+	// app.get('/control-panel', function(req, res) {
+	//     if (req.session.user == null || req.session.org == null){
+	// 		res.redirect('/login');
+	// 	}	else{
+	// 		if (req.session.org.inv.length == 0){
+	// 			res.redirect('/inventory');
+	// 		}	else{
+	// 			res.render('home/control-panel', { title : 'Control Panel', org:req.session.org, user:req.session.user });
+	// 		}
+	// 	}
+	// });
 	
-	app.post('/control-panel', function(req, res) {
-		AM.setInventory(req.session.org.name, req.param('inv'), function(org){
-			if (org){
-				req.session.org = org;
-				res.send('ok', 200);
-			}	else{
-				res.send('error updating inventory', 400);
-			}
-		});
-	});	
+	// app.post('/control-panel', function(req, res) {
+	// 	AM.setInventory(req.session.org.name, req.param('inv'), function(org){
+	// 		if (org){
+	// 			req.session.org = org;
+	// 			res.send('ok', 200);
+	// 		}	else{
+	// 			res.send('error updating inventory', 400);
+	// 		}
+	// 	});
+	// });
 	
 	app.get('/inventory', function(req, res){
 	    if (req.session.user == null || req.session.org == null){

@@ -46,7 +46,7 @@ $(document).ready(function(){
 			$('#edit-avail .services').empty();
 			for (var i = category.fields.length - 1; i >= 0; i--){
 				var f = category.fields[i];
-				var s = "<div class='service' style='display:none'>";
+				var s = "<div id='"+f.name+"'class='service' style='display:none'>";
 					s+= "<div class='text'>"+capitalize(f.name)+"</div>";
 					s+= "<div class='avail'>"+f.avail+' / '+f.total+"</div>";
 					s+= "<hr>";
@@ -58,28 +58,38 @@ $(document).ready(function(){
 				$('#edit-avail .services').append(s);
 			};
 			$('#edit-avail .services .service').each(function(n, o){ $(this).delay(n*100).fadeIn(200); })
-			$("#edit-avail .del, .add").hover(handlerIn, handlerOut);
+			$("#edit-avail .del, .add").hover(onEditAvailOver, onEditAvailOut);
 			$("#edit-avail .del, .add").click(onAvailInventoryChange);
 			$('#edit-avail').show();
 		}
 		
-		var handlerIn = function(e)
+		var onEditAvailOver = function(e)
 		{
 			$(e.currentTarget).fadeTo(200, .15);
 		}
 
-		var handlerOut = function(e)
+		var onEditAvailOut = function(e)
 		{
 			$(e.currentTarget).fadeTo(200, 0);
 		}
 		
 		var onAvailInventoryChange = function(e)
 		{
-			console.log(category.name);
-			var el = $(e.target);
-			var c = el.attr('class');
-			var n = el.attr('name');
-			console.log(c, n)
+			var n = $(e.target).attr("class") == 'add' ? 1 : -1;
+			var field = $(e.target).attr('name');
+			for (var i = category.fields.length - 1; i >= 0; i--){
+				if (category.fields[i].name == field) {
+					var activeField = category.fields[i]; break;
+				}
+			};
+			if ((activeField.avail == 0 && n == -1) || (activeField.avail == activeField.total) && n == 1) return;
+				category.avail = parseInt(category.avail) + n;
+				activeField.avail = parseInt(activeField.avail) + n;
+			$('#'+activeField.name+' .avail').text(activeField.avail +' / '+activeField.total);
+			
+		// update the outside world //
+			postToSockets();
+			postToDatabase();
 		}
 
 		var updateInventory = function()
@@ -159,6 +169,7 @@ $(document).ready(function(){
 		var postToSockets = function()
 		{
 			socket.emit('bridge-event', ORG_DATA);
+			$('#'+category.name+' .avail').text(category.avail +' / '+category.total);
 		}
 	
 		var postToDatabase = function(catName)
@@ -175,26 +186,27 @@ $(document).ready(function(){
 					console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText);
 				}
 			});
-		}	
+		}
 		
 		var appendItemToView = function(service)
 		{
-			var s = "<div class='service'>";
+			var s = "<div id='"+service.name+"'class='service'>";
+				s+= "<div class='edit' name='"+service.name+"'></div>";
 				s+= "<div class='text'>"+capitalize(service.name)+"</div>";
-				s+= "<div class='avail'><i class='icon-pencil' name='"+service.name+"'></i>"+service.avail+' / '+service.total+"</div>";
+				s+= "<div class='avail'>"+service.avail+' / '+service.total+"</div>";
 				s+= "<hr>";
 				s+= "<div class='icon' name='"+service.name+"' title='"+service.name+"'><img src='/img/icons/"+service.name+".png'/></div></div>";
 			var service = $(s);
-			service.find('i').click(function(e){ openTotalEditor($(e.target).attr('name')) });
+			service.find('.edit').click(function(e){ openTotalEditor($(e.target).attr('name')) });
 			service.find('.icon').click(function(e){ openAvailEditor($(e.currentTarget).attr('name')) });
 			$('#our-services #all .services').append(service);
 		}	
 		
 		var removeItemFromView = function(n)
 		{
-			$('#offerings .content img').each(function(i, o){
+			$('#our-services #all .services').each(function(i, o){
 				var k = $(o);
-				if (k.attr('name') == n) k.remove();
+				if (k.attr('id') == n) k.remove();
 			})
 		}
 

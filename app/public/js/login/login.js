@@ -10,13 +10,13 @@ $(document).ready(function(){
 				if (lv.validateLogin() == false){
 					return false;
 				} 	else{
-				// append 'remember-me' option to formData to write local cookie //					
+				// append 'remember-me' option to formData to write local cookie //
 					data.push({name:'remember-me', value:$("input:checkbox:checked").length == 1})
 					return true;
 				}
 			},
 			success	: function(responseText, status, xhr, $form){
-				if (status == 'success') window.location.href = '/control-panel';
+				if (status == 'success') window.location.href = '/inventory';
 			},
 			error : function(e){
 	            lv.showLoginModal('Login Failure', 'Please check your username and/or password');
@@ -39,7 +39,7 @@ $(document).ready(function(){
 				lv.showEmailAlert("Check your email on how to reset your password.", true);
 			},
 			error : function(e){
-				console.log('no');				
+				console.log('no');
 				lv.showEmailAlert("I'm Sorry. I could not find that email address", false);
 			}
 		});
