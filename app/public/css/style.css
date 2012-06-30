@@ -278,6 +278,7 @@ label,
   text-align: right;
 }
 #inventory #our-services .service i {
+  cursor: pointer;
   margin-right: 5px;
 }
 #inventory #our-services .service img {
