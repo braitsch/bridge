@@ -14,7 +14,7 @@ function getInventory()
 				{name : 'medical', avail : 150, total : 225, fields : 
 					[ 	{name :'male', avail : 50, total : 75},
 						{name :'female', avail : 50, total : 75},
-						{name :'veteran', avail : 50, total : 75} ] }
+						{name :'veteran', avail : 50, total : 75} ] },
 	 		]
 }
 

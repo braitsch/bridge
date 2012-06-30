@@ -289,8 +289,7 @@ label,
 #inventory #our-services .service img {
   margin-left: 40px;
 }
-#inventory #our-services .services,
- {
+#inventory #our-services .services {
   min-height: 140px;
   overflow: visible;
 }

@@ -66,9 +66,9 @@ AM.addOrg = function(o, callback){
 AM.addUser = function(o, callback){
 	AM.saltAndHash(o.passw, function(hash){
 		o.passw = hash;
-		o.org = o.org.toLowerCase();		
+		o.org = o.org.toLowerCase();
 		o.email = o.email.toLowerCase();
-	// append date stamp when record was created //	
+	// append date stamp when record was created //
 		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 		AM.usrs.insert(o, callback(o));
 	});
@@ -78,7 +78,7 @@ AM.addUser = function(o, callback){
 
 var numUsers = 0;
 AM.addDummyData = function(){
-	AM.delAllRecords( );	
+	AM.delAllRecords( );
 	for (var i = dummies.orgs.length - 1; i >= 0; i--){
 		var o = dummies.orgs[i];
 		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -93,13 +93,13 @@ AM.addDummyUser = function(callback)
 		var o = dummies.usrs[numUsers ++];
 		AM.saltAndHash(o.passw, function(hash){
 			o.passw = hash;
-			o.org = o.org.toLowerCase();		
+			o.org = o.org.toLowerCase();
 			o.email = o.email.toLowerCase();
 		// append date stamp when record was created //	
 			o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 			AM.usrs.insert(o, AM.addDummyUser);
-		});		
-	}	
+		});
+	}
 }
 
 // retrieval methods //
