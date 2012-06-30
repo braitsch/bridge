@@ -28,41 +28,40 @@ label, .subheading
 	top 1px
 	right 8px
 	width 160px	
-	position absolute	
-#orgs
+	position absolute
+
+#dashboard
 	margin-top 60px
-#orgs .org
+#dashboard .org
 	margin 20px
 	height 140px
-#orgs p
+#dashboard p
 	font-size 18px
 	font-weight bold
-#orgs .orgName 
+#dashboard .orgName 
 	float left
 	margin-right 10px
-#orgs .orgAddy
+#dashboard .orgAddy
 	color #27A3FA
-#orgs hr
+#dashboard hr
 	clear both
-#orgs table
-	margin 0 0 5px 0
-#orgs .service
+#dashboard .service
 	float left
 	margin-right 10px
-#orgs .service .text
+#dashboard .service .text
 	margin 0 10px 0 10px
-#orgs .service .text .name
+#dashboard .service .text .name
 	float left
-#orgs .service .text .avail
+#dashboard .service .text .avail
 	text-align right
-#orgs .img
+#dashboard .img
 	width 160px
 	height 100px
 	background-color #eee
 	border-radius 5px
 	-moz-border-radius 5px
 	-webkit-border-radius 5px
-#orgs .img img
+#dashboard .img img
 	margin-left 30px
 
 // account login //
@@ -100,7 +99,7 @@ label, .subheading
 
 #signup-container{
 	width 460px
-	margin 100px auto	
+	margin 100px auto
 	#signup-page-2{
 		display none
 	}
@@ -202,56 +201,74 @@ label, .subheading
 	position absolute
 	
 // inventory //
+
 #inventory .heading
 	raiseText()
 	font-size 1.4em
-#inventory .img
-	float left
-	width 160px
-	height 100px
-	background-color #fff
-	border 1px solid #ddd
-	border-radius 5px
-	margin 0 10px 10px 0	
-	-moz-border-radius 5px
-	-webkit-border-radius 5px
-#inventory img
-	margin-left 30px
-#categories
+
+#inventory #services
 	float left
 	height 100%
-	width 200px
+	width 180px
 	background #eaeaea
 	border-right thin double #ccc;
-#categories .heading
+#inventory #services .heading
 	padding 20px 0 0 0
 	text-align center
-#categories .img
-	margin-left 20px
+
 #offerings
-	height 100%	
-	width 100%
-	background #eee
-#offerings .wrap2
-	margin-left 220px
-	padding 20px
+	margin-left 180px
+	padding 0 20px 0 20px
 #offerings .heading
-	margin-left 20px	
-#offerings .content
-	width 100%
-	height 100%
+	padding 20px 0 0 20px
 	
+// service elements shared by both services & offerings
+#inventory .service
+	color #777
+	width 100px
+	margin auto
+	margin-bottom 10px
+	padding 10px 20px 6px 20px
+	background-color white
+	border 1px solid #ddd
+	border-radius 5px
+	-moz-border-radius 5px
+	-webkit-border-radius 5px
+#inventory .service hr
+	margin 5px 0 3px 0
+
+// specific to services
+#services .service .text
+	text-align center
+
+// specific to offerings
+#offerings .service
+	float left
+	width 180px
+	margin-left 10px
+#offerings .service .text
+	float left
+	text-align left
+#offerings .service .avail
+	text-align right
+#offerings .service .icon
+	width 100px
+	margin auto
+#offerings .content
+	height auto
+	overflow auto
+
 // inventory editor //
 
 .modal-inventory
 	width 300px
-	margin -250px 0 0 -150px	
+	margin -250px 0 0 -150px
 .modal-inventory .well
 	width 230px
 	padding-bottom 8px
 .modal-inventory form button
 	width 80px
-.modal-inventory .modal-footer	
+.modal-inventory .modal-footer
 	height 25px	
 #inv-editor label
 	width 60px
@@ -261,7 +278,7 @@ label, .subheading
 	width 50px
 	padding-right 10px
 	text-align right
-	margin -23px 0 0 75px 
+	margin -23px 0 0 75px
 
 // alerts & errors //
 
@@ -272,7 +289,7 @@ label, .subheading
 	margin -200px 0 0 -150px
 .modal-confirm
 	width 400px
-	margin -200px 0 0 -200px	
+	margin -200px 0 0 -200px
 	
 // generic stuff //
 img
@@ -294,7 +311,6 @@ button i
 	top header_height
 	bottom footer_height
 	width 100%
-	overflow auto /* Makes the Content scrollable if its required */	
 .footer-push
 	position fixed
 	height footer_height

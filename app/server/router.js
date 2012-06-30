@@ -139,9 +139,9 @@ module.exports = function(app) {
 		});
 	}
 	
-// control panel //	
-	
-	app.get('/control-panel', function(req, res) { 		
+// control panel //
+
+	app.get('/control-panel', function(req, res) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
@@ -168,7 +168,7 @@ module.exports = function(app) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/inventory', { title : 'Inventory', org:req.session.org, user:req.session.user, services:SV } );
+			res.render('home/inventory-2', { title : 'Inventory-2', org:req.session.org, user:req.session.user, services:SV } );
 		}
 	});
 	

@@ -7,7 +7,7 @@ $(document).ready(function(){
 	socket = io.connect('/bridge');
 	window.InventoryController = new function(){
 
-		var category, catSchema; 
+		var category, catSchema;
 
 		var openEditor = function(e)
 		{
@@ -57,13 +57,13 @@ $(document).ready(function(){
 			for (var i = category.fields.length - 1; i >= 0; i--) category.total += parseInt(category.fields[i].total);
 			if (category.total == 0){
 				editor.modal('hide');
-				removeItemFromView(category.name);				
+				removeItemFromView(category.name);
 			}	else{
-			// update the outside world //	
-				ORG_DATA.inv.push(category);			
+			// update the outside world //
+				ORG_DATA.inv.push(category);
 				postToSockets()
 				postToDatabase();
-				appendItemToView(category.name);			
+				appendItemToView(category);
 			}
 		}
 		
@@ -77,15 +77,15 @@ $(document).ready(function(){
 					if (v != 0){
 						f.total = v
 					}	else{
-						// splice field from category //						
+						// splice field from category //
 						for (var i = category.fields.length - 1; i >= 0; i--) {
 							if (category.fields[i].name == n) category.fields.splice(i, 1);
 						};
 					}
 				}	else {
 					if (v != 0){
-					// field did not previously exist //	
-						category.fields.push({ name : n, avail : 0, total : v });	
+					// field did not previously exist //
+						category.fields.push({ name : n, avail : 0, total : v });
 					}
 				}
 			});	
@@ -96,9 +96,9 @@ $(document).ready(function(){
 				removeItemFromView(category.name);
 				for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) if (ORG_DATA.inv[i].name == category.name) ORG_DATA.inv.splice(i, 1);
 			}
-		// update the outside world //	
+		// update the outside world //
 			postToSockets()
-			postToDatabase();					
+			postToDatabase();
 		}
 		
 		var getOrgFieldData = function(n)
@@ -131,11 +131,16 @@ $(document).ready(function(){
 			});
 		}	
 		
-		var appendItemToView = function(n)
+		var appendItemToView = function(service)
 		{
-			var img = $("<div class='img'><img src='/img/icons/"+n+".png' name='"+n+"' title='"+n+"'/></div>")
-				img.click(openEditor);
-			$('#offerings .content').append(img);			
+			var s = "<div class='service'>";
+				s+= "<div class='text'>"+capitalize(service.name)+"</div>";
+				s+= "<div class='avail'>"+service.avail+' / '+service.total+"</div>";
+				s+= "<hr>";
+				s+= "<div class='icon'><img src='/img/icons/"+service.name+".png' name='"+service.name+"' title='"+service.name+"'/></div></div>";
+			var img = $(s);
+			img.click(openEditor);
+			$('#offerings .content').append(img);
 		}	
 		
 		var removeItemFromView = function(n)
@@ -149,11 +154,11 @@ $(document).ready(function(){
 		var editor = $('.modal-inventory');
     		editor.modal({ show : false, keyboard : true, backdrop : true });
 			editor.on('shown', function() { $('.modal-inventory input')[0].focus(); });
-		$('#categories img').click(openEditor);
+		$('#services img').click(openEditor);
 		$('.modal-inventory #submit').click(updateInventory);
 
 		// build our offerings list //
-		for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) appendItemToView(ORG_DATA.inv[i]['name']);
-		
+		for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) appendItemToView(ORG_DATA.inv[i]);
 	}
+	
 });

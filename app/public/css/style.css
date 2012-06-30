@@ -27,44 +27,41 @@ label,
   width: 160px;
   position: absolute;
 }
-#orgs {
+#dashboard {
   margin-top: 60px;
 }
-#orgs .org {
+#dashboard .org {
   margin: 20px;
   height: 140px;
 }
-#orgs p {
+#dashboard p {
   font-size: 18px;
   font-weight: bold;
 }
-#orgs .orgName {
+#dashboard .orgName {
   float: left;
   margin-right: 10px;
 }
-#orgs .orgAddy {
+#dashboard .orgAddy {
   color: #27a3fa;
 }
-#orgs hr {
+#dashboard hr {
   clear: both;
 }
-#orgs table {
-  margin: 0 0 5px 0;
-}
-#orgs .service {
+#dashboard .service {
   float: left;
   margin-right: 10px;
 }
-#orgs .service .text {
+#dashboard .service .text {
   margin: 0 10px 0 10px;
 }
-#orgs .service .text .name {
+#dashboard .service .text .name {
   float: left;
 }
-#orgs .service .text .avail {
+#dashboard .service .text .avail {
   text-align: right;
 }
-#orgs .img {
+#dashboard .img {
   width: 160px;
   height: 100px;
   background-color: #eee;
@@ -72,7 +69,7 @@ label,
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
 }
-#orgs .img img {
+#dashboard .img img {
   margin-left: 30px;
 }
 #login-container {
@@ -106,9 +103,6 @@ label,
 #signup-container {
   width: 460px;
   margin: 100px auto;
-}
-#signup-container #signup-page-1 {
-  display: none;
 }
 #signup-container #signup-page-2 {
   display: none;
@@ -225,49 +219,61 @@ label,
   -webkit-text-shadow: -1px 1px 0 #fff;
   font-size: 1.4em;
 }
-#inventory .img {
-  float: left;
-  width: 160px;
-  height: 100px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin: 0 10px 10px 0;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-#inventory img {
-  margin-left: 30px;
-}
-#categories {
+#inventory #services {
   float: left;
   height: 100%;
-  width: 200px;
+  width: 180px;
   background: #eaeaea;
   border-right: thin double #ccc;
 }
-#categories .heading {
+#inventory #services .heading {
   padding: 20px 0 0 0;
   text-align: center;
 }
-#categories .img {
-  margin-left: 20px;
-}
 #offerings {
-  height: 100%;
-  width: 100%;
-  background: #eee;
-}
-#offerings .wrap2 {
-  margin-left: 220px;
-  padding: 20px;
+  margin-left: 180px;
+  padding: 0 20px 0 20px;
 }
 #offerings .heading {
-  margin-left: 20px;
+  padding: 20px 0 0 20px;
+}
+#inventory .service {
+  color: #777;
+  width: 100px;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 10px 20px 6px 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+#inventory .service hr {
+  margin: 5px 0 3px 0;
+}
+#services .service .text {
+  text-align: center;
+}
+#offerings .service {
+  float: left;
+  width: 180px;
+  margin-left: 10px;
+}
+#offerings .service .text {
+  float: left;
+  text-align: left;
+}
+#offerings .service .avail {
+  text-align: right;
+}
+#offerings .service .icon {
+  width: 100px;
+  margin: auto;
 }
 #offerings .content {
-  width: 100%;
-  height: 100%;
+  height: auto;
+  overflow: auto;
 }
 .modal-inventory {
   width: 300px;
@@ -330,8 +336,6 @@ button i {
   top: 40px;
   bottom: 20px;
   width: 100%;
-  overflow: auto;
-/* Makes the Content scrollable if its required */
 }
 .footer-push {
   position: fixed;
