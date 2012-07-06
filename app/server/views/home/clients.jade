@@ -3,15 +3,14 @@ script
 	var CLIENTS =!{JSON.stringify(clients)}
 include header
 
-.page-container
-	#team
+#clients.page-container
+	.center-container
 		.heading Our Clients
+			form#controls.well.form-search
+				input(type='text').input-medium
+				button#search(type='submit').btn.search Search
+				button#register.btn.btn-primary Register Client
 		hr
-		- for (var i = 0; i < clients.length; i++)
-			.member.well
-				.image
-					img(src='./img/icons/user.png')
-				#{capitalize(clients[i].name)}
 .footer
 
 script(src='/vendor/jquery.min.js')

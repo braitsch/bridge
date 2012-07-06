@@ -291,10 +291,6 @@ label,
   margin: -23px 0 0 75px;
 }
 #team {
-  width: 940px;
-  height: 100%;
-  margin: auto;
-  padding: 0 20px 0 20px;
   text-align: center;
 }
 #team .heading {
@@ -336,6 +332,27 @@ label,
   -moz-background-size: 30px 30px;
   background-size: 30px 30px;
 }
+#clients .heading {
+  padding-left: 20px;
+}
+#controls {
+  position: absolute;
+  top: 4px;
+  right: 140px;
+}
+#controls {
+  padding: 10px;
+}
+#controls .input-medium {
+  width: 225px;
+  margin: 0;
+}
+#controls #search {
+  width: 80px;
+}
+#controls #register {
+  width: 120px;
+}
 .modal-form-errors li {
   color: #d8000c;
 }
@@ -371,6 +388,12 @@ button i {
   -webkit-text-shadow: -1px 1px 0 #fff;
   font-size: 1.4em;
   padding: 20px 0 0 0;
+}
+.center-container {
+  width: 940px;
+  height: 100%;
+  margin: auto;
+  padding: 0 20px 0 20px;
 }
 .footer {
   position: fixed;
