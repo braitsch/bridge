@@ -1,9 +1,6 @@
 
 $(document).ready(function(){
 
-// global data object that describes the available services //
-	SERVICES = JSON.parse($("#services").val())
-	
 	socket = io.connect('/bridge');
 	window.InventoryController = new function(){
 

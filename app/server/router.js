@@ -33,7 +33,7 @@ module.exports = function(app) {
 					AM.getOrg(u.org, function(o){
 					    req.session.org = o;
 					    req.session.user = u;
-						res.redirect('/inventory');
+						res.redirect('/offerings');
 					});
 				}
 			});
@@ -145,32 +145,32 @@ module.exports = function(app) {
 		});
 	}
 	
-	app.get('/inventory', function(req, res){
+	app.get('/offerings', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/inventory', { title : 'Inventory', org:req.session.org, user:req.session.user, services:SV } );
+			res.render('home/offerings', { title : 'Inventory', org:req.session.org, user:req.session.user, services:SV } );
 		}
 	});
 	
-	app.post('/inventory', function(req, res){
+	app.post('/offerings', function(req, res){
 		AM.setInventory(req.session.org.name, req.param('inv'), function(org){
 			if (org){
 				req.session.org = org;
 				res.send('ok', 200);
 			}	else{
-				res.send('error updating inventory', 400);
+				res.send('error updating offerings', 400);
 			}
 		});
 	})
 
 // account-settings //
 
-	app.get('/account-settings', function(req, res){
+	app.get('/about-us', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/settings', { title : 'Account Settings', org:req.session.org, user:req.session.user } );
+			res.render('home/about-us', { title : 'About Us', org:req.session.org, user:req.session.user } );
 		}
 	});
 
@@ -182,6 +182,18 @@ module.exports = function(app) {
 		})
 	});
 	
+// our-team //
+
+	app.get('/our-team', function(req, res){
+	    if (req.session.user == null || req.session.org == null){
+			res.redirect('/login');
+		}	else{
+			AM.getUsersOfOrg(req.session.org.name, function(e, users){
+				res.render('home/our-team', { title : 'Our Team', org:req.session.org, user:req.session.user, team:users } );
+			})
+		}
+	});
+
 // aux methods //
 
 	app.get('/print', function(req, res) {

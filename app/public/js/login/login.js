@@ -16,7 +16,7 @@ $(document).ready(function(){
 				}
 			},
 			success	: function(responseText, status, xhr, $form){
-				if (status == 'success') window.location.href = '/inventory';
+				if (status == 'success') window.location.href = '/offerings';
 			},
 			error : function(e){
 	            lv.showLoginModal('Login Failure', 'Please check your username and/or password');

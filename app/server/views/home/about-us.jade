@@ -1,8 +1,8 @@
 
-include home-header
+include header
 
-div(style='padding:60px 0 0 20px')
-	p Organization
+.page-container(style='padding-left:20px')
+	.heading About Us
 	hr
 	p Name : #{org.name}
 	p Address : #{org.addy1} #{org.addy2}
@@ -14,10 +14,12 @@ div(style='padding:60px 0 0 20px')
 	hr
 	button#delete.btn.btn-danger delete account
 
+.footer
+
 include ../modals/confirm
 
 script(src='/vendor/jquery.min.js')
 script(src='/vendor/bootstrap-modal.js')
 script(src='/vendor/bootstrap-transition.js')
-script(src='/js/home/home-header.js')
-script(src='/js/home/settings.js')
+script(src='/js/home/header.js')
+script(src='/js/home/about-us.js')

@@ -31,7 +31,7 @@ AM.autoLogin = function(e, p, callback)
 {
 	AM.usrs.findOne({email:e}, function(e, o) {
 		if (!o){
-			callback(null);	
+			callback(null);
 		}	else{
 			o.passw == p ? callback(o) : callback(null);
 		}
@@ -48,7 +48,7 @@ AM.manualLogin = function(e, p, callback)
 				if (res){
 					callback(null, o);
 				}	else{
-					callback('Invalid Password');				
+					callback('Invalid Password');
 				}
 			});
 		}
@@ -95,7 +95,7 @@ AM.addDummyUser = function(callback)
 			o.passw = hash;
 			o.org = o.org.toLowerCase();
 			o.email = o.email.toLowerCase();
-		// append date stamp when record was created //	
+		// append date stamp when record was created //
 			o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 			AM.usrs.insert(o, AM.addDummyUser);
 		});
@@ -112,18 +112,22 @@ AM.getOrg = function(orgName, callback)
 
 AM.getUser = function(usrEmail, callback)
 {
-	usrEmail = usrEmail.toLowerCase();	
+	usrEmail = usrEmail.toLowerCase();
 	AM.usrs.findOne({email:usrEmail}, function(e, o){ callback(o); });
 }
 
-AM.getAllOrgs = function(callback) 
+AM.getAllOrgs = function(callback)
 {
 	AM.orgs.find().toArray( function(e, res) { callback(e, res) });
 };
 
-AM.getAllUsers = function(callback) 
+AM.getAllUsers = function(callback)
 {
 	AM.usrs.find().toArray( function(e, res) { callback(e, res) });
+};
+AM.getUsersOfOrg = function(orgName, callback)
+{
+	AM.usrs.find({ 'org':orgName }).toArray( function(e, res) { callback(e, res) });
 };
 
 // password stuff //
@@ -148,18 +152,18 @@ AM.validateLink = function(pid, callback)
 AM.saltAndHash = function(pass, callback)
 {
 	bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(pass, salt, function(err, hash) {
+		bcrypt.hash(pass, salt, function(err, hash) {
 			callback(hash);
-	    });
+		});
 	});
 }
 
-AM.deleteAccount = function(user, org, callback) 
+AM.deleteAccount = function(user, org, callback)
 {
 	AM.usrs.remove({_id: AM.getObjectId(user._id)}, function(){
 		console.log('deleted user :', user.name);
-		AM.orgs.remove({_id: AM.getObjectId(org._id)}, function(){	
-			console.log('deleted org :', org.name);			
+		AM.orgs.remove({_id: AM.getObjectId(org._id)}, function(){
+			console.log('deleted org :', org.name);
 			callback();
 		});
 	});
@@ -176,10 +180,10 @@ AM.setInventory = function(orgName, newCat, callback)
 			org.inv.push(newCat);
 		}	else{
 			if (newCat.total > 0){
-			// overwrite //				
-				org.inv[index] = newCat;				
+			// overwrite //
+				org.inv[index] = newCat;
 			}	else{
-			// remove category from inventory array //	
+			// remove category from inventory array //
 				for (var i = org.inv.length - 1; i >= 0; i--) if (org.inv[i].name == newCat.name) org.inv.splice(i, 1);
 			}
 		}
@@ -193,7 +197,7 @@ AM.setInventory = function(orgName, newCat, callback)
 		// 			console.log(cat.fields[k].name, cat.fields[k].avail, cat.fields[k].total);
 		// 		};
 		// 	};
-		// })		
+		// })
 	})
 }
 
@@ -211,13 +215,13 @@ AM.getEmail = function(email, callback)
 
 AM.getObjectId = function(id)
 {
-// this is necessary for id lookups, just passing the id fails for some reason //	
+// this is necessary for id lookups, just passing the id fails for some reason //
 	return AM.db.bson_serializer.ObjectID.createFromHexString(id)
 }
 
-AM.delAllRecords = function(id, callback) 
+AM.delAllRecords = function(id, callback)
 {
 	AM.orgs.remove(); // reset orgs collection for testing //
-	AM.usrs.remove(); // reset usrs collection for testing //	
+	AM.usrs.remove(); // reset usrs collection for testing //
 }
 

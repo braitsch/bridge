@@ -13,6 +13,24 @@ disableText()
 	-moz-user-select none
 	-ms-user-select none
 	user-select none
+drawContainer()
+	color #777
+	disableText()
+	border 1px solid #ddd
+	background-color white
+	border-radius 5px
+	-moz-border-radius 5px
+	-webkit-border-radius 5px
+drawDiagonalStripes()
+	background-color: rgba(0, 0, 0, .1);
+	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	-webkit-background-size: 30px 30px;
+	-moz-background-size: 30px 30px;
+	background-size: 30px 30px;
 
 html, body 
 	margin: 0
@@ -176,9 +194,6 @@ label, .subheading
 
 // inventory //
 
-#inventory .heading
-	raiseText()
-	font-size 1.4em
 #inventory #all-services
 	float left
 	width 180px
@@ -186,28 +201,21 @@ label, .subheading
 	background #eaeaea
 	border-right thin double #ccc;
 #inventory #all-services .heading
-	padding 20px 0 0 0
 	text-align center
 
 #inventory #our-services
 	margin-left 180px
 	padding 0 20px 0 20px
 #inventory #our-services .heading
-	padding 20px 0 0 20px
+	padding-left 20px
 	
 // service elements shared by both services & offerings
 #inventory .service
-	color #777
 	width 100px
 	margin auto
 	margin-bottom 10px
 	padding 10px 20px 6px 20px
-	background-color white
-	border 1px solid #ddd
-	border-radius 5px
-	disableText()
-	-moz-border-radius 5px
-	-webkit-border-radius 5px
+	drawContainer()
 #inventory .service hr
 	margin 5px 0 3px 0
 #inventory .service .icon
@@ -284,6 +292,31 @@ label, .subheading
 	text-align right
 	margin -23px 0 0 75px
 
+// team //
+
+#team
+	width 940px
+	height 100%
+	margin auto
+	padding 0 20px 0 20px
+	text-align center
+#team .heading
+	padding-left 20px
+	text-align left
+#team .member
+	padding 10px
+	margin 20px
+	drawContainer()
+	display inline-block
+	/* Hack for IE 6/7 */
+	*display inline
+	*margin 0 20px 0 20px
+#team .member .image
+	width 100px
+	height 100px
+	margin auto
+	margin-bottom 10px
+	drawDiagonalStripes()
 // alerts & errors //
 
 .modal-form-errors li
@@ -303,18 +336,17 @@ button i
 	width 60px
 .well, .form-horizontal
 	margin 0
-.header-push
-	position fixed
-	top 0px
-	width 100%
-	height header_height
 .page-container
 	position fixed
 	background #eee
 	top header_height
 	bottom footer_height
 	width 100%
-.footer-push
+.page-container .heading
+	raiseText()
+	font-size 1.4em
+	padding 20px 0 0 0
+.footer
 	position fixed
 	height footer_height
 	bottom 0

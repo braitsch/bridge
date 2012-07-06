@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 
-	$('#btn-logout').click(function(){	
+	$('#btn-logout').click(function(){
 		$.ajax({
 			url: '/logout',
 			type: "POST",
@@ -24,9 +24,6 @@ $(document).ready(function(){
 		setTimeout(function(){window.location.href = '/';}, 3000);
 	}
 
-
-// global data object that describes the organization //
-	ORG_DATA = JSON.parse($("#org").val())
 	$('.brand').text(capitalize(ORG_DATA.name));
 
 })
