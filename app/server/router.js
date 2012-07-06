@@ -59,6 +59,12 @@ module.exports = function(app) {
 		});
 	});
 	
+	app.post('/logout', function(req, res) {
+		res.clearCookie('email', {path : '/login' });
+		res.clearCookie('passw', {path : '/login' });
+		req.session.destroy(function(e){ res.send('ok', 200); });
+	});
+	
 	app.post('/email-password', function(req, res){
 		res.send('ok', 200);
 		// AM.getEmail(req.param('email'), function(o){
@@ -71,11 +77,11 @@ module.exports = function(app) {
 		// });
 	})
 		
-// account creation //	
+// account creation //
 	
 	app.get('/signup', function(req, res){
-		res.render('signup/signup', { 
-			title : 'Join SF-Bridge', states : ST 
+		res.render('signup/signup', {
+			title : 'Join SF-Bridge', states : ST
 		});
 	});
 
@@ -139,36 +145,11 @@ module.exports = function(app) {
 		});
 	}
 	
-// control panel //
-
-	// app.get('/control-panel', function(req, res) {
-	//     if (req.session.user == null || req.session.org == null){
-	// 		res.redirect('/login');
-	// 	}	else{
-	// 		if (req.session.org.inv.length == 0){
-	// 			res.redirect('/inventory');
-	// 		}	else{
-	// 			res.render('home/control-panel', { title : 'Control Panel', org:req.session.org, user:req.session.user });
-	// 		}
-	// 	}
-	// });
-	
-	// app.post('/control-panel', function(req, res) {
-	// 	AM.setInventory(req.session.org.name, req.param('inv'), function(org){
-	// 		if (org){
-	// 			req.session.org = org;
-	// 			res.send('ok', 200);
-	// 		}	else{
-	// 			res.send('error updating inventory', 400);
-	// 		}
-	// 	});
-	// });
-	
 	app.get('/inventory', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/inventory-2', { title : 'Inventory-2', org:req.session.org, user:req.session.user, services:SV } );
+			res.render('home/inventory', { title : 'Inventory', org:req.session.org, user:req.session.user, services:SV } );
 		}
 	});
 	
@@ -182,7 +163,7 @@ module.exports = function(app) {
 			}
 		});
 	})
-	
+
 // account-settings //
 
 	app.get('/account-settings', function(req, res){
@@ -203,12 +184,6 @@ module.exports = function(app) {
 	
 // aux methods //
 
-	app.post('/logout', function(req, res) {
-		res.clearCookie('email', {path : '/login' });
-		res.clearCookie('passw', {path : '/login' });
-		req.session.destroy(function(e){ res.send('ok', 200); });
-	});
-	
 	app.get('/print', function(req, res) {
 		AM.getAllOrgs( function(e, orgs){
 			AM.getAllUsers( function(e, users){
@@ -218,12 +193,9 @@ module.exports = function(app) {
 	});
 	
 	app.get('/reset', function(req, res) {
-		AM.addDummyData( );
-		res.redirect('/print');
+		AM.addDummyData( ); res.redirect('/print');
 	});
 
-	app.get('*', function(req, res) { 
-		res.render('404', { title: 'Page Not Found'});
-	});
+	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
 };
