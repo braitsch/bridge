@@ -8,15 +8,15 @@ $(document).ready(function(){
 
 		var openTotalEditor = function(n)
 		{
-			for (var i = SERVICES.length - 1; i >= 0; i--) {
-				if (n == SERVICES[i]['name']) {
-					catSchema = SERVICES[i]; break;
+			for (var i = ALL_SERVICES.length - 1; i >= 0; i--) {
+				if (n == ALL_SERVICES[i]['name']) {
+					catSchema = ALL_SERVICES[i]; break;
 				}
 			}
 			category = null;
-			for (var i = ORG_DATA.inv.length - 1; i >= 0; i--){
-				if (n == ORG_DATA.inv[i]['name']) {
-					category = ORG_DATA.inv[i]; break;
+			for (var i = OUR_SERVICES.length - 1; i >= 0; i--){
+				if (n == OUR_SERVICES[i]['name']) {
+					category = OUR_SERVICES[i]; break;
 				}
 			};
 			$('.modal-inventory fieldset').empty();
@@ -35,9 +35,9 @@ $(document).ready(function(){
 		var openAvailEditor = function(n)
 		{
 			$('#edit-avail .heading').text('Our '+capitalize(n));
-			for (var i = ORG_DATA.inv.length - 1; i >= 0; i--){
-				if (n == ORG_DATA.inv[i]['name']) {
-					category = ORG_DATA.inv[i]; break;
+			for (var i = OUR_SERVICES.length - 1; i >= 0; i--){
+				if (n == OUR_SERVICES[i]['name']) {
+					category = OUR_SERVICES[i]; break;
 				}
 			};
 			$('#edit-avail .services').empty();
@@ -113,7 +113,7 @@ $(document).ready(function(){
 				removeItemFromView(category.name);
 			}	else{
 			// update the outside world //
-				ORG_DATA.inv.push(category);
+				OUR_SERVICES.push(category);
 				postToSockets()
 				postToDatabase();
 				appendItemToView(category);
@@ -147,7 +147,7 @@ $(document).ready(function(){
 			if (category.total == 0){
 			//	remove category from org's inventory //
 				removeItemFromView(category.name);
-				for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) if (ORG_DATA.inv[i].name == category.name) ORG_DATA.inv.splice(i, 1);
+				for (var i = OUR_SERVICES.length - 1; i >= 0; i--) if (OUR_SERVICES[i].name == category.name) OUR_SERVICES.splice(i, 1);
 			}
 		// update the outside world //
 			postToSockets()
@@ -165,14 +165,14 @@ $(document).ready(function(){
 		
 		var postToSockets = function()
 		{
-			socket.emit('bridge-event', ORG_DATA);
+			socket.emit('bridge-event', {name:ORG_NAME, inv:OUR_SERVICES});
 			$('#'+category.name+' .avail').text(category.avail +' / '+category.total);
 		}
 	
 		var postToDatabase = function(catName)
 		{
 			$.ajax({
-				url: '/inventory',
+				url: '/offerings',
 				type : "POST",
 				data : { inv : category },
 				success: function(data){
@@ -214,7 +214,7 @@ $(document).ready(function(){
 		$('.modal-inventory #submit').click(updateInventory);
 
 		// build our offerings list //
-		for (var i = ORG_DATA.inv.length - 1; i >= 0; i--) appendItemToView(ORG_DATA.inv[i]);
+		for (var i = OUR_SERVICES.length - 1; i >= 0; i--) appendItemToView(OUR_SERVICES[i]);
 	}
 	
 });

@@ -12,7 +12,7 @@ $(document).ready(function(){
 	$('.modal-confirm .submit').click(function(){
 		$('.modal-confirm').modal('hide');
 		$.ajax({
-			url : '/delete',
+			url : '/delete-account',
 			type : "POST",
 			success: function(data){
 				setTimeout(onDeleteSuccess, 500);

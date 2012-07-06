@@ -1,14 +1,15 @@
 
 script
-	var SERVICES =!{JSON.stringify(services)}
+	var ALL_SERVICES =!{JSON.stringify(all_services)}
+	var OUR_SERVICES =!{JSON.stringify(our_services)}
 include header
 
 #inventory.page-container
 	#all-services
 		.heading All Services
 		hr
-		- for (var i = 0; i < services.length; i++)
-			- var service = services[i].name;
+		- for (var i = 0; i < all_services.length; i++)
+			- var service = all_services[i].name;
 			.service
 				.text #{capitalize(service)}
 				hr

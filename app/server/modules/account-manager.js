@@ -127,7 +127,7 @@ AM.getAllUsers = function(callback)
 };
 AM.getUsersOfOrg = function(orgName, callback)
 {
-	AM.usrs.find({ 'org':orgName }).toArray( function(e, res) { callback(e, res) });
+	AM.usrs.find({ org:orgName }).toArray( function(e, res) { callback(e, res) });
 };
 
 // password stuff //

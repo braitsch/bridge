@@ -145,11 +145,18 @@ module.exports = function(app) {
 		});
 	}
 	
+// logged in pages //
+	
 	app.get('/offerings', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/offerings', { title : 'Inventory', org:req.session.org, user:req.session.user, services:SV } );
+			AM.getOrg(req.session.org.name, function(org){
+				res.render('home/offerings', { title : 'Inventory',
+					all_services:SV, our_services:org.inv,
+					oName:req.session.org.name, uName:req.session.user.name
+				});
+			})
 		}
 	});
 	
@@ -164,34 +171,49 @@ module.exports = function(app) {
 		});
 	})
 
-// account-settings //
-
 	app.get('/about-us', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/about-us', { title : 'About Us', org:req.session.org, user:req.session.user } );
+			res.render('home/about-us', { title : 'About Us',
+				org:req.session.org,
+				oName:req.session.org.name, uName:req.session.user.name
+			});
 		}
 	});
-
-	app.post('/delete', function(req, res) {
-		AM.deleteAccount(req.session.user, req.session.org, function(){
-			res.clearCookie('email', {path : '/login' });
-			res.clearCookie('passw', {path : '/login' });
-			req.session.destroy(function(e){ res.send('ok', 200); });
-		})
-	});
-	
-// our-team //
 
 	app.get('/our-team', function(req, res){
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
 			AM.getUsersOfOrg(req.session.org.name, function(e, users){
-				res.render('home/our-team', { title : 'Our Team', org:req.session.org, user:req.session.user, team:users } );
+				res.render('home/our-team', { title : 'Our Team',
+					team:users, 
+					oName:req.session.org.name, uName:req.session.user.name
+				});
 			})
 		}
+	});
+	
+	app.get('/clients', function(req, res){
+	    if (req.session.user == null || req.session.org == null){
+			res.redirect('/login');
+		}	else{
+			res.render('home/clients', { title : 'Clients',
+				clients:[],
+				oName:req.session.org.name, uName:req.session.user.name
+			});
+		}
+	});
+	
+// update / deletion requests //
+
+	app.post('/delete-account', function(req, res) {
+		AM.deleteAccount(req.session.user, req.session.org, function(){
+			res.clearCookie('email', {path : '/login' });
+			res.clearCookie('passw', {path : '/login' });
+			req.session.destroy(function(e){ res.send('ok', 200); });
+		})
 	});
 
 // aux methods //
