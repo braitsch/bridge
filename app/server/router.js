@@ -199,9 +199,11 @@ module.exports = function(app) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			res.render('home/clients', { title : 'Clients',
-				clients:[],
-				oName:req.session.org.name, uName:req.session.user.name
+			AM.getClients(function(e, clients){
+				res.render('home/clients', { title : 'Clients',
+					clients:clients,
+					oName:req.session.org.name, uName:req.session.user.name
+				});
 			});
 		}
 	});
@@ -214,6 +216,27 @@ module.exports = function(app) {
 			res.clearCookie('passw', {path : '/login' });
 			req.session.destroy(function(e){ res.send('ok', 200); });
 		})
+	});
+	
+	app.post('/client-add-new', function(req, res) {
+		AM.addClient({
+			fname 		: req.param('fname'),
+			lname 		: req.param('lname'),
+			gender 		: req.param('gender'),
+			ethnicity 	: req.param('ethnicity'),
+			birthMonth 	: req.param('birth-month'),
+			birthDay 	: req.param('birth-day'),
+			birthYear 	: req.param('birth-year'),
+			social 		: req.param('social'),
+			heightFeet 	: req.param('height-feet'),
+			heightInches: req.param('height-inches'),
+			eyeColor 	: req.param('eye-color'),
+			veteran 	: req.param('veteran'),
+			disabled 	: req.param('disabled'),
+			tuberculous : req.param('tuberculous'),
+		}, function(o){
+			res.send('ok', 200);
+		});
 	});
 
 // aux methods //

@@ -294,44 +294,71 @@ label, .subheading
 
 // team //
 
-#team
-	text-align center
 #team .heading
-	padding-left 20px
 	text-align left
-#team .member
+	padding-left 20px
+.member
 	padding 10px
 	margin 20px
 	drawContainer()
+	text-align center
 	display inline-block
 	/* Hack for IE 6/7 */
 	*display inline
 	*margin 0 20px 0 20px
-#team .member .image
+.member .image
 	width 100px
 	height 100px
 	margin auto
 	margin-bottom 10px
 	drawDiagonalStripes()
 
-#clients .heading
-	padding-left 20px
 // clients //
-#controls
+
+#clients .heading
+	text-align left
+	padding-left 20px
+#clients #controls
 	position absolute
 	top 4px
 	right 140px
-#controls
+#clients #controls
 	padding 10px
-#controls .input-medium
+#clients #controls .input-medium
 	width 225px
 	margin 0
-#controls #search
+#clients #controls #search
 	width 80px
-#controls #register
+#clients #controls #register
 	width 120px
 
-// alerts & errors //
+// client registration //
+
+.group
+	float left
+.group select
+	float left
+	width 50px
+.group .wide
+	width 70px
+.group label
+	display inline-block
+	margin 5px 15px 5px 5px
+#add-client .well
+	height 316px
+#add-client fieldset
+	width 490px
+	position absolute
+#add-client #btn1, #btn2
+	position absolute
+	top 445px
+	width 80px
+#add-client #btn1
+	right 106px
+#add-client #btn2
+	right 18px
+#add-client .modal-footer
+	height 20px
 
 .modal-form-errors li
 	color #D8000C
@@ -364,6 +391,7 @@ button i
 	width 940px
 	height 100%
 	margin auto
+	text-align center
 	padding 0 20px 0 20px
 .footer
 	position fixed

@@ -10,7 +10,7 @@ $(document).ready(function(){
 				return false;
 			}	else{
 				p1 = data.slice(0);
-				data.push({name:'page', value:1});		
+				data.push({name:'page', value:1});
 				return true;
 			}
 		},
@@ -28,12 +28,12 @@ $(document).ready(function(){
 				return false;
 			}	else{
 				for (var i=0; i < p1.length; i++) data.push(p1[i]);
-				data.push({name:'page', value:2});				
+				data.push({name:'page', value:2});
 				return true;
 			}
 		},
 		success	: function(responseText, status, xhr, $form){
-			if (status == 'success'){			
+			if (status == 'success'){
 				sv.showSuccess('Success!', 'Your account has been created.<br>Please wait while you are redirected.');
 			} 
 		},
@@ -44,7 +44,7 @@ $(document).ready(function(){
 	
 	function showPage1()
 	{
-		$('#signup-page-1').show();		
+		$('#signup-page-1').show();
 		$('#signup-page-2').hide();
 		$('#org-name').find('input').focus();
 	}
@@ -53,11 +53,11 @@ $(document).ready(function(){
 	{
 		$('#signup-page-1').hide();
 		$('#signup-page-2').show();
-		$('#user-name').find('input').focus();		
-	}		
+		$('#user-name').find('input').focus();
+	}
 
 	showPage1();
 	$('#signup-back').click(function(){ showPage1() });
-	$('#signup-cancel').click(function(){ window.location.href = '/login' });	
+	$('#signup-cancel').click(function(){ window.location.href = '/login' });
 
 });

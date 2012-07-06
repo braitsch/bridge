@@ -22,6 +22,7 @@ var AM = {};
 	});
 	AM.orgs = AM.db.collection('orgs');
 	AM.usrs = AM.db.collection('usrs');
+	AM.clients = AM.db.collection('clients');
 
 module.exports = AM;
 
@@ -73,6 +74,12 @@ AM.addUser = function(o, callback){
 		AM.usrs.insert(o, callback(o));
 	});
 }
+AM.addClient = function(o, callback){
+	o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+	o.fname = o.fname.toLowerCase();
+	o.lname = o.lname.toLowerCase();
+	AM.clients.insert(o, callback(o));
+}
 
 // dummy data for testing purposes //
 
@@ -109,26 +116,27 @@ AM.getOrg = function(orgName, callback)
 	orgName = orgName.toLowerCase();
 	AM.orgs.findOne({name:orgName}, function(e, o){ callback(o); });
 }
-
 AM.getUser = function(usrEmail, callback)
 {
 	usrEmail = usrEmail.toLowerCase();
 	AM.usrs.findOne({email:usrEmail}, function(e, o){ callback(o); });
 }
-
 AM.getAllOrgs = function(callback)
 {
 	AM.orgs.find().toArray( function(e, res) { callback(e, res) });
-};
-
+}
 AM.getAllUsers = function(callback)
 {
 	AM.usrs.find().toArray( function(e, res) { callback(e, res) });
-};
+}
 AM.getUsersOfOrg = function(orgName, callback)
 {
 	AM.usrs.find({ org:orgName }).toArray( function(e, res) { callback(e, res) });
-};
+}
+AM.getClients = function(callback)
+{
+	AM.clients.find().toArray( function(e, res) { callback(e, res) });
+}
 
 // password stuff //
 
@@ -221,7 +229,6 @@ AM.getObjectId = function(id)
 
 AM.delAllRecords = function(id, callback)
 {
-	AM.orgs.remove(); // reset orgs collection for testing //
-	AM.usrs.remove(); // reset usrs collection for testing //
+// reset all collections for testing //
+	AM.orgs.remove();  AM.usrs.remove(); AM.clients.remove();
 }
-

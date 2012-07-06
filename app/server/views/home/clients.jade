@@ -11,9 +11,18 @@ include header
 				button#search(type='submit').btn.search Search
 				button#register.btn.btn-primary Register Client
 		hr
+		- for (var i = 0; i < clients.length; i++)
+			.member.well
+				.image
+					img(src='./img/icons/user.png')
+				| #{capitalize(clients[i].fname)} #{capitalize(clients[i].lname)}
 .footer
 
+include forms/add-client
+
 script(src='/vendor/jquery.min.js')
+script(src='/vendor/jquery.form.js')
+script(src='/vendor/jquery-ui.min.js')
 script(src='/vendor/bootstrap-modal.js')
 script(src='/vendor/bootstrap-transition.js')
 script(src='/js/home/header.js')
