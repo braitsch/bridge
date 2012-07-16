@@ -70,15 +70,26 @@ AM.addUser = function(o, callback){
 		o.org = o.org.toLowerCase();
 		o.email = o.email.toLowerCase();
 	// append date stamp when record was created //
-		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+		o.created = o.edited = moment().format('MMMM Do YYYY, h:mm:ss a');
 		AM.usrs.insert(o, callback(o));
 	});
 }
 AM.addClient = function(o, callback){
-	o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 	o.fname = o.fname.toLowerCase();
 	o.lname = o.lname.toLowerCase();
-	AM.clients.insert(o, callback(o));
+	o.created = o.edited = moment().format('MMMM Do YYYY, h:mm:ss a');
+	AM.clients.insert(o, function(){
+		AM.getAllClients(function(e, a){ callback(a); });
+	});
+}
+AM.editClient = function(o, callback){
+	o._id = AM.getObjectId(o.id)
+	o.edited = moment().format('MMMM Do YYYY, h:mm:ss a');
+	o.fname = o.fname.toLowerCase();
+	o.lname = o.lname.toLowerCase();
+	AM.clients.save(o, function(){
+		AM.getAllClients(function(e, a){ callback(a); });
+	});
 }
 
 // dummy data for testing purposes //
@@ -125,6 +136,10 @@ AM.getUser = function(usrEmail, callback)
 {
 	usrEmail = usrEmail.toLowerCase();
 	AM.usrs.findOne({email:usrEmail}, function(e, o){ callback(o); });
+}
+AM.getClient = function(id, callback)
+{
+	AM.clients.findOne({_id:AM.getObjectId(id)}, function(e, o){ callback(o); });
 }
 AM.getAllOrgs = function(callback)
 {

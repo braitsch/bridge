@@ -1,0 +1,247 @@
+
+#add-client.modal-client.modal.hide.fade
+	.modal-header
+		button.close(data-dismiss='modal') x
+		h3 Register New Client
+	.modal-body
+		form(method="post").form-horizontal.well
+			p.subheading Step 1 of 2 • Please Enter Your Client's Personal Details
+			hr
+			fieldset#page-1
+				#client-fname.control-group
+					label.control-label First Name
+					.controls
+						input.input-xlarge(type='text', name='fname')
+				#client-lname.control-group
+					label.control-label Last Name
+					.controls
+						input.input-xlarge(type='text', name='lname')
+				#client-gender.control-group
+					label.control-label Gender
+					.controls
+						select(name='gender')
+							option Male
+							option Female
+							option Other
+				#client-ethnicity.control-group
+					label.control-label Ethnicity
+					.controls
+						select(name='ethnicity')
+							option African American
+							option White
+							option Hispanic
+							option Native American
+							option Other
+				#client-dob.control-group
+					label.control-label Birthday
+					#client-dob-month.controls
+						.group
+							select(name='birth-month')
+								- for (var i = 1; i < 13; i++)
+									- var s = i;
+									- if (s < 10) s = '0'+s;
+										option #{s}
+							label Month
+					#client-dob-day.controls
+						.group
+							select(name='birth-day')
+								- for (var i = 1; i < 32; i++)
+									- var s = i;
+									- if (s < 10) s = '0'+s;
+										option #{s}
+							label Day
+					#client-dob-year.controls
+						.group
+							select.wide(name='birth-year')
+								- for (var i = 2000; i >= 1900; i--)
+									option #{i}
+							label Year
+				#client-social.control-group
+					label.control-label Social Security Number
+					.controls
+						input.input-xlarge(type='text', name='social')
+			fieldset#page-2
+				#client-lang.control-group
+					label.control-label Native Language
+					.controls
+						select(name='language')
+							option(selected="selected") English
+							option Spanish
+							option Chinese
+				#client-height.control-group
+					label.control-label Height
+					#client-height-ft.controls
+						.group
+							select(name='height-feet')
+								option 7
+								option 6
+								option(selected="selected") 5
+								option 4
+							label Feet
+					#client-height-in.controls
+						.group
+							select(name='height-inches')
+								option 11
+								option 10
+								option 09
+								option(selected="selected") 08
+								option 07
+								option 06
+								option 05
+								option 04
+								option 03
+								option 02
+								option 01
+								option 00
+							label Inches
+				#client-eyes.control-group
+					label.control-label Eye Color
+					.controls
+						select(name='eye-color')
+							option(selected="selected") Brown
+							option Black
+							option Green / Hazel
+				#client-vet.control-group
+					label.control-label Veteran Status
+					.controls
+						select(name='veteran')
+							option(selected="selected") No
+							option Yes
+				#client-disabled.control-group
+					label.control-label Disabled
+					.controls
+						select(name='disabled')
+							option(selected="selected") No
+							option Yes
+				#client-tb.control-group
+					label.control-label Tuberculous Status
+					.controls
+						select(name='tuberculous')
+							option(selected="selected") Ok
+							option Warned
+			button(type='button')#btn1.btn.btn-warning Cancel
+			button(type='submit')#btn2.btn.btn-primary Next Step
+	.modal-footer
+
+#edit-client.modal-client.modal.hide.fade
+	.modal-header
+		button.close(data-dismiss='modal') x
+		h3 Client Profile
+	.modal-body
+		form(method="post").form-horizontal.well
+			fieldset#page-1
+				#client-fname.control-group
+					label.control-label First Name
+					.controls
+						input.input-xlarge(type='text', name='fname')
+				#client-lname.control-group
+					label.control-label Last Name
+					.controls
+						input.input-xlarge(type='text', name='lname')
+				#client-gender.control-group
+					label.control-label Gender
+					.controls
+						select(name='gender')
+							option Male
+							option Female
+							option Other
+				#client-ethnicity.control-group
+					label.control-label Ethnicity
+					.controls
+						select(name='ethnicity')
+							option African American
+							option White
+							option Hispanic
+							option Native American
+							option Other
+				#client-dob.control-group
+					label.control-label Birthday
+					#client-dob-month.controls
+						.group
+							select(name='birth-month')
+								- for (var i = 1; i < 13; i++)
+									- var s = i;
+									- if (s < 10) s = '0'+s;
+										option #{s}
+							label Month
+					#client-dob-day.controls
+						.group
+							select(name='birth-day')
+								- for (var i = 1; i < 32; i++)
+									- var s = i;
+									- if (s < 10) s = '0'+s;
+										option #{s}
+							label Day
+					#client-dob-year.controls
+						.group
+							select.wide(name='birth-year')
+								- for (var i = 2000; i >= 1900; i--)
+									option #{i}
+							label Year
+				#client-social.control-group
+					label.control-label Social Security Number
+					.controls
+						input#client-social-tf.input-xlarge(type='text', name='social')
+			fieldset#page-2
+				#client-lang.control-group
+					label.control-label Native Language
+					.controls
+						select(name='language')
+							option(selected="selected") English
+							option Spanish
+							option Chinese
+				#client-height.control-group
+					label.control-label Height
+					#client-height-ft.controls
+						.group
+							select(name='height-feet')
+								option 7
+								option 6
+								option(selected="selected") 5
+								option 4
+							label Feet
+					#client-height-in.controls
+						.group
+							select(name='height-inches')
+								option 11
+								option 10
+								option 09
+								option(selected="selected") 08
+								option 07
+								option 06
+								option 05
+								option 04
+								option 03
+								option 02
+								option 01
+								option 00
+							label Inches
+				#client-eyes.control-group
+					label.control-label Eye Color
+					.controls
+						select(name='eye-color')
+							option(selected="selected") Brown
+							option Black
+							option Green / Hazel
+				#client-vet.control-group
+					label.control-label Veteran Status
+					.controls
+						select(name='veteran')
+							option(selected="selected") No
+							option Yes
+				#client-disabled.control-group
+					label.control-label Disabled
+					.controls
+						select(name='disabled')
+							option(selected="selected") No
+							option Yes
+				#client-tb.control-group
+					label.control-label Tuberculous Status
+					.controls
+						select(name='tuberculous')
+							option(selected="selected") Ok
+							option Warned
+			button(type='button')#btn1.btn.btn-warning Cancel
+			button(type='submit')#btn2.btn.btn-primary Next
+	.modal-footer
+

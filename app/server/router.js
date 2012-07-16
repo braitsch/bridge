@@ -218,6 +218,12 @@ module.exports = function(app) {
 		})
 	});
 	
+	app.post('/client-lookup', function(req, res) {
+		AM.getClient(req.param('id'), function(o){
+			res.send(o, 200);
+		});
+	});
+	
 	app.post('/client-add-new', function(req, res) {
 		AM.addClient({
 			fname 		: req.param('fname'),
@@ -228,14 +234,38 @@ module.exports = function(app) {
 			birthDay 	: req.param('birth-day'),
 			birthYear 	: req.param('birth-year'),
 			social 		: req.param('social'),
+			language 	: req.param('language'),
 			heightFeet 	: req.param('height-feet'),
 			heightInches: req.param('height-inches'),
 			eyeColor 	: req.param('eye-color'),
 			veteran 	: req.param('veteran'),
 			disabled 	: req.param('disabled'),
 			tuberculous : req.param('tuberculous'),
-		}, function(o){
-			res.send('ok', 200);
+		}, function(clients){
+			res.send(clients, 200);
+		});
+	});
+	
+	app.post('/client-edit', function(req, res) {
+		AM.editClient({
+			id			: req.param('id'),
+			fname 		: req.param('fname'),
+			lname 		: req.param('lname'),
+			gender 		: req.param('gender'),
+			ethnicity 	: req.param('ethnicity'),
+			birthMonth 	: req.param('birth-month'),
+			birthDay 	: req.param('birth-day'),
+			birthYear 	: req.param('birth-year'),
+			social 		: req.param('social'),
+			language 	: req.param('language'),
+			heightFeet 	: req.param('height-feet'),
+			heightInches: req.param('height-inches'),
+			eyeColor 	: req.param('eye-color'),
+			veteran 	: req.param('veteran'),
+			disabled 	: req.param('disabled'),
+			tuberculous : req.param('tuberculous'),
+		}, function(clients){
+			res.send(clients, 200);
 		});
 	});
 
@@ -245,7 +275,6 @@ module.exports = function(app) {
 		AM.getAllOrgs( function(e, orgs){
 			AM.getAllUsers( function(e, users){
 				AM.getAllClients( function(e, clients){
-					console.log(clients)
 					res.render('print', { title : 'Bridge Data', orgs : orgs, users : users, clients : clients } );
 				})
 			})

@@ -3,7 +3,7 @@ script
 	var CLIENTS =!{JSON.stringify(clients)}
 include header
 
-#clients.page-container
+#clients-page.page-container
 	.center-container
 		.heading Our Clients
 			form#controls.well.form-search
@@ -11,14 +11,16 @@ include header
 				button#search(type='submit').btn.search Search
 				button#register.btn.btn-primary Register Client
 		hr
-		- for (var i = 0; i < clients.length; i++)
-			.member.well
-				.image
-					img(src='./img/icons/user.png')
-				| #{capitalize(clients[i].fname)} #{capitalize(clients[i].lname)}
+		#clients
+			- for (var i = 0; i < clients.length; i++)
+				.member.well(id=clients[i]._id)
+					.edit
+					.image
+						img(src='./img/icons/user.png')
+					| #{capitalize(clients[i].fname)} #{capitalize(clients[i].lname)}
 .footer
 
-include forms/add-client
+include forms/client-form
 
 script(src='/vendor/jquery.min.js')
 script(src='/vendor/jquery.form.js')

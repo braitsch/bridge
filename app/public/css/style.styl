@@ -315,24 +315,36 @@ label, .subheading
 
 // clients //
 
-#clients .heading
+#clients-page .heading
 	text-align left
 	padding-left 20px
-#clients #controls
+#clients-page #controls
 	position absolute
 	top 4px
 	right 140px
-#clients #controls
+#clients-page #controls
 	padding 10px
-#clients #controls .input-medium
+#clients-page #controls .input-medium
 	width 225px
 	margin 0
-#clients #controls #search
+#clients-page #controls #search
 	width 80px
-#clients #controls #register
+#clients-page #controls #register
 	width 120px
+#clients-page .member
+	cursor pointer
+	position relative
+	margin 0 5px 0 5px
+#clients-page .member .edit
+	width 28px
+	height 28px
+	cursor pointer
+	position absolute
+	top -8px
+	right -8px
+	background url('/img/icons/edit.png')
 
-// client registration //
+// client registration & editing //
 
 .group
 	float left
@@ -344,21 +356,27 @@ label, .subheading
 .group label
 	display inline-block
 	margin 5px 15px 5px 5px
-#add-client .well
-	height 316px
-#add-client fieldset
+.modal-client fieldset
 	width 490px
 	position absolute
-#add-client #btn1, #btn2
+.modal-client #btn1, .modal-client #btn2
 	position absolute
-	top 445px
 	width 80px
-#add-client #btn1
+.modal-client #btn1
 	right 106px
-#add-client #btn2
+.modal-client #btn2
 	right 18px
-#add-client .modal-footer
+.modal-client .modal-footer
 	height 20px
+
+#add-client .well
+	height 316px
+#add-client #btn1, #btn2
+	top 445px
+#edit-client .well
+	height 261px
+#edit-client #btn1, #edit-client #btn2
+	top 390px
 
 .modal-form-errors li
 	color #D8000C
