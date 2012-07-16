@@ -93,3 +93,34 @@ module.exports.usrs = [
 		email	: 'dolores@bridge.org',
 		passw	: 'sfbridge' }
 ]
+
+module.exports.clients = [
+	{	fname			: 'John',
+		lname			: 'Doe',
+		gender			: 'Male',
+		ethnicity 		: 'African American',
+		birthMonth		: '1',
+		birthDay		: '1',
+		birthYear		: '1976',
+		social			: '555-555-5555',
+		heightFeet		: '5',
+		heightInches	: '11',
+		eyeColor		: 'Brown',
+		veteran			: 'Yes',
+		disabled		: 'No',
+		tuberculous		: 'No' },
+	{	fname			: 'Jane',
+		lname			: 'Doe',
+		gender			: 'Female',
+		ethnicity 		: 'White',
+		birthMonth		: '1',
+		birthDay		: '1',
+		birthYear		: '1976',
+		social			: '555-555-5555',
+		heightFeet		: '5',
+		heightInches	: '7',
+		eyeColor		: 'Green',
+		veteran			: 'No',
+		disabled		: 'Yes',
+		tuberculous		: 'No' }
+]

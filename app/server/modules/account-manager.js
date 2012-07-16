@@ -92,6 +92,11 @@ AM.addDummyData = function(){
 		o.name = o.name.toLowerCase();
 		AM.orgs.insert(o);
 	};
+	for (var i = dummies.clients.length - 1; i >= 0; i--){
+		var o = dummies.clients[i];
+		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+		AM.clients.insert(o);
+	};
 	AM.addDummyUser();
 }
 AM.addDummyUser = function(callback)
@@ -129,13 +134,13 @@ AM.getAllUsers = function(callback)
 {
 	AM.usrs.find().toArray( function(e, res) { callback(e, res) });
 }
+AM.getAllClients = function(callback)
+{
+	AM.clients.find().toArray( function(e, res) { callback(e, res) });
+}
 AM.getUsersOfOrg = function(orgName, callback)
 {
 	AM.usrs.find({ org:orgName }).toArray( function(e, res) { callback(e, res) });
-}
-AM.getClients = function(callback)
-{
-	AM.clients.find().toArray( function(e, res) { callback(e, res) });
 }
 
 // password stuff //

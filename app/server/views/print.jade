@@ -4,6 +4,8 @@ ul.nav.nav-tabs(style='margin:20px')
 		a(href="#") organizations
 	li#tab-usrs
 		a(href="#") users
+	li#tab-clients
+		a(href="#") clients
 
 div(style='margin:-18px 20px 0 20px')
 	#print-orgs
@@ -29,7 +31,6 @@ div(style='margin:-18px 20px 0 20px')
 					td= orgs[i].phone
 					td= orgs[i].website
 					td= orgs[i].date
-
 	#print-usrs
 		table.table.table-bordered.table-striped
 			thead
@@ -51,6 +52,35 @@ div(style='margin:-18px 20px 0 20px')
 					td= users[i].phone
 					td= users[i].email
 					td= users[i].date
+	#print-clients
+		table.table.table-bordered.table-striped
+			thead
+				tr
+					th #
+					th Name
+					th Gender
+					th Ethnicity
+					th Birthday
+					th Social
+					th Height
+					th Eye Color
+					th Veteran
+					th Disabled
+					th Tuberculous
+			tbody
+			- for (var i = 0; i < clients.length; i++)
+				tr
+					td= i+1
+					td  #{clients[i].fname} #{clients[i].lname}
+					td	#{clients[i].gender}
+					td	#{clients[i].ethnicity}
+					td	#{clients[i].birthMonth} #{clients[i].birthDay} #{clients[i].birthYear}
+					td	#{clients[i].social}
+					td	#{clients[i].heightFeet} #{clients[i].heightInches}
+					td	#{clients[i].eyeColor}
+					td	#{clients[i].veteran}
+					td	#{clients[i].disabled}
+					td	#{clients[i].tuberculous}
 
 script(src='/vendor/jquery.min.js')
 script(src='/js/print.js')

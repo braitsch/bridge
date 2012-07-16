@@ -199,7 +199,7 @@ module.exports = function(app) {
 	    if (req.session.user == null || req.session.org == null){
 			res.redirect('/login');
 		}	else{
-			AM.getClients(function(e, clients){
+			AM.getAllClients(function(e, clients){
 				res.render('home/clients', { title : 'Clients',
 					clients:clients,
 					oName:req.session.org.name, uName:req.session.user.name
@@ -244,7 +244,10 @@ module.exports = function(app) {
 	app.get('/print', function(req, res) {
 		AM.getAllOrgs( function(e, orgs){
 			AM.getAllUsers( function(e, users){
-				res.render('print', { title : 'Accounts', orgs : orgs, users : users } );
+				AM.getAllClients( function(e, clients){
+					console.log(clients)
+					res.render('print', { title : 'Bridge Data', orgs : orgs, users : users, clients : clients } );
+				})
 			})
 		})
 	});
