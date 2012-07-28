@@ -1,2 +1,4 @@
 .DS_Store
 node_modules
+bridge.sublime-project
+bridge.sublime-workspace
