@@ -1,0 +1,38 @@
+/*
+
+Base rules are the defaults. They are almost exclusively single element selectors/tags but it could include attribute selectors, pseudo-class selectors, child selectors or sibling selectors. Essentially, a base style says that wherever this element is on the page, it should look like this.
+
+Examples of Base Styles:
+
+    html, body, form { 
+        margin: 0; padding: 0;
+    }
+
+    input[type=text] { 
+        border: 1px solid #999;
+    }
+
+    a {
+        color: #039;
+    }
+
+    h1 {
+        font-size: 24px; 
+        color: red; 
+    }
+
+*/
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background: url("../img/bkgd/60degree_gray.png") #e7e7e7 repeat;
+}
+h2 {
+  color: #6b6b6b;
+  -webkit-text-shadow: 0 1px 1px #fff;
+  -moz-text-shadow: 0 1px 1px #fff;
+  text-shadow: 0 1px 1px #fff;
+}

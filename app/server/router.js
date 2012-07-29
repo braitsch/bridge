@@ -6,16 +6,20 @@ var AM = require('./modules/account-manager');
 
 module.exports = function(app) {
 	
+	// app.get('/', function(req, res){
+	// 	AM.getAllOrgs( function(e, orgs){
+	// 		if (e){
+	// 			res.send('eek! something went wrong', 400);
+	// 		}	else{
+	// 			res.render('dashboard', {
+	// 				title: 'Welcome to SF-Bridge', orgs : orgs
+	// 			});
+	// 		}
+	// 	});
+	// });
+
 	app.get('/', function(req, res){
-		AM.getAllOrgs( function(e, orgs){
-			if (e){
-				res.send('eek! something went wrong', 400);
-			}	else{
-				res.render('dashboard', {
-					title: 'Welcome to SF-Bridge', orgs : orgs
-				});
-			}
-		});
+		res.render('menu', { title: 'Welcome to SF-Bridge' });
 	});
 	
 // account login //

@@ -1,0 +1,12 @@
+/*
+
+Mixins are the helper methods used throughout the stylesheet. These can be for actions that are frequently repeated but usually have some variance in the values. For instnace, drop shadows, rounded corners, etc.
+
+Example of Mixin Styles:
+
+border-radius(n)
+	-webkit-border-radius n
+	-moz-border-radius n
+	border-radius n
+
+*/
