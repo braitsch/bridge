@@ -45,6 +45,17 @@ Usage of a sublcass in HTML would look like this:
 @import 'mixins'
 @import 'nib'
 
+/* -------------------------------------------------- 
+    Table of Contents
+-----------------------------------------------------
+:: Menus
+:: Components
+:: Buttons
+*/
+
+/*  --------------------------------------------------
+    :: Menus
+    -------------------------------------------------- */
 .menu-item
 	position relative
 	width 220px
@@ -95,6 +106,9 @@ Usage of a sublcass in HTML would look like this:
 	width 58px
 	box-shadow inset 1px 0 0 #F0F0F0
 
+/*  --------------------------------------------------
+    :: Components
+    -------------------------------------------------- */
 .v-progress
 	width 15px
 	height 100px
@@ -109,12 +123,15 @@ Usage of a sublcass in HTML would look like this:
 	height 100%
 	margin-top 50px
 	background-color #0E90D2
-	background-image linear-gradient(top, #99C12C, #A1C229)
+	background-image linear-gradient(top, #5AC911, #6CCC0B)
 	background-repeat repeat-x
-	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#99C12C",endColorstr="#A1C229",GradientType=0)')
+	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#5AC911",endColorstr="#6CCC0B",GradientType=0)')
 	box-shadow inset -3px -1px rgba(0, 0, 0, 0.15), inset 1px 1px rgba(0, 0, 0, 0.15), inset 2px 0 rgba(255, 255, 255, 0.15)
 	transition margin-top .6s ease
 
+/*  --------------------------------------------------
+    :: Buttons
+    -------------------------------------------------- */
 .button
 	border-radius 5px
 	text-transform uppercase
@@ -122,6 +139,7 @@ Usage of a sublcass in HTML would look like this:
 .button-reserve
 	display block
 	padding 0
+	margin-top 45px
 	background-color #8D8D8D
 	background-image linear-gradient(top, #939393, #7B7B7B)
 	background-repeat repeat-x
@@ -130,10 +148,16 @@ Usage of a sublcass in HTML would look like this:
 	line-height 50px
 	font-size 25px
 	color #DADADA
-	text-shadow 0 -1px 0 rgba(0, 0, 0, 0.5), 1px 1px 0 rgba(255, 255, 255, 0.4)
+	text-shadow 0 -1px 0 #968E8F, 0 1px 0 #BDD2B3
 	letter-spacing 2px
 .button-reserve:hover
 	color #DADADA
-
+.button-reserve.active
+	border 1px solid #58AC00;
+	background-color #93d141
+	background-image linear-gradient(top, #76CC06, #51C001)
+	background-repeat repeat-x
+	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#A2C32A",endColorstr="#8FB722",GradientType=0)')
+	box-shadow 1px 1px 3px rgba(0, 0, 0, 0.2), -1px -1px 3px rgba(0, 0, 0, 0.2), inset 0 1px #88E700
 
 
