@@ -104,9 +104,12 @@ div.container
 							div.v-progress
 								div.v-progress-bar
 	div.row
-		a.button.button-reserve Reserve
+		a.button.button-reserve.is-disabled Reserve
 
+a#btn-welcome.btn Welcome
+a#btn-timeout.btn Timeout
 include modals/welcome
+include modals/timeout
 
 script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')

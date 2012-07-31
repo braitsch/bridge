@@ -187,7 +187,9 @@ Usage of a sublcass in HTML would look like this:
 /*  --------------------------------------------------
     :: Modals
     -------------------------------------------------- */
-
+/*
+Override some Bootstrap defaults
+*/
 .modal
 	overflow visible
 
@@ -199,11 +201,14 @@ Usage of a sublcass in HTML would look like this:
 	top -20px
 	right -20px
 
+/* @extends .modal */
 .modal-centered
+	width 600px
+	margin -250px 0 0 -300px
 	text-align center
 
 .modal-centered .modal-header
-	padding 15px 80px
+	padding 26px 40px 21px
 	color #6B6B6B
 	text-transform uppercase
 	line-height 58px
@@ -215,7 +220,7 @@ Usage of a sublcass in HTML would look like this:
 
 .modal-centered .modal-body
 	font-size 15px
-	padding 25px 80px 30px
+	padding 25px 40px 25px
 
 /*  --------------------------------------------------
     :: Buttons
@@ -223,9 +228,22 @@ Usage of a sublcass in HTML would look like this:
 
 .button
 	display inline-block
+	color #FFF
 	border-radius 5px
+	text-shadow 0 -1px 0 #615D62, 0 1px 0 #B5B5B6
 	text-transform uppercase
 	text-align center
+.button:hover
+	color #FFF
+
+.button.loud, .button.is-enabled
+	loudButton()
+
+.button.quiet, .button.is-disabled
+	quietButton()
+
+// .button.caution
+// 	cautionButton()
 
 .button-reserve
 	display block
@@ -234,18 +252,12 @@ Usage of a sublcass in HTML would look like this:
 	height 50px
 	font-size 32px
 	line-height 50px
-	quietButton()
-.button-reserve:hover
-	color #FFF
-.button-reserve.is-active
-	loudButton()
+	letter-spacing 2px
 .button-reserve-fat
 	width 220px
 	height 166px
 	margin 0
 	line-height 166px
-	loudButton()
-
 
 .button-edit
 	width 48px
@@ -259,13 +271,17 @@ Usage of a sublcass in HTML would look like this:
 	margin-top 35px
 	font-size 22px
 	line-height 35px
-	quietButton()
-.button-back:hover
-	color #FFF
 .button-back > .icon-back-arrow
 	position absolute
 	top 6px
 	left 10px
+
+.button-modal
+	min-width 200px
+	height 33px
+	font-size 20px
+	line-height 34px
+	letter-spacing 1px
 
 /*  --------------------------------------------------
     :: Misc

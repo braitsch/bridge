@@ -13,7 +13,7 @@ div.navbar.navbar-fixed-top
 
 div.container
 	div.row
-		a.button.button-back Back
+		a.button.button-back.quiet Back
 			i.icon-back-arrow
 	div.row
 		div.reservation-wrapper
@@ -58,7 +58,7 @@ div.container
 									div.v-progress
 										div.v-progress-bar
 						li
-							a.button.button-reserve.button-reserve-fat Reserve
+							a.button.button-reserve.button-reserve-fat.loud Reserve
 			div.reservation
 				div.reservation-header
 					ul.l-horizontal.clearfix.reservation-info
@@ -100,7 +100,7 @@ div.container
 									div.v-progress
 										div.v-progress-bar
 						li
-							a.button.button-reserve.button-reserve-fat Reserve
+							a.button.button-reserve.button-reserve-fat.loud Reserve
 			div.reservation
 				div.reservation-header
 					ul.l-horizontal.clearfix.reservation-info
@@ -142,4 +142,13 @@ div.container
 									div.v-progress
 										div.v-progress-bar
 						li
-							a.button.button-reserve.button-reserve-fat Reserve
+							a.button.button-reserve.button-reserve-fat.loud Reserve
+
+include modals/timeout
+
+script(src='/socket.io/socket.io.js')
+script(src='/vendor/jquery.min.js')
+script(src='/vendor/bootstrap-modal.js')
+script(src='/vendor/bootstrap-transition.js')
+script(src='/js/dashboard.js')
+script(src='/js/utils/globals.js')
