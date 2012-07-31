@@ -55,7 +55,7 @@ label,.subheading{color:#808080;text-shadow:-1px 1px 0 #fff;-moz-text-shadow:-1p
 #inventory #our-services .service .text{float:left;text-align:left}
 #inventory #our-services .service .avail{text-align:right}
 #inventory #our-services .service img{margin-left:40px}
-#inventory #our-services .services{min-height:140px;overflow:visible}
+#inventory #our-services .services{overflow:hidden;padding-top:18px}
 #inventory #our-services #edit-avail{display:none}
 #inventory #our-services #edit-avail .del,.add{position:absolute;top:34px;width:90px;height:110px;opacity:0;cursor:pointer;background-color:#333}
 #inventory #our-services #edit-avail .add{margin-left:90px}
