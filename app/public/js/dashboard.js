@@ -32,6 +32,7 @@ $(document).ready(function() {
 		// Buttons for testing only. Safe to remove if you'd like.
 		$('#btn-welcome').click(function(){ welcomeModal.modal('show'); });
 		$('#btn-timeout').click(function(){ timeoutModal.modal('show'); });
+		$('#btn-reservation-confirm').click(function(){ reservationConfirmModal.modal('show'); });
 		
 		var aboutModal = $('.modal-about');
 		aboutModal.modal({ show : false, keyboard : true, backdrop : true });
@@ -41,6 +42,9 @@ $(document).ready(function() {
 
 		var timeoutModal = $('.modal-timeout');
 		timeoutModal.modal({ show : false, keyboard : true, backdrop : true });
+
+		var reservationConfirmModal = $('.modal-reservation-confirm');
+		confirmModal.modal({ show : false, keyboard : true, backdrop : true });
 	}
 	
 });
