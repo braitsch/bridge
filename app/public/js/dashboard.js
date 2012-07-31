@@ -28,10 +28,13 @@ $(document).ready(function() {
 
 		$('#btn-about').click(function(){ aboutModal.modal('show'); });
 		$('#btn-sign-in').click(function(){ window.location = '/login/'; });
+		$('#btn-welcome').click(function(){ welcomeModal.modal('show');});
 		
 		var aboutModal = $('.modal-about');
-    	aboutModal.modal({ show : false, keyboard : true, backdrop : true });
-		
+		aboutModal.modal({ show : false, keyboard : true, backdrop : true });
+
+		var welcomeModal = $('.modal-welcome');
+		welcomeModal.modal({ show : false, keyboard : true, backdrop : true });
 	}
 	
 });

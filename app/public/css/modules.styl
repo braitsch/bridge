@@ -51,12 +51,16 @@ Usage of a sublcass in HTML would look like this:
 -----------------------------------------------------
 :: Menus
 :: Components
+:: Reservations
+:: Modals
 :: Buttons
+:: Misc
 */
 
 /*  --------------------------------------------------
     :: Menus
     -------------------------------------------------- */
+
 .menu-wrapper ul
 	margin 0
 .menu-wrapper li
@@ -129,6 +133,7 @@ Usage of a sublcass in HTML would look like this:
 /*  --------------------------------------------------
     :: Components
     -------------------------------------------------- */
+
 .v-progress
 	width 15px
 	height 100px
@@ -152,6 +157,7 @@ Usage of a sublcass in HTML would look like this:
 /*  --------------------------------------------------
     :: Reservations
     -------------------------------------------------- */
+
 .reservation
 	height 250px
 	margin-bottom 30px
@@ -179,8 +185,42 @@ Usage of a sublcass in HTML would look like this:
 	margin-left 20px
 
 /*  --------------------------------------------------
+    :: Modals
+    -------------------------------------------------- */
+
+.modal
+	overflow visible
+
+.modal-backdrop, .modal-backdrop.fade.in
+	opacity 0.3
+
+.modal-header .button-close
+	position absolute
+	top -20px
+	right -20px
+
+.modal-centered
+	text-align center
+
+.modal-centered .modal-header
+	padding 15px 80px
+	color #6B6B6B
+	text-transform uppercase
+	line-height 58px
+	border-bottom 1px solid #D5D4D4
+
+.modal-centered h3
+	font-size 22px
+	font-weight normal
+
+.modal-centered .modal-body
+	font-size 15px
+	padding 25px 80px 30px
+
+/*  --------------------------------------------------
     :: Buttons
     -------------------------------------------------- */
+
 .button
 	display inline-block
 	border-radius 5px
@@ -227,5 +267,9 @@ Usage of a sublcass in HTML would look like this:
 	top 6px
 	left 10px
 
+/*  --------------------------------------------------
+    :: Misc
+    -------------------------------------------------- */
 
-
+.username
+	color #6EB6B5
