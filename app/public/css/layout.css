@@ -1,3 +1,5 @@
+.container,.navbar-fixed-top .container{width:960px}
+.row{margin-left:0}
 .navbar + .container{margin-top:40px}
 .menu-wrapper{margin-top:60px}
 .reservation-wrapper{margin-top:30px}

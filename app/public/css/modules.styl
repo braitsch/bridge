@@ -57,6 +57,14 @@ Usage of a sublcass in HTML would look like this:
 /*  --------------------------------------------------
     :: Menus
     -------------------------------------------------- */
+.menu-wrapper ul
+	margin 0
+.menu-wrapper li
+	display	inline-block
+	margin-right 22px
+.menu-wrapper li:nth-child(4n)
+	margin-right 0
+
 .menu-item
 	position relative
 	width 220px
@@ -146,20 +154,28 @@ Usage of a sublcass in HTML would look like this:
     -------------------------------------------------- */
 .reservation
 	height 250px
-	border 1px solid black
-	border-radius 5px
+	background #EEEEEE
+	border-radius 10px
+	box-shadow inset 0 0 5px 3px #AFAFAF
 	overflow hidden
 
 .reservation-header
 	height 45px
-	border-bottom 1px solid #737373
-	background-image linear-gradient(top, #5F5E5E, #4B4A4A)
-	box-shadow inset 0 -1px #414141, inset 1px 1px #717070, inset -1px 0 #717070
 	color white
 	font-size 16px
+	border-radius 3px
+	border-bottom 1px solid #737373
+	background-image linear-gradient(top, #5F5E5E, #4B4A4A)
+	box-shadow inset 0 -1px #414141, inset 1px 1px #717070, inset -1px 0 #717070, 0 1px 5px 1px #AFAFAF
 .reservation-header > .reservation-info
 	padding-top 14px
 	padding-left 27px
+
+.reservation-entries
+	padding-top 18px
+	padding-left 20px
+.reservation-entries > li:last-child
+	margin-left 20px
 
 /*  --------------------------------------------------
     :: Buttons
@@ -182,6 +198,13 @@ Usage of a sublcass in HTML would look like this:
 	color #FFF
 .button-reserve.is-active
 	loudButton()
+.button-reserve-fat
+	width 220px
+	height 166px
+	margin 0
+	line-height 166px
+	loudButton()
+
 
 .button-edit
 	width 48px
@@ -193,7 +216,7 @@ Usage of a sublcass in HTML would look like this:
 	padding-left 55px
 	padding-right 10px
 	margin-top 35px
-	font-size 24px
+	font-size 22px
 	line-height 32px
 	quietButton()
 .button-back:hover
@@ -202,4 +225,6 @@ Usage of a sublcass in HTML would look like this:
 	position absolute
 	top 4px
 	left 10px
+
+
 
