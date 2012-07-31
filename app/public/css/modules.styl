@@ -64,9 +64,17 @@ Usage of a sublcass in HTML would look like this:
 	margin 0 auto 30px
 	border-radius 5px
 	box-shadow 2px 2px 3px rgba(0, 0, 0, 0.1)
-	overflow hidden
+.menu-item > .button-edit
+	display none
+	position absolute
+	top -20px
+	right -20px
+	z-index 3
 .menu-item.is-selected
 	box-shadow 0 0 0 5px #94D043, 0 0 3px 5px rgba(0, 0, 0, 0.1)
+.menu-item.is-selected > .button-edit
+	display block
+
 .menu-chrome
 	position absolute
 	z-index 2
@@ -77,6 +85,7 @@ Usage of a sublcass in HTML would look like this:
 	border 1px solid #ACACAC
 	box-shadow inset -1px -1px 1px rgba(255, 255, 255, 0.4), inset 1px 1px 1px rgba(255, 255, 255, 0.4)
 	border-radius 5px
+
 .menu-header
 	height 40px
 	background #DADADA
@@ -85,6 +94,8 @@ Usage of a sublcass in HTML would look like this:
 	border-radius 5px 5px 0 0
 .menu-header > h2
 	line-height 40px
+	text-transform uppercase
+
 .menu-thumbnail
 	background-image url('../img/bkgd/menu-item-background.jpg')
 	background-repeat repeat-x
@@ -94,12 +105,9 @@ Usage of a sublcass in HTML would look like this:
 	height 126px
 	border-right 1px solid #D9D9D9
 	box-shadow inset -1px 0 0 #E5E5E5
-.menu-thumbnail > img
-	position absolute
-	top 50%
-	margin-top -55px
-	left 50%
-	margin-left -50px
+	line-height 123px
+	text-align center
+
 .menu-progress
 	background-image url('../img/bkgd/menu-item-background.jpg')
 	background-repeat repeat-x
@@ -144,24 +152,30 @@ Usage of a sublcass in HTML would look like this:
 	display block
 	padding 0
 	margin-top 45px
+	height 50px
+	line-height 50px
+	font-size 32px
+	color #DADADA
+	text-shadow 0 -1px 0 #968E8F, 0 1px 0 #BDD2B3
+	letter-spacing 2px
+	border 1px solid #4C4C4C
 	background-color #8D8D8D
 	background-image linear-gradient(top, #939393, #7B7B7B)
 	background-repeat repeat-x
 	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#939393",endColorstr="#7B7B7B",GradientType=0)')
-	height 50px
-	line-height 50px
-	font-size 25px
-	color #DADADA
-	text-shadow 0 -1px 0 #968E8F, 0 1px 0 #BDD2B3
-	letter-spacing 2px
+	box-shadow 1px 1px 3px rgba(0, 0, 0, 0.2), -1px -1px 3px rgba(0, 0, 0, 0.2), inset 0 1px #A8A8A8
 .button-reserve:hover
 	color #DADADA
-.button-reserve.active
-	border 1px solid #58AC00;
+.button-reserve.is-active
+	border 1px solid #58AC00
 	background-color #93d141
 	background-image linear-gradient(top, #76CC06, #51C001)
 	background-repeat repeat-x
 	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#A2C32A",endColorstr="#8FB722",GradientType=0)')
 	box-shadow 1px 1px 3px rgba(0, 0, 0, 0.2), -1px -1px 3px rgba(0, 0, 0, 0.2), inset 0 1px #88E700
+
+.button-edit
+	width 48px
+	height 48px
 
 

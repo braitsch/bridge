@@ -1,6 +1,6 @@
-@import "base.css";
-@import "layout.css";
-@import "modules.css";
+@import 'base.css';
+@import 'layout.css';
+@import 'modules.css';
 html,body{margin:0;padding:0;user-select:none}
 label,.subheading{color:#808080;text-shadow:-1px 1px 0 #fff;-moz-text-shadow:-1px 1px 0 #fff;-webkit-text-shadow:-1px 1px 0 #fff}
 #btn-about{top:1px;right:175px;width:40px;position:absolute}
