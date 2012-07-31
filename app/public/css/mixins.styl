@@ -39,7 +39,7 @@ drawContainer()
 	border-radius 5px
 	-moz-border-radius 5px
 	-webkit-border-radius 5px
-	
+
 drawDiagonalStripes()
 	background-color: rgba(0, 0, 0, .1);
 	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
@@ -50,3 +50,22 @@ drawDiagonalStripes()
 	-webkit-background-size: 30px 30px;
 	-moz-background-size: 30px 30px;
 	background-size: 30px 30px;
+
+quietButton()
+	color #FFF
+	text-shadow 0 -1px 0 #615D62, 0 1px 0 #B5B5B6
+	letter-spacing 2px
+	border 1px solid #4C4C4C
+	background-color #8D8D8D
+	background-image linear-gradient(top, #939393, #7B7B7B)
+	background-repeat repeat-x
+	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#939393",endColorstr="#7B7B7B",GradientType=0)')
+	box-shadow 1px 1px 3px rgba(0, 0, 0, 0.2), -1px -1px 3px rgba(0, 0, 0, 0.2), inset 0 1px #A8A8A8
+
+loudButton()
+	border 1px solid #58AC00
+	background-color #93d141
+	background-image linear-gradient(top, #76CC06, #51C001)
+	background-repeat repeat-x
+	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#A2C32A",endColorstr="#8FB722",GradientType=0)')
+	box-shadow 1px 1px 3px rgba(0, 0, 0, 0.2), -1px -1px 3px rgba(0, 0, 0, 0.2), inset 0 1px #88E700
