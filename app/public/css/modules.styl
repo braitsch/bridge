@@ -196,6 +196,28 @@ Override some Bootstrap defaults
 .modal-backdrop, .modal-backdrop.fade.in
 	opacity 0.3
 
+/* @extends .modal */
+.modal-centered
+	width 600px
+	margin -250px 0 0 -300px
+	text-align center
+.modal-centered .modal-header
+	padding 26px 40px 21px
+	color #6B6B6B
+	line-height 58px
+	border-bottom 1px solid #D5D4D4
+.modal-centered .modal-body
+	font-size 15px
+	padding 25px 40px 25px
+.modal-centered.stretch
+	width 790px
+	margin -250px 0 0 -395px
+.modal-centered .reservation-entries
+	padding-left 14px
+
+.modal-body, .modal-header p
+	font-size 15px
+
 .modal-header
 	position relative
 .modal-header .button-close
@@ -207,29 +229,10 @@ Override some Bootstrap defaults
 	left 50%
 	margin-left -22px
 	bottom -24px
-
-/* @extends .modal */
-.modal-centered
-	width 600px
-	margin -250px 0 0 -300px
-	text-align center
-.modal-centered .modal-header
-	padding 26px 40px 21px
-	color #6B6B6B
+.modal-header h3
 	text-transform uppercase
-	line-height 58px
-	border-bottom 1px solid #D5D4D4
-.modal-centered h3
 	font-size 22px
 	font-weight normal
-.modal-centered .modal-body
-	font-size 15px
-	padding 25px 40px 25px
-.modal-centered.stretch
-	width 790px
-	margin -250px 0 0 -395px
-.modal-centered .reservation-entries
-	padding-left 14px
 
 /*  --------------------------------------------------
     :: Buttons
@@ -301,5 +304,5 @@ Override some Bootstrap defaults
     :: Misc
     -------------------------------------------------- */
 
-.username
+.username, .emphasize
 	color #6EB6B5

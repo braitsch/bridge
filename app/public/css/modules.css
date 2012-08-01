@@ -24,15 +24,16 @@
 .reservation-entries > .is-reserve{margin-left:20px}
 .modal{overflow:visible}
 .modal-backdrop,.modal-backdrop.fade.in{opacity:.3;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=30);filter:alpha(opacity=30)}
-.modal-header{position:relative}
-.modal-header .button-close{position:absolute;top:-20px;right:-20px}
-.modal-header .confirmed-check{position:absolute;left:50%;margin-left:-22px;bottom:-24px}
 .modal-centered{width:600px;margin:-250px 0 0 -300px;text-align:center}
-.modal-centered .modal-header{padding:26px 40px 21px;color:#6b6b6b;text-transform:uppercase;line-height:58px;border-bottom:1px solid #d5d4d4}
-.modal-centered h3{font-size:22px;font-weight:normal}
+.modal-centered .modal-header{padding:26px 40px 21px;color:#6b6b6b;line-height:58px;border-bottom:1px solid #d5d4d4}
 .modal-centered .modal-body{font-size:15px;padding:25px 40px 25px}
 .modal-centered.stretch{width:790px;margin:-250px 0 0 -395px}
 .modal-centered .reservation-entries{padding-left:14px}
+.modal-body,.modal-header p{font-size:15px}
+.modal-header{position:relative}
+.modal-header .button-close{position:absolute;top:-20px;right:-20px}
+.modal-header .confirmed-check{position:absolute;left:50%;margin-left:-22px;bottom:-24px}
+.modal-header h3{text-transform:uppercase;font-size:22px;font-weight:normal}
 .button{display:inline-block;color:#fff;-webkit-border-radius:5px;border-radius:5px;text-shadow:0 -1px 0 #615d62,0 1px 0 #b5b5b6;text-transform:uppercase;text-align:center}
 .button:hover{color:#fff}
 .button.loud,.button.is-enabled{border:1px solid #58ac00;background-color:#93d141;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #76cc06), color-stop(1, #51c001));background-image:-webkit-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:-moz-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:-o-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:-ms-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:linear-gradient(top, #76cc06 0%, #51c001 100%);background-repeat:repeat-x;filter:progid:dximagetransform.microsoft.gradient(startColorstr="#A2C32A",endColorstr="#8FB722",GradientType=0);-webkit-box-shadow:1px 1px 3px rgba(0,0,0,0.2),-1px -1px 3px rgba(0,0,0,0.2),inset 0 1px #88e700;box-shadow:1px 1px 3px rgba(0,0,0,0.2),-1px -1px 3px rgba(0,0,0,0.2),inset 0 1px #88e700}
@@ -46,4 +47,4 @@
 .button-modal{min-width:200px;height:33px;font-size:20px;line-height:34px;letter-spacing:1px}
 .button-group > a{margin-left:20px}
 .button-group > a:first-child{margin:0}
-.username{color:#6eb6b5}
+.username,.emphasize{color:#6eb6b5}

@@ -34,6 +34,7 @@ $(document).ready(function() {
 		$('#btn-timeout').click(function(){ timeoutModal.modal('show'); });
 		$('#btn-reservation-confirm').click(function(){ reservationConfirmModal.modal('show'); });
 		$('#btn-reservation-success').click(function(){ reservationSuccessModal.modal('show'); });
+		$('#btn-service-selection').click(function(){ serviceSelectionModal.modal('show'); });
 		
 		var aboutModal = $('.modal-about');
 		aboutModal.modal({ show : false, keyboard : true, backdrop : true });
@@ -49,6 +50,9 @@ $(document).ready(function() {
 
 		var reservationSuccessModal = $('.modal-reservation-success');
 		reservationSuccessModal.modal({ show : false, keyboard : true, backdrop : true });
+		
+		var serviceSelectionModal = $('.modal-service-selection');
+		serviceSelectionModal.modal({ show : false, keyboard : true, backdrop : true });
 	}
 	
 });
