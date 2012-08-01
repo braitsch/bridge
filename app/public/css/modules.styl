@@ -49,7 +49,7 @@ Usage of a sublcass in HTML would look like this:
 /* -------------------------------------------------- 
     Table of Contents
 -----------------------------------------------------
-:: Menus
+:: Services
 :: Components
 :: Reservations
 :: Modals
@@ -58,18 +58,18 @@ Usage of a sublcass in HTML would look like this:
 */
 
 /*  --------------------------------------------------
-    :: Menus
+    :: Services
     -------------------------------------------------- */
 
-.menu-wrapper ul
+.services-wrapper ul
 	margin 0
-.menu-wrapper li
+.services-wrapper li
 	display	inline-block
 	margin-right 22px
-.menu-wrapper li:nth-child(4n)
+.services-wrapper li:nth-child(4n)
 	margin-right 0
 
-.menu-item
+.service
 	position relative
 	width 220px
 	height 166px
@@ -77,18 +77,18 @@ Usage of a sublcass in HTML would look like this:
 	margin 0 auto 30px
 	border-radius 5px
 	box-shadow 2px 2px 3px rgba(0, 0, 0, 0.1)
-.menu-item > .button-edit
+.service > .button-edit
 	display none
 	position absolute
 	top -20px
 	right -20px
 	z-index 3
-.menu-item.is-selected
+.service.is-selected
 	box-shadow 1px 1px 0 5px #94D043, 0 0 3px 5px rgba(0, 0, 0, 0.1)
-.menu-item.is-selected > .button-edit
+.service.is-selected > .button-edit
 	display block
 
-.menu-chrome
+.service-chrome
 	position absolute
 	z-index 2
 	top 0
@@ -99,17 +99,17 @@ Usage of a sublcass in HTML would look like this:
 	box-shadow inset -1px -1px 1px rgba(255, 255, 255, 0.4), inset 1px 1px 1px rgba(255, 255, 255, 0.4)
 	border-radius 5px
 
-.menu-header
+.service-header
 	height 40px
 	background #DADADA
 	border-bottom 1px solid #CBCBCB
 	text-align center
 	border-radius 5px 5px 0 0
-.menu-header > h2
+.service-header > h2
 	line-height 40px
 	text-transform uppercase
 
-.menu-thumbnail
+.service-thumbnail
 	background-image url('../img/bkgd/menu-item-background.jpg')
 	background-repeat repeat-x
 	float left
@@ -121,7 +121,7 @@ Usage of a sublcass in HTML would look like this:
 	line-height 123px
 	text-align center
 
-.menu-progress
+.service-progress
 	background-image url('../img/bkgd/menu-item-background.jpg')
 	background-repeat repeat-x
 	float left
