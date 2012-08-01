@@ -33,6 +33,7 @@ $(document).ready(function() {
 		$('#btn-welcome').click(function(){ welcomeModal.modal('show'); });
 		$('#btn-timeout').click(function(){ timeoutModal.modal('show'); });
 		$('#btn-reservation-confirm').click(function(){ reservationConfirmModal.modal('show'); });
+		$('#btn-reservation-success').click(function(){ reservationSuccessModal.modal('show'); });
 		
 		var aboutModal = $('.modal-about');
 		aboutModal.modal({ show : false, keyboard : true, backdrop : true });
@@ -44,7 +45,10 @@ $(document).ready(function() {
 		timeoutModal.modal({ show : false, keyboard : true, backdrop : true });
 
 		var reservationConfirmModal = $('.modal-reservation-confirm');
-		confirmModal.modal({ show : false, keyboard : true, backdrop : true });
+		reservationConfirmModal.modal({ show : false, keyboard : true, backdrop : true });
+
+		var reservationSuccessModal = $('.modal-reservation-success');
+		reservationSuccessModal.modal({ show : false, keyboard : true, backdrop : true });
 	}
 	
 });
