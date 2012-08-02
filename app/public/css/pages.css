@@ -1,3 +1,8 @@
+[class^="icon-"],[class*=" icon-"] {
+		display: inline-block;
+		vertical-align: text-top;
+	}
+.icon-back-arrow{background:url("../img/icons/latest/icon-back-arrow.png") no-repeat top left;width:33px;height:21px}
 #dashboard{margin-top:60px}
 #dashboard .org{margin:20px;height:140px}
 #dashboard p{font-size:18px;font-weight:bold}
@@ -29,7 +34,7 @@
 #inventory #all-services .heading{text-align:center}
 #inventory #our-services{margin-left:180px;padding:0 20px 0 20px}
 #inventory #our-services .heading{padding-left:20px}
-#inventory .service{width:100px;height:140px;margin:auto;margin-bottom:10px;padding:10px 20px 6px 20px;}
+#inventory .service{width:100px;height:140px;margin:auto;margin-bottom:10px;padding:10px 20px 6px 20px;color:#777;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #ddd;background-color:#fff;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
 #inventory .service hr{margin:5px 0 3px 0}
 #inventory .service .icon{width:100%;cursor:pointer}
 #inventory #all-services .service .text{text-align:center}
@@ -47,8 +52,8 @@
 #inv-editor label{width:60px;text-align:right;margin-bottom:15px}
 #inv-editor input{width:50px;padding-right:10px;text-align:right;margin:-23px 0 0 75px}
 #team .heading{text-align:left;padding-left:20px}
-.member{padding:10px;margin:20px;text-align:center;display:inline-block;*display:inline;*margin:0 20px 0 20px}
-.member .image{width:100px;height:100px;margin:auto;margin-bottom:10px;}
+.member{padding:10px;margin:20px;color:#777;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #ddd;background-color:#fff;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;text-align:center;display:inline-block;*display:inline;*margin:0 20px 0 20px}
+.member .image{width:100px;height:100px;margin:auto;margin-bottom:10px;background-color:rgba(0,0,0,0.1);background-image:-webkit-gradient(linear,0 0,100% 100%,color-stop(.25,rgba(255,255,255,0.2)),color-stop(.25,transparent),color-stop(.5,transparent),color-stop(.5,rgba(255,255,255,0.2)),color-stop(.75,rgba(255,255,255,0.2)),color-stop(.75,transparent),to(transparent));background-image:-webkit-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:-moz-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:-o-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);-webkit-background-size:30px 30px;-moz-background-size:30px 30px;background-size:30px 30px}
 #clients-page .heading{text-align:left;padding-left:20px}
 #clients-page #controls{position:absolute;top:4px;right:140px}
 #clients-page #controls{padding:10px}
