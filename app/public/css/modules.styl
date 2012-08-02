@@ -73,9 +73,12 @@ Usage of a sublcass in HTML would look like this:
 	position relative
 	width 220px
 	height 166px
-	background-color #FFF
 	margin 0 auto 30px
 	border-radius 5px
+	background-color #FFF
+	background-image linear-gradient(top, #FFFFFF 90%, #EEEEEE)
+	background-repeat repeat-x
+	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#FFFFFF",endColorstr="#EEEEEE",GradientType=0)')
 	box-shadow 2px 2px 3px rgba(0, 0, 0, 0.1)
 .service.is-disabled
 	background-color #EBEBEB
@@ -112,8 +115,8 @@ Usage of a sublcass in HTML would look like this:
 	text-transform uppercase
 
 .service-thumbnail
-	background-image url('../img/bkgd/menu-item-background.jpg')
-	background-repeat repeat-x
+	// background-image url('../img/bkgd/menu-item-background.jpg')
+	// background-repeat repeat-x
 	float left
 	position relative
 	width 160px
@@ -124,8 +127,8 @@ Usage of a sublcass in HTML would look like this:
 	text-align center
 
 .service-progress
-	background-image url('../img/bkgd/menu-item-background.jpg')
-	background-repeat repeat-x
+	// background-image url('../img/bkgd/menu-item-background.jpg')
+	// background-repeat repeat-x
 	float left
 	position relative
 	height 124px
@@ -416,3 +419,10 @@ button i
 .group label
 	display inline-block
 	margin 5px 15px 5px 5px
+
+.navbar .divider-vertical
+	height 47px
+
+.navbar .nav > li > a, .navbar .nav > li > a:hover
+	color #FFF
+	font-size 18px

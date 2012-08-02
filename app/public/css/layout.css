@@ -1,6 +1,7 @@
 .container,.navbar-fixed-top .container{width:960px}
 .row{margin-left:0}
 .navbar + .container{margin-top:40px}
+.navbar .nav > li{padding-top:8px}
 .services-wrapper{margin-top:60px}
 .reservation-wrapper{margin-top:30px}
 .reservation-wrapper:first-child{margin-top:25px}
