@@ -83,6 +83,15 @@ Usage of a sublcass in HTML would look like this:
 	box-shadow 2px 2px 3px rgba(0, 0, 0, 0.1)
 .service.is-disabled
 	background-color #EBEBEB
+	background-image linear-gradient(top, #EBEBEB 90%, #DEDEDE)
+	background-repeat repeat-x
+	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#EBEBEB",endColorstr="#DEDEDE",GradientType=0)')
+/* this is a little redundant but it is consistent with other states */
+.service.is-enabled 
+	background-color #FFF
+	background-image linear-gradient(top, #FFFFFF 90%, #EEEEEE)
+	background-repeat repeat-x
+	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#FFFFFF",endColorstr="#EEEEEE",GradientType=0)')
 .service > .button-edit
 	display none
 	position absolute
