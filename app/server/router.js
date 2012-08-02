@@ -72,10 +72,6 @@ module.exports = function(app) {
 		res.clearCookie('passw', {path : '/login' });
 		req.session.destroy(function(e){ res.send('ok', 200); });
 	});
-
-	app.get('/logout', function(req, res){
-		res.render('logout', { title: 'Welcome to SF-Bridge' });
-	});
 	
 	app.post('/email-password', function(req, res){
 		res.send('ok', 200);
