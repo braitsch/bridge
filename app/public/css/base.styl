@@ -26,6 +26,11 @@ Examples of Base Styles:
 @import 'mixins'
 @import 'nib'
 
+html, body 
+	margin: 0
+	padding: 0
+	user-select: none
+
 body
 	background url("../img/bkgd/60degree_gray.png") #E7E7E7 repeat;
 	font-family Arial, Helvetica, sans-serif
@@ -39,3 +44,6 @@ a
 	cursor pointer
 a:hover
 	text-decoration none
+
+label, .subheading
+	raiseText()

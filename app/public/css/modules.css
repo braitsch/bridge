@@ -6,7 +6,8 @@
 .services-wrapper ul{margin:0}
 .services-wrapper li{display:inline-block;margin-right:22px}
 .services-wrapper li:nth-child(4n){margin-right:0}
-.service{position:relative;width:220px;height:166px;background-color:#ebebeb;margin:0 auto 30px;-webkit-border-radius:5px;border-radius:5px;-webkit-box-shadow:2px 2px 3px rgba(0,0,0,0.1);box-shadow:2px 2px 3px rgba(0,0,0,0.1)}
+.service{position:relative;width:220px;height:166px;background-color:#fff;margin:0 auto 30px;-webkit-border-radius:5px;border-radius:5px;-webkit-box-shadow:2px 2px 3px rgba(0,0,0,0.1);box-shadow:2px 2px 3px rgba(0,0,0,0.1)}
+.service.is-disabled{background-color:#ebebeb}
 .service > .button-edit{display:none;position:absolute;top:-20px;right:-20px;z-index:3}
 .service.is-selected{-webkit-box-shadow:1px 1px 0 5px #94d043,0 0 3px 5px rgba(0,0,0,0.1);box-shadow:1px 1px 0 5px #94d043,0 0 3px 5px rgba(0,0,0,0.1)}
 .service.is-selected > .button-edit{display:block}
@@ -17,6 +18,7 @@
 .service-progress{background-image:url("../img/bkgd/menu-item-background.jpg");background-repeat:repeat-x;float:left;position:relative;height:124px;width:58px;-webkit-box-shadow:inset 1px 0 0 #f0f0f0;box-shadow:inset 1px 0 0 #f0f0f0}
 .v-progress{width:15px;height:100px;overflow:hidden;margin:13px auto;-webkit-border-radius:10px;border-radius:10px;background:#f5f5f5;border:1px solid #c4c4c4;-webkit-box-shadow:-1px 0 #f0f0f0,inset -1px 0 rgba(0,0,0,0.1);box-shadow:-1px 0 #f0f0f0,inset -1px 0 rgba(0,0,0,0.1)}
 .v-progress-bar{width:15px;height:100%;margin-top:50px;background-color:#0e90d2;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #5ac911), color-stop(1, #6ccc0b));background-image:-webkit-linear-gradient(top, #5ac911 0%, #6ccc0b 100%);background-image:-moz-linear-gradient(top, #5ac911 0%, #6ccc0b 100%);background-image:-o-linear-gradient(top, #5ac911 0%, #6ccc0b 100%);background-image:-ms-linear-gradient(top, #5ac911 0%, #6ccc0b 100%);background-image:linear-gradient(top, #5ac911 0%, #6ccc0b 100%);background-repeat:repeat-x;filter:progid:dximagetransform.microsoft.gradient(startColorstr="#5AC911",endColorstr="#6CCC0B",GradientType=0);-webkit-box-shadow:inset -1px -1px rgba(0,0,0,0.15),inset 1px 1px rgba(0,0,0,0.15),inset 2px 0 rgba(255,255,255,0.15);box-shadow:inset -1px -1px rgba(0,0,0,0.15),inset 1px 1px rgba(0,0,0,0.15),inset 2px 0 rgba(255,255,255,0.15);-webkit-transition:margin-top .6s ease;-moz-transition:margin-top .6s ease;-o-transition:margin-top .6s ease;-ms-transition:margin-top .6s ease;transition:margin-top .6s ease}
+#logged-in-user-name{top:11px;right:130px;text-align:right;position:absolute}
 .reservation{height:250px;margin-bottom:30px;background:#eee;-webkit-border-radius:10px;border-radius:10px;-webkit-box-shadow:inset 0 0 5px 3px #afafaf;box-shadow:inset 0 0 5px 3px #afafaf;overflow:hidden}
 .reservation-header{height:45px;color:#fff;font-size:16px;-webkit-border-radius:3px;border-radius:3px;border-bottom:1px solid #737373;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #5f5e5e), color-stop(1, #4b4a4a));background-image:-webkit-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:-moz-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:-o-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:-ms-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);-webkit-box-shadow:inset 0 -1px #414141,inset 1px 1px #717070,inset -1px 0 #717070,0 1px 5px 1px #afafaf;box-shadow:inset 0 -1px #414141,inset 1px 1px #717070,inset -1px 0 #717070,0 1px 5px 1px #afafaf}
 .reservation-header > .reservation-info{padding-top:14px;padding-left:27px}
@@ -34,6 +36,26 @@
 .modal-header .button-close{position:absolute;top:-20px;right:-20px}
 .modal-header .confirmed-check{position:absolute;left:50%;margin-left:-22px;bottom:-24px}
 .modal-header h3{text-transform:uppercase;font-size:22px;font-weight:normal}
+.modal-form-errors li{color:#d8000c}
+.modal-alert{width:310px;margin:-200px 0 0 -150px}
+.modal-confirm{width:400px;margin:-200px 0 0 -200px}
+.modal-client fieldset{width:490px;position:absolute}
+.modal-client #btn1,.modal-client #btn2{position:absolute;width:80px}
+.modal-client #btn1{right:106px}
+.modal-client #btn2{right:18px}
+.modal-client .modal-footer{height:20px}
+.modal-inventory{width:300px;margin:-250px 0 0 -150px}
+.modal-inventory .well{width:230px;padding-bottom:8px}
+.modal-inventory form button{width:80px}
+.modal-inventory .modal-footer{height:25px}
+.modal-single-input{width:452px;margin:-200px 0 0 -232px;}
+.modal-single-input form{color:#808080;text-shadow:-1px 1px 0 #fff;-moz-text-shadow:-1px 1px 0 #fff;-webkit-text-shadow:-1px 1px 0 #fff;margin-bottom:0;}
+.modal-single-input form button{width:80px;top:213px;position:absolute}
+.modal-single-input form #cancel{right:110px}
+.modal-single-input form #submit{right:18px}
+.modal-single-input .modal-body{height:140px;overflow:hidden;padding-bottom:0}
+.modal-single-input .modal-footer{height:20px}
+button i{padding-left:8px}
 .button{display:inline-block;color:#fff;-webkit-border-radius:5px;border-radius:5px;text-shadow:0 -1px 0 #615d62,0 1px 0 #b5b5b6;text-transform:uppercase;text-align:center}
 .button:hover{color:#fff}
 .button.loud,.button.is-enabled{border:1px solid #58ac00;background-color:#93d141;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #76cc06), color-stop(1, #51c001));background-image:-webkit-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:-moz-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:-o-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:-ms-linear-gradient(top, #76cc06 0%, #51c001 100%);background-image:linear-gradient(top, #76cc06 0%, #51c001 100%);background-repeat:repeat-x;filter:progid:dximagetransform.microsoft.gradient(startColorstr="#A2C32A",endColorstr="#8FB722",GradientType=0);-webkit-box-shadow:1px 1px 3px rgba(0,0,0,0.2),-1px -1px 3px rgba(0,0,0,0.2),inset 0 1px #88e700;box-shadow:1px 1px 3px rgba(0,0,0,0.2),-1px -1px 3px rgba(0,0,0,0.2),inset 0 1px #88e700}
@@ -47,4 +69,14 @@
 .button-modal{min-width:200px;height:33px;font-size:20px;line-height:34px;letter-spacing:1px}
 .button-group > a{margin-left:20px}
 .button-group > a:first-child{margin:0}
+#btn-logout{width:100px;top:1px;right:8px;position:absolute}
+#btn-about{top:1px;right:175px;width:40px;position:absolute}
+#btn-about i{padding-left:0}
+#btn-sign-in{top:1px;right:8px;width:160px;position:absolute}
 .username,.emphasize{color:#6eb6b5}
+.well button{width:60px}
+.well,.form-horizontal{margin:0}
+.group{float:left}
+.group select{float:left;width:50px}
+.group .wide{width:70px}
+.group label{display:inline-block;margin:5px 15px 5px 5px}

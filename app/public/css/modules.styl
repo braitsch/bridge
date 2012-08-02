@@ -73,10 +73,12 @@ Usage of a sublcass in HTML would look like this:
 	position relative
 	width 220px
 	height 166px
-	background-color #EBEBEB
+	background-color #FFF
 	margin 0 auto 30px
 	border-radius 5px
 	box-shadow 2px 2px 3px rgba(0, 0, 0, 0.1)
+.service.is-disabled
+	background-color #EBEBEB
 .service > .button-edit
 	display none
 	position absolute
@@ -153,6 +155,12 @@ Usage of a sublcass in HTML would look like this:
 	filter unquote('progid:dximagetransform.microsoft.gradient(startColorstr="#5AC911",endColorstr="#6CCC0B",GradientType=0)')
 	box-shadow inset -1px -1px rgba(0, 0, 0, 0.15), inset 1px 1px rgba(0, 0, 0, 0.15), inset 2px 0 rgba(255, 255, 255, 0.15)
 	transition margin-top .6s ease
+
+#logged-in-user-name
+	top 11px
+	right 130px
+	text-align right
+	position absolute
 
 /*  --------------------------------------------------
     :: Reservations
@@ -234,9 +242,75 @@ Override some Bootstrap defaults
 	font-size 22px
 	font-weight normal
 
+.modal-form-errors li
+	color #D8000C
+
+.modal-alert
+	width 310px
+	margin -200px 0 0 -150px
+
+.modal-confirm
+	width 400px
+	margin -200px 0 0 -200px
+
+.modal-client fieldset
+	width 490px
+	position absolute
+.modal-client #btn1, .modal-client #btn2
+	position absolute
+	width 80px
+.modal-client #btn1
+	right 106px
+.modal-client #btn2
+	right 18px
+.modal-client .modal-footer
+	height 20px
+
+.modal-inventory
+	width 300px
+	margin -250px 0 0 -150px
+.modal-inventory .well
+	width 230px
+	padding-bottom 8px
+.modal-inventory form button
+	width 80px
+.modal-inventory .modal-footer
+	height 25px	
+
+.modal-single-input{
+	width 452px
+	margin -200px 0 0 -232px
+	form{
+		raiseText()
+		margin-bottom 0
+ 		button{
+			width 80px
+			top 213px
+			position absolute
+		}
+		#cancel{
+			right 110px
+		}
+		#submit{
+			right 18px
+		}
+	}
+	.modal-body{
+		height 140px
+		overflow hidden
+		padding-bottom 0
+	}	
+	.modal-footer{
+		height 20px
+	}
+}
+
 /*  --------------------------------------------------
     :: Buttons
     -------------------------------------------------- */
+
+button i
+	padding-left 8px
 
 .button
 	display inline-block
@@ -300,9 +374,45 @@ Override some Bootstrap defaults
 .button-group > a:first-child
 	margin 0
 
+#btn-logout
+	width 100px
+	top 1px
+	right 8px
+	position absolute
+
+#btn-about
+	top 1px
+	right 175px
+	width 40px	
+	position absolute
+#btn-about i
+	padding-left 0
+
+#btn-sign-in
+	top 1px
+	right 8px
+	width 160px	
+	position absolute
+
 /*  --------------------------------------------------
     :: Misc
     -------------------------------------------------- */
 
 .username, .emphasize
 	color #6EB6B5
+
+.well button
+	width 60px
+.well, .form-horizontal
+	margin 0
+
+.group
+	float left
+.group select
+	float left
+	width 50px
+.group .wide
+	width 70px
+.group label
+	display inline-block
+	margin 5px 15px 5px 5px
