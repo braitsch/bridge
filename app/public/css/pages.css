@@ -4,11 +4,11 @@
 #dashboard .orgName{float:left;margin-right:10px}
 #dashboard .orgAddy{color:#27a3fa}
 #dashboard hr{clear:both}
-#dashboard .service{float:left;margin-right:10px}
+#dashboard .service{float:left;margin-right:10px;width:220px;height:156px}
 #dashboard .service .text{margin:0 10px 0 10px}
 #dashboard .service .text .name{float:left}
 #dashboard .service .text .avail{text-align:right}
-#dashboard .img{width:160px;height:100px;background-color:#eee;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
+#dashboard .img{width:160px;height:100px;position:absolute;top:50%;margin-top:-50px;left:50%;margin-left:-80px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px}
 #dashboard .img img{margin-left:30px}
 #login-container{width:340px;margin:160px auto;}
 #login-container label{margin:15px 0 5px 5px}
@@ -29,7 +29,7 @@
 #inventory #all-services .heading{text-align:center}
 #inventory #our-services{margin-left:180px;padding:0 20px 0 20px}
 #inventory #our-services .heading{padding-left:20px}
-#inventory .service{width:100px;height:128px;margin:auto;margin-bottom:10px;padding:10px 20px 6px 20px;}
+#inventory .service{width:100px;height:140px;margin:auto;margin-bottom:10px;padding:10px 20px 6px 20px;}
 #inventory .service hr{margin:5px 0 3px 0}
 #inventory .service .icon{width:100%;cursor:pointer}
 #inventory #all-services .service .text{text-align:center}

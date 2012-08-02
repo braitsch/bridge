@@ -54,6 +54,7 @@ Usage of a sublcass in HTML would look like this:
 :: Reservations
 :: Modals
 :: Buttons
+:: Navbar
 :: Misc
 */
 
@@ -160,10 +161,7 @@ Usage of a sublcass in HTML would look like this:
 	transition margin-top .6s ease
 
 #logged-in-user-name
-	top 11px
-	right 130px
-	text-align right
-	position absolute
+
 
 /*  --------------------------------------------------
     :: Reservations
@@ -379,9 +377,6 @@ button i
 
 #btn-logout
 	width 100px
-	top 1px
-	right 8px
-	position absolute
 
 #btn-about
 	top 1px
@@ -396,6 +391,20 @@ button i
 	right 8px
 	width 160px	
 	position absolute
+
+/*  --------------------------------------------------
+    :: Navbar
+    -------------------------------------------------- */
+.navbar .divider-vertical
+	height 47px
+
+.navbar .nav > li > a, .navbar .nav > li > a:hover, .navbar .nav > li > #logged-in-user-name
+	color #FFF
+	font-size 18px
+	padding 9px 10px 11px
+
+.navbar .nav > li > .brand
+	color #D2D1D1
 
 /*  --------------------------------------------------
     :: Misc
@@ -419,10 +428,3 @@ button i
 .group label
 	display inline-block
 	margin 5px 15px 5px 5px
-
-.navbar .divider-vertical
-	height 47px
-
-.navbar .nav > li > a, .navbar .nav > li > a:hover
-	color #FFF
-	font-size 18px

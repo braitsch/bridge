@@ -9,7 +9,7 @@
 .l-horizontal > li{display:inline;float:left;margin-left:10px}
 .l-horizontal > li:first-child{margin-left:0}
 hr.tight{margin:18px 0 0}
-.page-container{position:fixed;background:#eee;top:40px;bottom:20px;width:100%}
+.page-container{position:fixed;background:#eee;top:55px;bottom:20px;width:100%}
 .page-container .heading{color:#808080;text-shadow:-1px 1px 0 #fff;-moz-text-shadow:-1px 1px 0 #fff;-webkit-text-shadow:-1px 1px 0 #fff;font-size:1.4em;padding:20px 0 0 0}
 .center-container{width:940px;height:100%;margin:auto;text-align:center;padding:0 20px 0 20px}
 .footer{position:fixed;height:20px;bottom:0;width:100%;background:#222}
