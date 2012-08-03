@@ -7,7 +7,7 @@ var AM = require('./modules/account-manager');
 module.exports = function(app) {
 	
 	app.get('/', function(req, res){
-		res.render('home', { title: 'Welcome to SF-Bridge' });
+		res.render('dashboard', { title: 'Welcome to SF-Bridge' });
 	});
 
 	app.get('/list', function(req, res){
