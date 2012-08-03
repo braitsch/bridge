@@ -25,17 +25,16 @@
 .reservation-entries{padding-top:18px;padding-left:20px}
 .reservation-entries > .is-reserve{margin-left:20px}
 .modal{overflow:visible}
-.modal-backdrop,.modal-backdrop.fade.in{opacity:.3;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=30);filter:alpha(opacity=30)}
 .modal-centered{width:600px;margin:-250px 0 0 -300px;text-align:center}
 .modal-centered .modal-header{padding:26px 40px 21px;color:#6b6b6b;line-height:58px;border-bottom:1px solid #d5d4d4}
 .modal-centered .modal-body{font-size:15px;padding:25px 40px 25px}
 .modal-centered.stretch{width:790px;margin:-250px 0 0 -395px}
 .modal-centered .reservation-entries{padding-left:14px}
-.modal-body,.modal-header p{font-size:15px}
-.modal-header{position:relative}
-.modal-header .button-close{position:absolute;top:-20px;right:-20px}
-.modal-header .confirmed-check{position:absolute;left:50%;margin-left:-22px;bottom:-24px}
-.modal-header h3{text-transform:uppercase;font-size:22px;font-weight:normal}
+.modal-centered .modal-body,.modal-centered .modal-header p{font-size:15px}
+.modal-centered .modal-header{position:relative}
+.modal-centered .modal-header .button-close{position:absolute;top:-20px;right:-20px}
+.modal-centered .modal-header .confirmed-check{position:absolute;left:50%;margin-left:-22px;bottom:-24px}
+.modal-centered .modal-header h3{text-transform:uppercase;font-size:22px;font-weight:normal}
 .modal-form-errors li{color:#d8000c}
 .modal-alert{width:310px;margin:-200px 0 0 -150px}
 .modal-confirm{width:400px;margin:-200px 0 0 -200px}
