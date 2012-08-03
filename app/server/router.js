@@ -7,23 +7,23 @@ var AM = require('./modules/account-manager');
 module.exports = function(app) {
 	
 	app.get('/', function(req, res){
+		res.render('home', { title: 'Welcome to SF-Bridge' });
+	});
+
+	app.get('/list', function(req, res){
 		AM.getAllOrgs( function(e, orgs){
 			if (e){
 				res.send('eek! something went wrong', 400);
 			}	else{
-				res.render('dashboard', {
+				res.render('list', {
 					title: 'Welcome to SF-Bridge', orgs : orgs
 				});
 			}
 		});
 	});
 
-	app.get('/dashboard-1', function(req, res){
-		res.render('dashboard-1', { title: 'Welcome to SF-Bridge' });
-	});
-
-	app.get('/dashboard-2', function(req, res){
-		res.render('dashboard-2', { title: 'Welcome to SF-Bridge' });
+	app.get('/reserve', function(req, res){
+		res.render('reserve', { title: 'Welcome to SF-Bridge' });
 	});
 	
 // account login //
