@@ -1,15 +1,14 @@
 
 $(document).ready(function(){
 	
-
+	$('body').css('background', 'white');
+	
 	$('#tab-orgs').click(function(){
-		showOrgs();	
+		showOrgs();
 	})
-	
 	$('#tab-usrs').click(function(){
-		showUsrs();	
+		showUsrs();
 	})
-	
 	$('#tab-clients').click(function(){
 		showClients();
 	})

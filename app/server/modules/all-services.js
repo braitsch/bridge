@@ -1,6 +1,6 @@
 
 module.exports = [
-	{name : 'housing', fields : ['general', 'individual', 'long term', 'special needs']},
+	{name : 'housing', fields : ['general', 'individual', 'long-term', 'special-needs']},
 	{name : 'meals', fields : ['general', 'breakfast', 'lunch', 'dinner']},
 	{name : 'health', fields : ['general', 'critical', 'illness', 'ongoing']},
 	{name : 'hygiene', fields : ['general', 'attire', 'shower']},

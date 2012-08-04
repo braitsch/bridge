@@ -3,8 +3,8 @@ function getInventory()
 	return  [	{name : 'housing', avail : 200, total : 400, fields :
 					[ 	{name :'general', avail : 50, total : 100},
 						{name :'individual', avail : 50, total : 100},
-						{name :'long term', avail : 50, total : 100},
-						{name :'special needs', avail : 50, total : 100} ] },
+						{name :'long-term', avail : 50, total : 100},
+						{name :'special-needs', avail : 50, total : 100} ] },
 				{name : 'health', avail : 200, total : 400, fields :
 					[ 	{name :'general', avail : 50, total : 100},
 						{name :'critical', avail : 50, total : 100},

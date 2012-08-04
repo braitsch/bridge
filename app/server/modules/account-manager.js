@@ -94,8 +94,9 @@ AM.editClient = function(o, callback){
 
 // dummy data for testing purposes //
 
-var numUsers = 0;
+var numUsers;
 AM.addDummyData = function(){
+	numUsers = 0;
 	AM.delAllRecords( );
 	for (var i = dummies.orgs.length - 1; i >= 0; i--){
 		var o = dummies.orgs[i];
@@ -120,7 +121,10 @@ AM.addDummyUser = function(callback)
 			o.email = o.email.toLowerCase();
 		// append date stamp when record was created //
 			o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-			AM.usrs.insert(o, AM.addDummyUser);
+			AM.usrs.insert(o, function(){
+				console.log('AM.addDummyUser - done')
+				setTimeout(AM.addDummyUser, 500)
+			});
 		});
 	}
 }
