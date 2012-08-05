@@ -6,29 +6,30 @@ script
 div.navbar.navbar-fixed-top
 	div.navbar-inner
 		div.container-fluid
-			ul#global-nav.nav.pull-left
-				li
-					.brand #{capitalize(oName)}
-				li.divider-vertical
-				li
-					a(href='/about-us') About Us
-				li.divider-vertical
-				li
-					a(href='/offerings') Our Offerings
-				li.divider-vertical
-				li
-					a(href='/our-team') Our Team
-				li.divider-vertical
-				li
-					a(href='/clients') Our Clients
-				li.divider-vertical
-			ul.nav.pull-right
-				li
-					#logged-in-user-name Welcome : #{capitalize(uName)}
-				li
-					button#btn-logout.btn.btn-primary
-						i.icon-lock.icon-white
-						| Sign Out
+			div
+				ul#global-nav.nav.pull-left
+					li
+						.brand #{capitalize(oName)}
+					li.divider-vertical
+					li
+						a(href='/about-us') About Us
+					li.divider-vertical
+					li
+						a(href='/offerings') Our Offerings
+					li.divider-vertical
+					li
+						a(href='/our-team') Our Team
+					li.divider-vertical
+					li
+						a(href='/clients') Our Clients
+					li.divider-vertical
+				ul.nav.pull-right
+					li
+						#logged-in-user-name Welcome : #{capitalize(uName)}
+					li
+						button#btn-logout.btn.btn-primary
+							i.icon-lock.icon-white
+							| Sign Out
 include ../modals/alert
 include ../modals/logout
 script(src='/js/utils/globals.js')
