@@ -145,6 +145,10 @@ AM.getClient = function(id, callback)
 {
 	AM.clients.findOne({_id:AM.getObjectId(id)}, callback);
 }
+AM.getClientByName = function(obj, callback)
+{
+	AM.clients.findOne(obj, callback);
+}
 AM.getAllOrgs = function(callback)
 {
 	AM.orgs.find().toArray( function(e, res) { callback(e, res) });

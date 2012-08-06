@@ -13,7 +13,8 @@ module.exports = function(app) {
 	});
 	
 	app.post('/client-login', function(req, res){
-		AM.getClient(req.param('id'), function(e, o){
+//		AM.getClient(req.param('id'), function(e, o){
+		AM.getClientByName({fname:'Jane', lname:'Doe'}, function(e, o){
 			if (e){
 				res.send(e, 400);
 			}	else{

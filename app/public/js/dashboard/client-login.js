@@ -39,7 +39,7 @@ $(document).ready(function() {
 			if (window.location.pathname != '/'){
 				window.location.href = '/';
 			}	else{
-				$('#client-name').text();
+				$('#client-name').text('');
 				goodbyeModal.modal('hide');
 				$('#btn-login').html("<i class='icon-lock icon-white'/>Log In");
 			}
@@ -61,7 +61,7 @@ $(document).ready(function() {
 	goodbyeModal.modal({ show : false, keyboard : false, backdrop : 'static' });
 
 	if (!activeClient){
-		$('#client-name').text();
+		$('#client-name').text('');
 		$('#btn-login').html("<i class='icon-lock icon-white'/>Log In");
 	}	else{
 		$('#client-name').text('Welcome, '+activeClient.fname+' '+activeClient.lname);
