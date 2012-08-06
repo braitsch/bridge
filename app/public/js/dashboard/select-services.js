@@ -14,13 +14,19 @@ $(document).ready(function() {
 		console.log('clicked!');
 
 		// Find the service
+		// escape: /{{-([\s\S]+?)}}/g
+		_.templateSettings = {
+			evaluate: /\{\[([\s\S]+?)\]\}/g,
+			interpolate: /\{\{([\s\S]+?)\}\}/g
+		};
+
 		var serviceName = $(this).attr('id');
 		var service = _.find(services, function(service) { return service.name === serviceName; });
-
 		// Compile the Underscore template for our modal and
 		// pass it the service
 		var tmpl = $('#modal-service-selection').html();
-		var compiled = _.template(tmpl, { service: service });
+		// var compiled = _.template(tmpl, { service: service });
+		var compiled = Mustache.render(tmpl, { service: service });
 		var serviceSelectionModal = $(compiled);
 		serviceSelectionModal.modal({ show : false, keyboard : true, backdrop : true });
 		serviceSelectionModal.modal('show');

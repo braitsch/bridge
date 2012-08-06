@@ -4,30 +4,39 @@ script(type="text/html", id="modal-service-selection")
 			a.button-close(data-dismiss='modal')
 				img(src="../img/icons/latest/icon-exit.png")
 			h3 You have selected 
-				span.emphasize <%= service.name %>
+				span.emphasize {{ service.name }}
 			p Please select the subcategory that fits your needs:
 		.modal-body
 			ul.l-horizontal.clearfix.reservation-entries
+				// Mustache Template
+				{{#service.fields}}
+				li
+					div.service
+						div.service-chrome
+						div.service-header
+							h2 {{ . }}
+						div.service-thumbnail
+							img(src='/img/icons/latest/icon-{{ service.name }}-{{ . }}.png')
+						div.service-progress
+							div.v-progress
+								div.v-progress-bar
+				{{/service.fields}}
+				
+				// Underscore template
+				//- {[ _(service.fields).each(function(field) { ]}
 				//- li
 				//- 	div.service
 				//- 		div.service-chrome
 				//- 		div.service-header
-				//- 			h2 Mental Health
+				//- 			h2 {{ field }}
 				//- 		div.service-thumbnail
-				//- 			img(src='/img/icons/latest/icon-mental-general.png')
+				//- 			img(src="/img/icons/latest/icon-{{ service.name }}-{{ field }}.png")
 				//- 		div.service-progress
 				//- 			div.v-progress
 				//- 				div.v-progress-bar
-				//- li
-				//- 	div.service
-				//- 		div.service-chrome
-				//- 		div.service-header
-				//- 			h2 Mental Health
-				//- 		div.service-thumbnail
-				//- 			img(src='/img/icons/latest/icon-mental-general.png')
-				//- 		div.service-progress
-				//- 			div.v-progress
-				//- 				div.v-progress-bar
+				//- {[ }); ]}
+
+				// Original Jade template
 				//- li
 				//- 	div.service
 				//- 		div.service-chrome
