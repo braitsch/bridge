@@ -1,39 +1,40 @@
-.modal-service-selection.modal-centered.modal.stretch.hide.fade
-	.modal-header
-		a.button-close(data-dismiss='modal')
-			img(src="../img/icons/latest/icon-exit.png")
-		h3 You have selected 
-			span.username meals
-		p Please select the subcategory that fits your needs:
-	.modal-body
-		ul.l-horizontal.clearfix.reservation-entries
-						li
-							div.service
-								div.service-chrome
-								div.service-header
-									h2 Mental Health
-								div.service-thumbnail
-									img(src='/img/icons/latest/icon-mental-general.png')
-								div.service-progress
-									div.v-progress
-										div.v-progress-bar
-						li
-							div.service
-								div.service-chrome
-								div.service-header
-									h2 Mental Health
-								div.service-thumbnail
-									img(src='/img/icons/latest/icon-mental-general.png')
-								div.service-progress
-									div.v-progress
-										div.v-progress-bar
-						li
-							div.service
-								div.service-chrome
-								div.service-header
-									h2 Mental Health
-								div.service-thumbnail
-									img(src='/img/icons/latest/icon-mental-general.png')
-								div.service-progress
-									div.v-progress
-										div.v-progress-bar
+script(type="text/html", id="modal-service-selection")
+	.modal-service-selection.modal-centered.modal.stretch.hide.fade
+		.modal-header
+			a.button-close(data-dismiss='modal')
+				img(src="../img/icons/latest/icon-exit.png")
+			h3 You have selected 
+				span.emphasize <%= service.name %>
+			p Please select the subcategory that fits your needs:
+		.modal-body
+			ul.l-horizontal.clearfix.reservation-entries
+				//- li
+				//- 	div.service
+				//- 		div.service-chrome
+				//- 		div.service-header
+				//- 			h2 Mental Health
+				//- 		div.service-thumbnail
+				//- 			img(src='/img/icons/latest/icon-mental-general.png')
+				//- 		div.service-progress
+				//- 			div.v-progress
+				//- 				div.v-progress-bar
+				//- li
+				//- 	div.service
+				//- 		div.service-chrome
+				//- 		div.service-header
+				//- 			h2 Mental Health
+				//- 		div.service-thumbnail
+				//- 			img(src='/img/icons/latest/icon-mental-general.png')
+				//- 		div.service-progress
+				//- 			div.v-progress
+				//- 				div.v-progress-bar
+				//- li
+				//- 	div.service
+				//- 		div.service-chrome
+				//- 		div.service-header
+				//- 			h2 Mental Health
+				//- 		div.service-thumbnail
+				//- 			img(src='/img/icons/latest/icon-mental-general.png')
+				//- 		div.service-progress
+				//- 			div.v-progress
+				//- 				div.v-progress-bar

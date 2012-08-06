@@ -1,5 +1,6 @@
 script
-	var services = !{services}
+	//- var services = !{services}
+	var services = !{JSON.stringify(services)};
 include dashboard-header
 
 div.container
@@ -7,8 +8,8 @@ div.container
 		div.row
 			ul
 				- for (var i = services.length - 1; i >= 0; i--)
-					li(id=services[i].name)
-						div.service.is-enabled.is-selected
+					li
+						div(id=services[i].name).service.is-disabled
 							img.button-edit(src="../img/icons/latest/icon-edit.png")
 							div.service-chrome
 							div.service-header
@@ -35,6 +36,7 @@ include modals/service-selection
 
 script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')
+script(src='/vendor/underscore.min.js')
 script(src='/vendor/bootstrap-modal.js')
 script(src='/vendor/bootstrap-transition.js')
 script(src='/js/dashboard/client-login.js')
