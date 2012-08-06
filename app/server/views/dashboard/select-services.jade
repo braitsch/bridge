@@ -1,16 +1,4 @@
-div.navbar.navbar-fixed-top.fat
-	div.navbar-inner
-		div.container
-			a.brand(href="#")
-				img(src="../img/logo.png", alt="Bridge")
-			ul.nav
-				li.divider-vertical
-			ul.nav.pull-right
-				li
-					a Welcome, John Doe
-				li.divider-vertical
-				li
-					a Log Out
+include dashboard-header
 
 div.container
 	div.services-wrapper
@@ -112,6 +100,7 @@ a#btn-timeout.btn Timeout
 a#btn-reservation-confirm.btn Confirm
 a#btn-reservation-success.btn Success
 a#btn-service-selection.btn Services
+
 include modals/welcome
 include modals/timeout
 include modals/reservation-confirm

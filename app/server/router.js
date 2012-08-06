@@ -7,23 +7,11 @@ var AM = require('./modules/account-manager');
 module.exports = function(app) {
 	
 	app.get('/', function(req, res){
-		res.render('dashboard', { title: 'Welcome to SF-Bridge' });
-	});
-
-	app.get('/list', function(req, res){
-		AM.getAllOrgs( function(e, orgs){
-			if (e){
-				res.send('eek! something went wrong', 400);
-			}	else{
-				res.render('list', {
-					title: 'Welcome to SF-Bridge', orgs : orgs
-				});
-			}
-		});
+		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge' });
 	});
 
 	app.get('/reserve', function(req, res){
-		res.render('reserve', { title: 'Welcome to SF-Bridge' });
+		res.render('dashboard/select-provider', { title: 'Welcome to SF-Bridge' });
 	});
 	
 // account login //
@@ -283,7 +271,7 @@ module.exports = function(app) {
 		AM.getAllOrgs( function(e, orgs){
 			AM.getAllUsers( function(e, users){
 				AM.getAllClients( function(e, clients){
-					res.render('print', { title : 'Bridge Data', orgs : orgs, users : users, clients : clients } );
+					res.render('aux/print', { title : 'Bridge Data', orgs : orgs, users : users, clients : clients } );
 				})
 			})
 		})
@@ -292,6 +280,16 @@ module.exports = function(app) {
 	app.get('/reset', function(req, res) {
 		AM.addDummyData( ); res.redirect('/print');
 	});
+	
+	app.get('/list', function(req, res){
+		AM.getAllOrgs( function(e, orgs){
+			if (e){
+				res.send('Error retreiving provider list', 400);
+			}	else{
+				res.render('aux/list', { title: 'Welcome to SF-Bridge', orgs : orgs });
+			}
+		});
+	});	
 
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
