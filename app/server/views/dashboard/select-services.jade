@@ -1,97 +1,23 @@
+script
+	var services = !{services}
 include dashboard-header
 
 div.container
 	div.services-wrapper
 		div.row
 			ul
-				li
-					div.service.is-enabled.is-selected
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Housing
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-housing-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				li
-					div.service.is-enabled
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Meals
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-meals-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				li
-					div.service.is-enabled.is-selected
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Health Care
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-health-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				li
-					div.service.is-enabled
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Hygiene
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-hygiene-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				li
-					div.service.is-enabled
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Employment
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-employment-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				li
-					div.service.is-enabled.is-selected
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Transportation
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-transportation-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				li
-					div.service.is-enabled
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Mental Health
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-mental-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				li
-					div.service.is-enabled
-						img.button-edit(src="../img/icons/latest/icon-edit.png")
-						div.service-chrome
-						div.service-header
-							h2 Financial
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-financial-general.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
+				- for (var i = services.length - 1; i >= 0; i--)
+					li(id=services[i].name)
+						div.service.is-enabled.is-selected
+							img.button-edit(src="../img/icons/latest/icon-edit.png")
+							div.service-chrome
+							div.service-header
+								h2 #{services[i].name}
+							div.service-thumbnail
+								img(src='/img/icons/latest/icon-'+services[i].name+'-general.png')
+							div.service-progress
+								div.v-progress
+									div.v-progress-bar
 	div.row
 		a#request-services.button.button-reserve.is-disabled Reserve
 

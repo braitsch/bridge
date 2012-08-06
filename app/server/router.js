@@ -9,7 +9,7 @@ module.exports = function(app) {
 // public dashboard //
 
 	app.get('/', function(req, res){
-		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', cdata:req.session.client || null });
+		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', cdata:req.session.client || null, services:SV });
 	});
 	
 	app.post('/client-login', function(req, res){
