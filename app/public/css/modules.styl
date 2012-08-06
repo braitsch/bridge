@@ -376,26 +376,13 @@ button i
 .button-group > a:first-child
 	margin 0
 
-#btn-logout
-	width 100px
-
-#btn-about
-	top 1px
-	right 175px
-	width 40px	
-	position absolute
-#btn-about i
-	padding-left 0
-
-#btn-sign-in
-	top 1px
-	right 8px
-	width 160px	
-	position absolute
-
 /*  --------------------------------------------------
     :: Navbar
     -------------------------------------------------- */
+
+.navbar button
+	width 100px
+
 .navbar.fat .divider-vertical
 	height 47px
 
@@ -416,6 +403,21 @@ button i
 @media (max-width: 979px)
 	.navbar-fixed-top
 		margin-bottom 0
+
+.navbar.list #btn-about
+	top 1px
+	right 175px
+	width 40px	
+	position absolute
+	
+.navbar.list #btn-about i
+	padding-left 0
+
+.navbar.list #btn-login
+	top 1px
+	right 8px
+	width 160px	
+	position absolute
 
 /*  --------------------------------------------------
     :: Misc

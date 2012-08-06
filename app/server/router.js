@@ -9,6 +9,20 @@ module.exports = function(app) {
 	app.get('/', function(req, res){
 		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge' });
 	});
+	
+	app.post('/client-login', function(req, res){
+		AM.getClient(req.param('id'), function(e, o){
+			if (e){
+				res.send(e, 400);
+			}	else{
+				res.send(o, 200);
+			}
+		})
+	});
+	
+	app.post('/client-logout', function(req, res){
+		res.send('good', 200);
+	});	
 
 	app.get('/reserve', function(req, res){
 		res.render('dashboard/select-provider', { title: 'Welcome to SF-Bridge' });
@@ -216,7 +230,11 @@ module.exports = function(app) {
 	
 	app.post('/client-lookup', function(req, res) {
 		AM.getClient(req.param('id'), function(o){
-			res.send(o, 200);
+			if (e){
+				res.send(e, 400);
+			}	else{
+				res.send(o, 200);
+			}
 		});
 	});
 	

@@ -143,7 +143,7 @@ AM.getUser = function(usrEmail, callback)
 }
 AM.getClient = function(id, callback)
 {
-	AM.clients.findOne({_id:AM.getObjectId(id)}, function(e, o){ callback(o); });
+	AM.clients.findOne({_id:AM.getObjectId(id)}, callback);
 }
 AM.getAllOrgs = function(callback)
 {
