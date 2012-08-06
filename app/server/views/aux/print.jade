@@ -58,6 +58,7 @@ div(style='margin:-18px 20px 0 20px')
 				tr
 					th #
 					th Name
+					th Id
 					th Gender
 					th Ethnicity
 					th Birthday
@@ -73,6 +74,7 @@ div(style='margin:-18px 20px 0 20px')
 				tr
 					td= i+1
 					td  #{clients[i].fname} #{clients[i].lname}
+					td	#{clients[i]._id}
 					td	#{clients[i].gender}
 					td	#{clients[i].ethnicity}
 					td	#{clients[i].birthMonth} #{clients[i].birthDay} #{clients[i].birthYear}

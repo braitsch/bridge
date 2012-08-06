@@ -5,9 +5,11 @@ var SV = require('./modules/all-services');
 var AM = require('./modules/account-manager');
 
 module.exports = function(app) {
-	
+
+// public dashboard //
+
 	app.get('/', function(req, res){
-		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge' });
+		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', cdata:req.session.client || null });
 	});
 	
 	app.post('/client-login', function(req, res){
@@ -15,19 +17,34 @@ module.exports = function(app) {
 			if (e){
 				res.send(e, 400);
 			}	else{
+				req.session.client = o;
 				res.send(o, 200);
 			}
 		})
 	});
 	
 	app.post('/client-logout', function(req, res){
-		res.send('good', 200);
-	});	
+		req.session.destroy(function(e){ res.send('ok', 200); });
+	});
 
-	app.get('/reserve', function(req, res){
-		res.render('dashboard/select-provider', { title: 'Welcome to SF-Bridge' });
+	app.post('/request-services', function(req, res){
+		if (req.session.client == null){
+			res.send('Not Logged In', 400);
+		}	else{
+			req.session.services = req.param('services');
+			res.send('ok', 200);
+		}
 	});
 	
+	app.get('/request-provider', function(req, res){
+		if (req.session.client == null){
+			res.redirect('/');
+		}	else{
+			var k = req.session.client ? JSON.stringify(req.session.client) : null;
+			res.render('dashboard/select-provider', { title: 'Welcome to SF-Bridge', cdata:req.session.client || null });
+		}
+	});
+
 // account login //
 	
 	app.get('/login', function(req, res){

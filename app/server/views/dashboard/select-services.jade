@@ -93,9 +93,8 @@ div.container
 							div.v-progress
 								div.v-progress-bar
 	div.row
-		a.button.button-reserve.is-disabled Reserve
+		a#request-services.button.button-reserve.is-disabled Reserve
 
-a#btn-welcome.btn Welcome
 a#btn-timeout.btn Timeout
 a#btn-reservation-confirm.btn Confirm
 a#btn-reservation-success.btn Success
@@ -112,5 +111,6 @@ script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')
 script(src='/vendor/bootstrap-modal.js')
 script(src='/vendor/bootstrap-transition.js')
+script(src='/js/dashboard/client-login.js')
 script(src='/js/dashboard/select-services.js')
 script(src='/js/utils/globals.js')

@@ -1,4 +1,6 @@
 
+script
+	var activeClient=!{JSON.stringify(cdata)}
 div.navbar.navbar-fixed-top.fat
 	div.navbar-inner
 		div.container
@@ -6,6 +8,10 @@ div.navbar.navbar-fixed-top.fat
 				img(src="../img/logo.png", alt="Bridge")
 			ul.nav.pull-right
 				li
+					a#client-name
+				li.divider-vertical
+				li
 					button#btn-login.btn.btn-primary
 						i.icon-lock.icon-white
 						| Log In
+				li.divider-vertical
