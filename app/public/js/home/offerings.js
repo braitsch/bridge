@@ -210,6 +210,9 @@ $(document).ready(function(){
 		var editor = $('.modal-inventory');
     		editor.modal({ show : false, keyboard : true, backdrop : true });
 			editor.on('shown', function() { $('.modal-inventory input')[0].focus(); });
+			editor.on('hidden', function() {
+				$('html, body').animate({ scrollTop: 0 }, "slow");
+			});
 		$('#all-services .icon').click(function(e){ openTotalEditor(e.target.name); });
 		$('.modal-inventory #submit').click(updateInventory);
 
