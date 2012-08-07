@@ -11,7 +11,7 @@ script(type="text/html", id="modal-service-selection")
 				// Mustache Template
 				{{#service.fields}}
 				li
-					div.service.is-enabled
+					div(data-sub="{{ . }}").service.is-enabled
 						div.service-chrome
 						div.service-header
 							h2 {{ . }}
@@ -21,29 +21,3 @@ script(type="text/html", id="modal-service-selection")
 							div.v-progress
 								div.v-progress-bar
 				{{/service.fields}}
-				
-				// Underscore template
-				//- {[ _(service.fields).each(function(field) { ]}
-				//- li
-				//- 	div.service
-				//- 		div.service-chrome
-				//- 		div.service-header
-				//- 			h2 {{ field }}
-				//- 		div.service-thumbnail
-				//- 			img(src="/img/icons/latest/icon-{{ service.name }}-{{ field }}.png")
-				//- 		div.service-progress
-				//- 			div.v-progress
-				//- 				div.v-progress-bar
-				//- {[ }); ]}
-
-				// Original Jade template
-				//- li
-				//- 	div.service
-				//- 		div.service-chrome
-				//- 		div.service-header
-				//- 			h2 Mental Health
-				//- 		div.service-thumbnail
-				//- 			img(src='/img/icons/latest/icon-mental-general.png')
-				//- 		div.service-progress
-				//- 			div.v-progress
-				//- 				div.v-progress-bar

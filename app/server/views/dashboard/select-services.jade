@@ -3,13 +3,13 @@ script
 	var cdata = !{JSON.stringify(cdata)};
 include dashboard-header
 
-div.container
+#select-services.container
 	div.services-wrapper
 		div.row
 			ul
 				- for (var i = services.length - 1; i >= 0; i--)
 					li
-						div(id=services[i].name).service
+						div(data-category=services[i].name).service
 							img.button-edit(src="../img/icons/latest/icon-edit.png")
 							div.service-chrome
 							div.service-header
