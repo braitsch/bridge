@@ -1,6 +1,6 @@
 script
-	//- var services = !{services}
 	var services = !{JSON.stringify(services)};
+	var cdata = !{JSON.stringify(cdata)};
 include dashboard-header
 
 div.container
@@ -9,7 +9,7 @@ div.container
 			ul
 				- for (var i = services.length - 1; i >= 0; i--)
 					li
-						div(id=services[i].name).service.is-disabled
+						div(id=services[i].name).service
 							img.button-edit(src="../img/icons/latest/icon-edit.png")
 							div.service-chrome
 							div.service-header
@@ -20,12 +20,11 @@ div.container
 								div.v-progress
 									div.v-progress-bar
 	div.row
-		a#request-services.button.button-reserve.is-disabled Reserve
+		a#request-services.button.button-reserve Reserve
 
 a#btn-timeout.btn Timeout
 a#btn-reservation-confirm.btn Confirm
 a#btn-reservation-success.btn Success
-a#btn-service-selection.btn Services
 
 include modals/welcome
 include modals/goodbye
@@ -36,6 +35,7 @@ include modals/service-selection
 
 script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')
+script(src='/vendor/jquery.pubsub.js')
 script(src='/vendor/underscore.min.js')
 script(src='/vendor/mustache.js')
 script(src='/vendor/bootstrap-modal.js')

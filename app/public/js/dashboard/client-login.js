@@ -29,12 +29,14 @@ $(document).ready(function() {
 		welcomeModal.find('.username').text(n+'!');
 		welcomeModal.modal('show');
 		$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
+		$.pubsub('publish', 'login.complete');
 	}
 	
 	function onClientLogoutSuccess(res)
 	{
 		activeClient = null;
 		goodbyeModal.modal('show');
+		$.pubsub('publish', 'logout.complete');
 		setTimeout(function(){
 			if (window.location.pathname != '/'){
 				window.location.href = '/';

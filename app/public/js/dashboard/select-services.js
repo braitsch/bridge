@@ -1,5 +1,35 @@
 $(document).ready(function() {
+
+	function init() {
+		// Check if there is already an active user.
+		if (cdata) {
+			enableServices();
+		} else {
+			disableServices();
+		}
+
+		// Add event listeners
+		$.pubsub('subscribe', 'login.complete', function() {
+			enableServices();
+		});
+
+		$.pubsub('subscribe', 'logout.complete', function() {
+			disableServices();
+		});
+	}
 	
+	function enableServices() {
+		$('.service, .button-reserve')
+			.removeClass('is-disabled')
+			.addClass('is-enabled');
+	}
+
+	function disableServices() {
+		$('.service, .button-reserve')
+			.removeClass('is-enabled')
+			.addClass('is-disabled');
+	}
+
 	$('#request-services').click(function(){
 		$.ajax({
 			url: '/request-services',
@@ -11,25 +41,24 @@ $(document).ready(function() {
 	});
 
 	$('.service').click(function() {
-		console.log('clicked!');
+		var serviceName, service, tmpl, compiled, serviceSelectionModal;
 
-		// Find the service
-		// escape: /{{-([\s\S]+?)}}/g
-		_.templateSettings = {
-			evaluate: /\{\[([\s\S]+?)\]\}/g,
-			interpolate: /\{\{([\s\S]+?)\}\}/g
-		};
+		// Grab the appropriate service from our JSON object
+		serviceName = $(this).attr('id');
+		service = _.find(services, function(service) { return service.name === serviceName; });
 
-		var serviceName = $(this).attr('id');
-		var service = _.find(services, function(service) { return service.name === serviceName; });
-		// Compile the Underscore template for our modal and
+		// Compile the Mustache template for our modal and
 		// pass it the service
-		var tmpl = $('#modal-service-selection').html();
-		// var compiled = _.template(tmpl, { service: service });
-		var compiled = Mustache.render(tmpl, { service: service });
-		var serviceSelectionModal = $(compiled);
+		tmpl = $('#modal-service-selection').html();
+		compiled = Mustache.render(tmpl, { service: service });
+		serviceSelectionModal = $(compiled);
+
+		// Create a new Bootstrap modal and add it to the page
 		serviceSelectionModal.modal({ show : false, keyboard : true, backdrop : true });
 		serviceSelectionModal.modal('show');
+
+		// Destroy the modal when it's hidden. Since we rebuild it every time
+		// this is necessary to prevent them from stacking up in the DOM
 		serviceSelectionModal.on('hidden', function () {
 			$(this).detach();
 		});
@@ -39,7 +68,6 @@ $(document).ready(function() {
 	$('#btn-timeout').click(function(){ timeoutModal.modal('show'); });
 	$('#btn-reservation-confirm').click(function(){ reservationConfirmModal.modal('show'); });
 	$('#btn-reservation-success').click(function(){ reservationSuccessModal.modal('show'); });
-	$('#btn-service-selection').click(function(){ serviceSelectionModal.modal('show'); });
 
 	var timeoutModal = $('.modal-timeout');
 	timeoutModal.modal({ show : false, keyboard : true, backdrop : true });
@@ -50,7 +78,5 @@ $(document).ready(function() {
 	var reservationSuccessModal = $('.modal-reservation-success');
 	reservationSuccessModal.modal({ show : false, keyboard : true, backdrop : true });
 
-	// var serviceSelectionModal = $('.modal-service-selection');
-	// serviceSelectionModal.modal({ show : false, keyboard : true, backdrop : true });
-
+	init();
 });
