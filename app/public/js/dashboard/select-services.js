@@ -1,53 +1,76 @@
 window.SelectServicesModel = {
 	selections: [ {cat: 'meals', sub: 'breakfast'}, {cat: 'health', sub: 'critical'} ],
-	currentCategory: ''
+	currentCategory: '',
+	init: function() {
+		$.pubsub('publish', 'services.update', this.selections);
+	},
+	update: function(collection) {
+		this.selections = collection;
+		$.pubsub('publish', 'services.update', this.selections);
+	}
 };
 
 window.SelectServicesController = {
 	init: function(el) {
 		this.$el = $(el);
+		this.$services = this.$el.find('.service');
 
 		// Every method of this object will be called with the proper
 		// scope now. Take THAT jQuery!
 		_.bindAll(this);
 
 		if (cdata) {
-			this.enableServices();
+			this.enable();
 		} else {
-			this.disableServices();
+			this.disable();
 		}
 
 		// Add application event listeners
-		$.pubsub('subscribe', 'login.complete', this.enableServices);
-		$.pubsub('subscribe', 'logout.complete', this.disableServices);
-
+		$.pubsub('subscribe', 'login.complete', this.enable);
+		$.pubsub('subscribe', 'logout.complete', this.disable);
+		$.pubsub('subscribe', 'services.update', this.highlightServices)
+	},
+	enable: function() {
+		$('.service, .button-reserve')
+			.removeClass('is-disabled')
+			.addClass('is-enabled');
+		
 		// Add view event listeners
 		$('.service').on('click', this.onServiceClicked);
 		$('#request-services').on('click', this.onRequestServicesClicked);
 	},
-	enableServices: function() {
-		$('.service, .button-reserve')
-			.removeClass('is-disabled')
-			.addClass('is-enabled');
-	},
-	disableServices: function() {
+	disable: function() {
 		$('.service, .button-reserve')
 			.removeClass('is-enabled')
 			.addClass('is-disabled');
+
+		// Remove view event listeners
+		$('.service').off('click', this.onServiceClicked);
+		$('#request-services').off('click', this.onRequestServicesClicked);
 	},
-	saveSelection: function(subCategory) {
-		console.log('saving selection');
+	updateSelections: function(subCategory) {
 		var currentCategory, previousSelections, filteredSelections;
 		currentCategory = window.SelectServicesModel.currentCategory;
 		previousSelections = window.SelectServicesModel.selections;
-		console.log(previousSelections);
+		// Remove any selections for the current category
 		filteredSelections = _.reject(previousSelections, function(selection) {
 			return selection.cat === currentCategory;
 		});
-		console.log(filteredSelections);
-		filteredSelections.push({ cat: currentCategory, sub: subCategory });
-		window.SelectServicesModel.selections = filteredSelections;
-		console.log(window.SelectServicesModel.selections);
+		// If the subCategory is not undefined then create a new selection
+		// and add it to the set
+		if (subCategory) {
+			filteredSelections.push({ cat: currentCategory, sub: subCategory });
+		}
+		// Update the model
+		window.SelectServicesModel.update(filteredSelections);
+	},
+	highlightServices: function(event, services) {
+		var self = this;
+		self.$services.removeClass('is-selected');
+		_.each(services, function(service) {
+			self.$services.filter('div[data-category="'+service.cat+'"]')
+				.addClass('is-selected');
+		});
 	},
 	onServiceClicked: function(event) {
 		var serviceName, service, tmpl, compiled, serviceSelectionModal;
@@ -80,17 +103,15 @@ window.SelectServicesController = {
 		// this is necessary to prevent them from stacking up in the DOM
 		// Let's also make sure to save whatever chategory may have been selected
 		var subCategory  = $selectServicesModal.find('.is-selected').data('sub');
-		console.log(subCategory);
-		if (subCategory) {
-			this.saveSelection(subCategory);
-		}
+		this.updateSelections(subCategory);
+
 		$selectServicesModal.detach();
 	},
 	onRequestServicesClicked: function(event) {
 		$.ajax({
 			url: '/request-services',
 			type: "POST",
-			data: { services : [ {cat:'meals', sub:'breakfast' } ] },
+			data: { services : [ window.SelectServicesModel.selections ] },
 			success: function(ok) { 
 				window.location.href = '/request-provider'; 
 			},
@@ -164,6 +185,7 @@ window.SelectServicesModalController = {
 
 $(document).ready(function() {
 	window.SelectServicesController.init('#select-services');
+	window.SelectServicesModel.init();
 
 	// Buttons for testing only. Safe to remove if you'd like.
 	// $('#btn-timeout').click(function(){ timeoutModal.modal('show'); });
