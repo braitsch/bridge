@@ -247,7 +247,7 @@ module.exports = function(app) {
 	});
 	
 	app.post('/client-lookup', function(req, res) {
-		AM.getClient(req.param('id'), function(o){
+		AM.getClient(req.param('id'), function(e, o){
 			if (e){
 				res.send(e, 400);
 			}	else{
