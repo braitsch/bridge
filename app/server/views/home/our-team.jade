@@ -10,7 +10,7 @@ include header
 		- for (var i = 0; i < team.length; i++)
 			.member.well
 				.image
-					img(src='./img/icons/user.png')
+					img(src='http://www.gravatar.com/avatar/'+team[i].gravatar+'?s=100&d=http://bridge.braitsch.io/img/icons/user.png')
 				div #{capitalize(team[i].name)}
 .footer
 

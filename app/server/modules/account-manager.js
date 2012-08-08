@@ -1,5 +1,6 @@
 
-var bcrypt = require('bcrypt')
+var bcrypt = require('bcrypt');
+var crypto = require('crypto');
 var Db = require('mongodb').Db;
 var Server = require('mongodb').Server;
 
@@ -69,6 +70,7 @@ AM.addUser = function(o, callback){
 		o.passw = hash;
 		o.org = o.org.toLowerCase();
 		o.email = o.email.toLowerCase();
+		o.gravatar = crypto.createHash('md5').update(o.email).digest("hex");
 	// append date stamp when record was created //
 		o.created = o.edited = moment().format('MMMM Do YYYY, h:mm:ss a');
 		AM.usrs.insert(o, callback(o));
@@ -119,6 +121,7 @@ AM.addDummyUser = function(callback)
 			o.passw = hash;
 			o.org = o.org.toLowerCase();
 			o.email = o.email.toLowerCase();
+			o.gravatar = crypto.createHash('md5').update(o.email).digest("hex");
 		// append date stamp when record was created //
 			o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 			AM.usrs.insert(o, function(){
