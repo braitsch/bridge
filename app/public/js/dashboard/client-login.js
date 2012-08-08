@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	var activeClient;
+
 	function attemptClientLogin(id)
 	{
 		$.ajax({
@@ -62,10 +64,11 @@ $(document).ready(function() {
 	var goodbyeModal = $('.modal-logout');
 	goodbyeModal.modal({ show : false, keyboard : false, backdrop : 'static' });
 
-	if (!activeClient){
+	if (!session.client){
 		$('#client-name').text('');
 		$('#btn-login').html("<i class='icon-lock icon-white'/>Log In");
 	}	else{
+		activeClient = session.client;
 		$('#client-name').text('Welcome, '+activeClient.fname+' '+activeClient.lname);
 		$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
 	}

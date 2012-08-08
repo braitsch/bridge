@@ -19,7 +19,7 @@ window.SelectServicesController = {
 		// scope now. Take THAT jQuery!
 		_.bindAll(this);
 
-		if (cdata) {
+		if (session.client) {
 			this.enable();
 		} else {
 			this.disable();
@@ -111,7 +111,7 @@ window.SelectServicesController = {
 		$.ajax({
 			url: '/request-services',
 			type: "POST",
-			data: { services : [ window.SelectServicesModel.selections ] },
+			data: { services : window.SelectServicesModel.selections },
 			success: function(ok) { 
 				window.location.href = '/request-provider'; 
 			},
@@ -186,6 +186,14 @@ window.SelectServicesModalController = {
 $(document).ready(function() {
 	window.SelectServicesController.init('#select-services');
 	window.SelectServicesModel.init();
+	
+	if (session.services){
+	// use this to show what services were previously selected //
+		for (var i = session.services.length - 1; i >= 0; i--){
+			var s = session.services[i];
+			console.log('selected : ', s.cat, '>>', s.sub);
+		};
+	}
 
 	// Buttons for testing only. Safe to remove if you'd like.
 	// $('#btn-timeout').click(function(){ timeoutModal.modal('show'); });

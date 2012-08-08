@@ -9,7 +9,7 @@ module.exports = function(app) {
 // public dashboard //
 
 	app.get('/', function(req, res){
-		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', cdata:req.session.client || null, services:SV });
+		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', session:req.session, services:SV });
 	});
 	
 	app.post('/client-login', function(req, res){
@@ -41,8 +41,9 @@ module.exports = function(app) {
 		if (req.session.client == null){
 			res.redirect('/');
 		}	else{
-			var k = req.session.client ? JSON.stringify(req.session.client) : null;
-			res.render('dashboard/select-provider', { title: 'Welcome to SF-Bridge', cdata:req.session.client || null });
+			AM.getOrgsWithServices(req.session.services, function(a){
+				res.render('dashboard/select-provider', { title: 'Welcome to SF-Bridge', session:req.session, providers:a });
+			})
 		}
 	});
 

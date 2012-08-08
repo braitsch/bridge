@@ -156,6 +156,11 @@ AM.getAllOrgs = function(callback)
 {
 	AM.orgs.find().toArray( function(e, res) { callback(e, res) });
 }
+AM.getOrgsWithServices = function(services, callback)
+{
+// just return 3 random orgs until i can write algorithm to lookup services
+	AM.orgs.find().limit(3).toArray( function(e, res) { callback(res) });
+}
 AM.getAllUsers = function(callback)
 {
 	AM.usrs.find().toArray( function(e, res) { callback(e, res) });
@@ -178,7 +183,7 @@ AM.setPassword = function(oldp, newp, callback)
 			o.pass = hash;
 			AM.orgs.save(o); callback(o);
 		});
-	});	
+	});
 }
 
 AM.validateLink = function(pid, callback)
