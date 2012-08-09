@@ -1,4 +1,4 @@
-window.SelectServicesModel = {
+window.ServicesModel = {
 	selections: [],
 	currentCategory: '',
 	init: function(previousSelections) {
@@ -25,44 +25,26 @@ window.SelectServicesController = {
 		// scope now. Take THAT jQuery!
 		_.bindAll(this);
 
-		if (session.client) {
-			this.enable();
-		} else {
-			this.disable();
-		}
-
 		// Add application event listeners
-		$.pubsub('subscribe', 'login.complete', this.enable);
-		$.pubsub('subscribe', 'logout.complete', this.disable);
-		$.pubsub('subscribe', 'logout.complete', this.reset);
-		$.pubsub('subscribe', 'services.update', this.highlightServices)
-	},
-	enable: function() {
-		$('.service, .button-reserve')
-			.removeClass('is-disabled')
-			.addClass('is-enabled');
+		$.pubsub('subscribe', 'login.complete', this.onLoginComplete);
+		$.pubsub('subscribe', 'logout.complete', this.onLogoutComplete);
+		$.pubsub('subscribe', 'services.update', this.onServicesUpdated);
 		
-		// Add view event listeners
-		$('.service').on('click', this.onServiceClicked);
-		$('#request-services').on('click', this.onRequestServicesClicked);
-	},
-	disable: function() {
-		$('.service').removeClass('is-selected');
-		$('.service, .button-reserve')
-			.removeClass('is-enabled')
-			.addClass('is-disabled');
-
-		// Remove view event listeners
-		$('.service').off('click', this.onServiceClicked);
-		$('#request-services').off('click', this.onRequestServicesClicked);
+		// Check for user state
+		if (session.client) {
+			this.onLoginComplete();
+		} else {
+			this.onLogoutComplete();
+		}
 	},
 	reset: function() {
-		window.SelectServicesModel.reset();
+		// Clean out the model
+		window.ServicesModel.reset();
 	},
 	updateSelections: function(subCategory) {
 		var currentCategory, previousSelections, filteredSelections;
-		currentCategory = window.SelectServicesModel.currentCategory;
-		previousSelections = window.SelectServicesModel.selections;
+		currentCategory = window.ServicesModel.currentCategory;
+		previousSelections = window.ServicesModel.selections;
 		// Remove any selections for the current category
 		filteredSelections = _.reject(previousSelections, function(selection) {
 			return selection.cat === currentCategory;
@@ -73,15 +55,54 @@ window.SelectServicesController = {
 			filteredSelections.push({ cat: currentCategory, sub: subCategory });
 		}
 		// Update the model
-		window.SelectServicesModel.update(filteredSelections);
+		window.ServicesModel.update(filteredSelections);
 	},
-	highlightServices: function(event, services) {
+	highlightServices: function(services) {
 		var self = this;
 		self.$services.removeClass('is-selected');
 		_.each(services, function(service) {
 			self.$services.filter('div[data-category="'+service.cat+'"]')
 				.addClass('is-selected');
 		});
+	},
+	onLoginComplete: function(event, data) {
+		$('.service')
+			.removeClass('is-disabled')
+			.addClass('is-enabled');
+
+		$('.button-reserve').removeClass('faded');
+
+		// Add view event listeners
+		$('.service').on('click', this.onServiceClicked);
+	},
+	onLogoutComplete: function(event, data) {
+		$('.service').removeClass('is-selected');
+		$('.button-reserve').addClass('faded');
+
+		$('.service, .button-reserve')
+			.removeClass('is-enabled')
+			.addClass('is-disabled');
+
+		this.reset();
+
+		// Remove view event listeners
+		$('.service').off('click', this.onServiceClicked);
+		$('#request-services').off('click', this.onRequestServicesClicked);
+	},
+	onServicesUpdated: function(event, data) {
+		this.highlightServices(data);
+
+		if (data && data.length) {
+			$('.button-reserve')
+					.removeClass('is-disabled')
+					.addClass('is-enabled');
+			$('#request-services').on('click', this.onRequestServicesClicked);
+		} else {
+			$('.button-reserve')
+					.removeClass('is-enabled')
+					.addClass('is-disabled');
+			$('#request-services').off('click', this.onRequestServicesClicked);
+		}
 	},
 	onServiceClicked: function(event) {
 		var serviceName, service, tmpl, compiled, serviceSelectionModal;
@@ -92,7 +113,7 @@ window.SelectServicesController = {
 		
 		// Make sure we found something...
 		if (service) {
-			window.SelectServicesModel.currentCategory = service.name;
+			window.ServicesModel.currentCategory = service.name;
 			
 			// Compile the Mustache template for our modal and
 			// pass it the service
@@ -122,7 +143,7 @@ window.SelectServicesController = {
 		$.ajax({
 			url: '/request-services',
 			type: "POST",
-			data: { services : window.SelectServicesModel.selections },
+			data: { services : window.ServicesModel.selections },
 			success: function(ok) { 
 				window.location.href = '/request-provider'; 
 			},
@@ -149,8 +170,8 @@ window.SelectServicesModalController = {
 		// If the user previously selected something in this category let's
 		// indicate that
 		var currentCategory, selections, prevSelection;
-		currentCategory = window.SelectServicesModel.currentCategory;
-		selections = window.SelectServicesModel.selections;
+		currentCategory = window.ServicesModel.currentCategory;
+		selections = window.ServicesModel.selections;
 		prevSelection = _.find(selections, function(selection) {
 			return selection.cat === currentCategory;
 		});
@@ -197,7 +218,7 @@ window.SelectServicesModalController = {
 $(document).ready(function() {
 	window.SelectServicesController.init('#select-services');
 	var previousSelections = session.services || null;
-	window.SelectServicesModel.init(previousSelections);
+	window.ServicesModel.init(previousSelections);
 
 	// Buttons for testing only. Safe to remove if you'd like.
 	// $('#btn-timeout').click(function(){ timeoutModal.modal('show'); });
