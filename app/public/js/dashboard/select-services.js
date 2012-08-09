@@ -181,7 +181,7 @@ window.SelectServicesModalController = {
 
 		// Treat a click in the white space of the modal as an
 		// attempt to cancel the current selection
-		if (isModal && !isService) {
+		if (isModal && !isService && !isClose) {
 			this.$services.removeClass('is-selected');
 		}
 		
