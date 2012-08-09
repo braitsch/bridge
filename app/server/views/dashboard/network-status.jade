@@ -25,7 +25,7 @@ div.navbar.navbar-fixed-top
 								.icon
 									img(src='/img/icons/small/icon-'+c.name+'-'+s.name+'.png')
 								.text
-									.name #{capitalize(s.name)}
+									.name #{capitalize(s.name.replace('-', ' '))}
 									.avail #{s.avail} / #{s.total}
 		hr
 
