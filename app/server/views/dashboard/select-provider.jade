@@ -2,7 +2,7 @@ script
 	var providers = !{JSON.stringify(providers)};
 include dashboard-header
 
-div.container
+#select-providers.container
 	div.row
 		a.button.button-back.quiet Back
 			i.icon-back-arrow
@@ -27,17 +27,13 @@ div.container
 										div.service-header
 											h2 #{s.name}
 										div.service-thumbnail
-											img(src='/img/icons/latest/icon-'+s.name+'-general.png')
+											img(src='/img/icons/large/icon-'+s.name+'-general.png')
 										div.service-progress
 											div.v-progress
 												div.v-progress-bar
 							li
 								a.button.button-reserve.button-reserve-fat.loud Reserve
 	div.striped
-
-include modals/welcome
-include modals/goodbye
-include modals/timeout
 
 script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')

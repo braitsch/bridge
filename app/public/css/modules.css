@@ -2,7 +2,7 @@
 		display: inline-block;
 		vertical-align: text-top;
 	}
-.icon-back-arrow{background:url("../img/icons/latest/icon-back-arrow.png") no-repeat top left;width:33px;height:21px}
+.icon-back-arrow{background:url("../img/icons/ui/icon-back-arrow.png") no-repeat top left;width:33px;height:21px}
 .services-wrapper ul{margin:0}
 .services-wrapper li{display:inline-block;margin-right:22px}
 .services-wrapper li:nth-child(4n){margin-right:0}
@@ -74,7 +74,7 @@ button i{padding-left:8px}
 .navbar .nav > li > .brand{text-align:center;min-width:130px}
 .navbar-fixed-top{min-width:1024px}
 @media (max-width: 979px){.navbar-fixed-top{margin-bottom:0}
-}.navbar.list #btn-about{top:1px;right:175px;width:40px;position:absolute}
+}.navbar #btn-about{width:140px}
 .navbar i{padding-left:8px}
 .navbar.list #btn-login{top:1px;right:8px;width:160px;position:absolute}
 .username,.emphasize{color:#6eb6b5}

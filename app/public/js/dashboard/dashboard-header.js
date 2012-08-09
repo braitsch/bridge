@@ -58,6 +58,11 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#btn-about').click(function(){ aboutModal.modal('show'); });
+
+	var aboutModal = $('.modal-about');
+	aboutModal.modal({ show : false, keyboard : true, backdrop : true });
+	
 	var welcomeModal = $('.modal-welcome');
 	welcomeModal.modal({ show : false, keyboard : true, backdrop : true });
 

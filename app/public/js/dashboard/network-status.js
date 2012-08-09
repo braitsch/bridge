@@ -21,7 +21,7 @@ $(document).ready(function() {
 					dta += '<div class="avail">'+s.avail+' / '+s.total+'</div>';
 				dta += '<hr>';
 				dta += '</div>';
-					dta += '<div class="img"><img src="/img/icons/latest/icon-'+s.name+'-general.png"></div>';
+					dta += '<div class="img"><img src="/img/icons/small/icon-'+s.name+'-general.png"></div>';
 				dta += '</div>';
 			}
 			div.append(dta);

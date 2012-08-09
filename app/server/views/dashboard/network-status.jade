@@ -12,12 +12,21 @@ div.navbar.navbar-fixed-top
 				- for (var k = orgs[i].inv.length - 1; k >= 0; k--)
 					- var c = orgs[i].inv[k];
 					.service
-						.text
-							.name #{capitalize(c.name)}
-							.avail #{c.avail} / #{c.total}
+						.cat
+							.icon
+								img(src='/img/icons/small/icon-'+c.name+'-general.png')
+							.text
+								.name #{capitalize(c.name)}
+								.avail #{c.avail} / #{c.total}
 						hr
-						.img
-							img(src='/img/icons/latest/icon-'+c.name+'-general.png')
+						- for (var n = c.fields.length - 1; n >= 0; n--)
+							- var s = c.fields[n];
+							.sub
+								.icon
+									img(src='/img/icons/small/icon-'+c.name+'-'+s.name+'.png')
+								.text
+									.name #{capitalize(s.name)}
+									.avail #{s.avail} / #{s.total}
 		hr
 
 script(src='/socket.io/socket.io.js')
