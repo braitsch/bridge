@@ -12,6 +12,16 @@ module.exports = function(app) {
 		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', session:req.session, services:SV });
 	});
 	
+	app.get('/live', function(req, res){
+		AM.getAllOrgs( function(e, orgs){
+			if (e){
+				res.send('Error retreiving provider data', 400);
+			}	else{
+				res.render('dashboard/network-status', { title: 'Welcome to SF-Bridge', orgs:orgs });
+			}
+		});
+	});
+	
 	app.post('/client-login', function(req, res){
 //		AM.getClient(req.param('id'), function(e, o){
 		AM.getClientByName({fname:'Jane', lname:'Doe'}, function(e, o){
@@ -317,16 +327,6 @@ module.exports = function(app) {
 	app.get('/reset', function(req, res) {
 		AM.addDummyData( ); res.redirect('/print');
 	});
-	
-	app.get('/list', function(req, res){
-		AM.getAllOrgs( function(e, orgs){
-			if (e){
-				res.send('Error retreiving provider list', 400);
-			}	else{
-				res.render('aux/list', { title: 'Welcome to SF-Bridge', orgs : orgs });
-			}
-		});
-	});	
 
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 

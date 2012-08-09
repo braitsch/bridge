@@ -7,7 +7,7 @@ div.navbar.navbar-fixed-top
 	div.navbar-inner
 		div.container-fluid
 			div
-				ul#global-nav.nav.pull-left
+				ul.nav.pull-left
 					li
 						.brand #{capitalize(oName)}
 					li.divider-vertical
@@ -22,6 +22,11 @@ div.navbar.navbar-fixed-top
 					li.divider-vertical
 					li
 						a(href='/clients') Our Clients
+					li.divider-vertical
+					li
+						a(href='/live') 
+							i.icon-globe.icon-white
+							| Network Status
 					li.divider-vertical
 				ul.nav.pull-right
 					li
