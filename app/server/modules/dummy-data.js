@@ -86,7 +86,7 @@ module.exports.usrs = [
 		name 	: 'Kary Gray',
 		pos		: 'admin',
 		phone 	: '415-333-3333',
-		email	: 'keygray@gamil.com',
+		email	: 'kehgray@gmail.com',
 		passw	: 'sfbridge' },
 	{	org		: 'Team Bridge',
 		name 	: 'Rachel Silverberg',
