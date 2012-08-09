@@ -47,7 +47,7 @@ $(document).ready(function(){
 					s+= "<div class='text'>"+capitalize(f.name).replace('-', ' ')+"</div>";
 					s+= "<div class='avail'>"+f.avail+' / '+f.total+"</div>";
 					s+= "<hr>";
-					s+= "<div class='icon'><img src='/img/icons/latest/icon-"+n+"-"+f.name+".png' name='"+n+"' title='"+n+"'/></div>";
+					s+= "<div class='icon'><img src='/img/icons/large/icon-"+n+"-"+f.name+".png' name='"+n+"' title='"+n+"'/></div>";
 					s+= "<div class='icon-del'><i class='icon-minus-sign'></i></div>";
 					s+= "<div class='icon-add'><i class='icon-plus-sign'></i></div>";
 					s+= "<div class='del' name='"+f.name+"'></div>";
@@ -193,7 +193,7 @@ $(document).ready(function(){
 				s+= "<div class='text'>"+capitalize(service.name)+"</div>";
 				s+= "<div class='avail'>"+service.avail+' / '+service.total+"</div>";
 				s+= "<hr>";
-				s+= "<div class='icon' name='"+service.name+"' title='"+service.name+"'><img src='/img/icons/latest/icon-"+service.name+"-general.png'/></div></div>";
+				s+= "<div class='icon' name='"+service.name+"' title='"+service.name+"'><img src='/img/icons/large/icon-"+service.name+"-general.png'/></div></div>";
 			var service = $(s);
 			service.find('.edit').click(function(e){ openTotalEditor($(e.target).attr('name')) });
 			service.find('.icon').click(function(e){ openAvailEditor($(e.currentTarget).attr('name')) });

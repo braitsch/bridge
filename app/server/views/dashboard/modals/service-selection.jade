@@ -2,7 +2,7 @@ script(type="text/html", id="modal-service-selection")
 	.modal-service-selection.modal-centered.modal.stretch.hide
 		.modal-header
 			a.button-close(data-dismiss='modal')
-				img(src="../img/icons/latest/icon-exit.png")
+				img(src="../img/icons/ui/icon-exit.png")
 			h3 You have selected 
 				span.emphasize {{ service.name }}
 			p Please select the subcategory that fits your needs:
@@ -17,7 +17,7 @@ script(type="text/html", id="modal-service-selection")
 							div.service-header
 								h2 {{ . }}
 							div.service-thumbnail
-								img(src='/img/icons/latest/icon-{{ service.name }}-{{ . }}.png')
+								img(src='/img/icons/large/icon-{{ service.name }}-{{ . }}.png')
 							div.service-progress
 								div.v-progress
 									div.v-progress-bar

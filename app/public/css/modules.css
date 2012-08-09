@@ -2,7 +2,7 @@
 		display: inline-block;
 		vertical-align: text-top;
 	}
-.icon-back-arrow{background:url("../img/icons/latest/icon-back-arrow.png") no-repeat top left;width:33px;height:21px}
+.icon-back-arrow{background:url("../img/icons/ui/icon-back-arrow.png") no-repeat top left;width:33px;height:21px}
 .services-wrapper ul{margin:0}
 .services-wrapper li{display:inline-block;margin-right:22px}
 .services-wrapper li:nth-child(4n){margin-right:0}
