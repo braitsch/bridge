@@ -1,12 +1,18 @@
 window.SelectServicesModel = {
-	selections: [ {cat: 'meals', sub: 'breakfast'}, {cat: 'health', sub: 'critical'} ],
+	selections: [],
 	currentCategory: '',
-	init: function() {
+	init: function(previousSelections) {
+		if (previousSelections) {
+			this.selections = previousSelections;
+		}
 		$.pubsub('publish', 'services.update', this.selections);
 	},
 	update: function(collection) {
 		this.selections = collection;
 		$.pubsub('publish', 'services.update', this.selections);
+	},
+	reset: function() {
+		this.selections = [];
 	}
 };
 
@@ -28,6 +34,7 @@ window.SelectServicesController = {
 		// Add application event listeners
 		$.pubsub('subscribe', 'login.complete', this.enable);
 		$.pubsub('subscribe', 'logout.complete', this.disable);
+		$.pubsub('subscribe', 'logout.complete', this.reset);
 		$.pubsub('subscribe', 'services.update', this.highlightServices)
 	},
 	enable: function() {
@@ -40,6 +47,7 @@ window.SelectServicesController = {
 		$('#request-services').on('click', this.onRequestServicesClicked);
 	},
 	disable: function() {
+		$('.service').removeClass('is-selected');
 		$('.service, .button-reserve')
 			.removeClass('is-enabled')
 			.addClass('is-disabled');
@@ -47,6 +55,9 @@ window.SelectServicesController = {
 		// Remove view event listeners
 		$('.service').off('click', this.onServiceClicked);
 		$('#request-services').off('click', this.onRequestServicesClicked);
+	},
+	reset: function() {
+		window.SelectServicesModel.reset();
 	},
 	updateSelections: function(subCategory) {
 		var currentCategory, previousSelections, filteredSelections;
@@ -185,15 +196,8 @@ window.SelectServicesModalController = {
 
 $(document).ready(function() {
 	window.SelectServicesController.init('#select-services');
-	window.SelectServicesModel.init();
-	
-	if (session.services){
-	// use this to show what services were previously selected //
-		for (var i = session.services.length - 1; i >= 0; i--){
-			var s = session.services[i];
-			console.log('selected : ', s.cat, '>>', s.sub);
-		};
-	}
+	var previousSelections = session.services || null;
+	window.SelectServicesModel.init(previousSelections);
 
 	// Buttons for testing only. Safe to remove if you'd like.
 	// $('#btn-timeout').click(function(){ timeoutModal.modal('show'); });

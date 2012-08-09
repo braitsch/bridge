@@ -7,17 +7,18 @@ script(type="text/html", id="modal-service-selection")
 				span.emphasize {{ service.name }}
 			p Please select the subcategory that fits your needs:
 		.modal-body
-			ul.l-horizontal.clearfix.reservation-entries
-				// Mustache Template
-				{{#service.fields}}
-				li
-					div(data-sub="{{ . }}").service.is-enabled
-						div.service-chrome
-						div.service-header
-							h2 {{ . }}
-						div.service-thumbnail
-							img(src='/img/icons/latest/icon-{{ service.name }}-{{ . }}.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
-				{{/service.fields}}
+			.wrapper-center
+				ul.l-horizontal.clearfix.reservation-entries
+					// Mustache Template
+					{{#service.fields}}
+					li
+						div(data-sub="{{ . }}").service.is-enabled
+							div.service-chrome
+							div.service-header
+								h2 {{ . }}
+							div.service-thumbnail
+								img(src='/img/icons/latest/icon-{{ service.name }}-{{ . }}.png')
+							div.service-progress
+								div.v-progress
+									div.v-progress-bar
+					{{/service.fields}}
