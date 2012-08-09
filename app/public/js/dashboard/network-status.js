@@ -19,8 +19,9 @@ $(document).ready(function() {
 				dta += '<div class="text">';
 					dta += '<div class="name">'+capitalize(s.name)+'</div>';
 					dta += '<div class="avail">'+s.avail+' / '+s.total+'</div>';
+				dta += '<hr>';
 				dta += '</div>';
-					dta += '<div class="img"><img src="/img/icons/'+s.name+'.png"></div>';
+					dta += '<div class="img"><img src="/img/icons/latest/icon-'+s.name+'-general.png"></div>';
 				dta += '</div>';
 			}
 			div.append(dta);
@@ -32,5 +33,5 @@ $(document).ready(function() {
 		$('#btn-about').click(function(){ aboutModal.modal('show'); });
 		$('#btn-login').click(function(){ window.location = '/login/'; });
 	}
-	
+
 });
