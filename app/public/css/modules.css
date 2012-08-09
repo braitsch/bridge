@@ -84,3 +84,4 @@ button i{padding-left:8px}
 .group select{float:left;width:50px}
 .group .wide{width:70px}
 .group label{display:inline-block;margin:5px 15px 5px 5px}
+.striped{z-index:-1;height:100%;width:100%;position:fixed;top:0;left:0;background:url("../img/bkgd/60degree_gray.png") #e7e7e7 repeat}
