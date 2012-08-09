@@ -104,10 +104,11 @@ $(document).ready(function(){
 			$('.modal-inventory label').each(function(i, o){
 				var n = $(o).text();
 				var v = $(o).find('input').val();
-				if (v != 0) category.fields.push({ name : n, avail : 0, total : v });
+				if (v != 0) category.fields.push({ name : n, avail : v, total : v });
 			});
 			category.total = 0;
 			for (var i = category.fields.length - 1; i >= 0; i--) category.total += parseInt(category.fields[i].total);
+			category.avail = category.total;
 			if (category.total == 0){
 				editor.modal('hide');
 				removeItemFromView(category.name);
@@ -201,10 +202,11 @@ $(document).ready(function(){
 		
 		var removeItemFromView = function(n)
 		{
-			$('#our-services #all .services').each(function(i, o){
+			$('#our-services #all .services .service').each(function(i, o){
 				var k = $(o);
 				if (k.attr('id') == n) k.remove();
 			})
+			if ($('#edit-avail .heading').text().toLowerCase().substr(4) == n) $('#edit-avail').hide();
 		}
 
 		var editor = $('.modal-inventory');

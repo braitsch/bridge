@@ -48,8 +48,8 @@
 #inventory #our-services #edit-avail .add{margin-left:90px}
 #inventory #our-services #edit-avail .icon-add,.icon-del{position:absolute;bottom:10px}
 #inventory #our-services #edit-avail .icon-add{right:18px}
-#inv-editor label{width:60px;text-align:right;margin-bottom:15px}
-#inv-editor input{width:50px;padding-right:10px;text-align:right;margin:-23px 0 0 75px}
+#inv-editor label{width:80px;text-align:right;margin-bottom:15px}
+#inv-editor input{width:50px;padding-right:10px;text-align:right;margin:-23px 0 0 95px}
 #team .heading{text-align:left;padding-left:20px}
 .member{padding:10px;margin:10px;color:#777;border:1px solid #ddd;background-color:#fff;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;text-align:center;display:inline-block;*display:inline;*margin:0 20px 0 20px}
 .member .image{width:100px;height:100px;margin:auto;margin-bottom:10px;background-color:rgba(0,0,0,0.1);background-image:-webkit-gradient(linear,0 0,100% 100%,color-stop(.25,rgba(255,255,255,0.2)),color-stop(.25,transparent),color-stop(.5,transparent),color-stop(.5,rgba(255,255,255,0.2)),color-stop(.75,rgba(255,255,255,0.2)),color-stop(.75,transparent),to(transparent));background-image:-webkit-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:-moz-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:-o-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);-webkit-background-size:30px 30px;-moz-background-size:30px 30px;background-size:30px 30px}
