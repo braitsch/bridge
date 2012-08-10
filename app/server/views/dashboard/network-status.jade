@@ -6,7 +6,6 @@ div.navbar.navbar-fixed-top
 #live
 	- for (var i = orgs.length - 1; i >= 0; i--)
 		- var oid = orgs[i].name.replace(/\s/g, '-');
-		- console.log(oid)
 		div(id=oid).org
 			p.orgName #{capitalize(orgs[i].name)}
 			p.orgAddy #{capitalize(orgs[i].addy1)} #{orgs[i].addy2} – #{capitalize(orgs[i].city)}, #{capitalize(orgs[i].state)} – #{capitalize(orgs[i].phone)}
