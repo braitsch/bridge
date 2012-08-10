@@ -1,20 +1,26 @@
 function getInventory()
 {
-	return  [	{name : 'housing', avail : 200, total : 400, fields :
+	return  [	{name : 'housing', avail : 150, total : 300, fields :
 					[	{name :'individual', avail : 50, total : 100},
 						{name :'long-term', avail : 50, total : 100},
 						{name :'special-needs', avail : 50, total : 100} ] },
-				{name : 'health', avail : 200, total : 400, fields :
+				{name : 'health', avail : 150, total : 300, fields :
 					[	{name :'critical', avail : 50, total : 100},
 						{name :'illness', avail : 50, total : 100},
 						{name :'ongoing', avail : 50, total : 100} ] },
-				{name : 'meals', avail : 200, total : 400, fields :
+				{name : 'meals', avail : 150, total : 300, fields :
 					[	{name :'breakfast', avail : 50, total : 100},
 						{name :'lunch', avail : 50, total : 100},
 						{name :'dinner', avail : 50, total : 100} ] },
-				{name : 'hygiene', avail : 150, total : 300, fields :
+				{name : 'hygiene', avail : 100, total : 200, fields :
 					[	{name :'attire', avail : 50, total : 100},
 						{name :'shower', avail : 50, total : 100} ] },
+				{name : 'mental', avail : 100, total : 200, fields :
+					[	{name :'group', avail : 50, total : 100},
+						{name :'counseling', avail : 50, total : 100} ] },
+				{name : 'employment', avail : 100, total : 200, fields :
+					[	{name :'resume', avail : 50, total : 100},
+						{name :'training', avail : 50, total : 100} ] }
 	 		]
 }
 
