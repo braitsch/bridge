@@ -22,6 +22,7 @@ div.navbar.navbar-fixed-top
 						- for (var n = c.fields.length - 1; n >= 0; n--)
 							- var s = c.fields[n];
 							.sub(id=c.name+'-'+s.name)
+								.bkgd
 								.icon
 									img(src='/img/icons/small/icon-'+c.name+'-'+s.name+'.png')
 								.text

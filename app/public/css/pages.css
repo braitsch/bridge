@@ -17,7 +17,8 @@
 #live .service .text .avail{text-align:right}
 #live .service hr{margin:5px 0 3px 0}
 #live .service .icon img{width:24px;height:auto}
-#live .service .sub{margin-top:8px}
+#live .service .sub{height:22px;margin-top:6px}
+#live .service .sub .bkgd{margin-top:-2px;width:190px;height:22px;position:absolute;opacity:.5;display:none;background-color:#008000}
 #login-container{width:340px;margin:160px auto;}
 #login-container label{margin:15px 0 5px 5px}
 #login-container button{width:150px;padding:6px 40px 6px 40px;float:left;margin-top:15px}

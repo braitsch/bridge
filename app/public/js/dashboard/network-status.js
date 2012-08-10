@@ -20,10 +20,10 @@ $(document).ready(function() {
 					var field_d = $('#'+service.name+'-'+field.name);
 					var field_a = field_d.find('.avail');
 					var field_a_t = field_a.text();
-					var old_total = field_a_t.substr(field_a_t.indexOf('/')+2);
-					console.log(old_total, field.total, old_total.length, field.total.length, old_total==field.total)
-					if (parseInt(old_total) != parseInt(field.total)){
-						field_d.css('background-color', 'red');
+					var old_avail = parseInt(field_a_t.substr(0, field_a_t.indexOf('/')));
+					if (old_avail != field.avail){
+						field_d.find('.bkgd').show();
+						field_d.find('.bkgd').fadeOut();
 						field_a.text(field.avail+' / '+field.total);
 					}
 				};
