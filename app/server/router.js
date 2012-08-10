@@ -17,7 +17,7 @@ module.exports = function(app) {
 			if (e){
 				res.send('Error retreiving provider data', 400);
 			}	else{
-				res.render('dashboard/network-status', { title: 'Welcome to SF-Bridge', orgs:orgs });
+				res.render('dashboard/network-status', { title: 'Welcome to SF-Bridge', orgs:orgs, services:SV });
 			}
 		});
 	});

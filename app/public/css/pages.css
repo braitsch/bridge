@@ -18,7 +18,7 @@
 #live .service hr{margin:5px 0 3px 0}
 #live .service .icon img{width:24px;height:auto}
 #live .service .sub{height:22px;margin-top:6px}
-#live .service .sub .bkgd{margin-top:-2px;width:190px;height:22px;position:absolute;opacity:.5;display:none;background-color:#008000}
+#live .service .sub .bkgd{position:absolute;margin-top:-2px;width:190px;height:22px;opacity:.5;display:none;background-color:#008000}
 #login-container{width:340px;margin:160px auto;}
 #login-container label{margin:15px 0 5px 5px}
 #login-container button{width:150px;padding:6px 40px 6px 40px;float:left;margin-top:15px}
@@ -43,7 +43,7 @@
 #inventory .service .icon{width:100%;height:125px;text-align:center;line-height:105px;cursor:pointer}
 #inventory #all-services .service .text{text-align:center}
 #inventory #our-services .service{position:relative;float:left;width:180px;margin-left:10px}
-#inventory #our-services .service .edit{width:28px;height:28px;cursor:pointer;position:absolute;top:-10px;right:-10px;background:url("/img/icons/edit.png")}
+#inventory #our-services .service .edit{width:28px;height:28px;cursor:pointer;position:absolute;top:-10px;right:-10px;background:url("/img/icons/ui/edit.png")}
 #inventory #our-services .service .text{float:left;text-align:left}
 #inventory #our-services .service .avail{text-align:right}
 #inventory #our-services .services{overflow:hidden;padding-top:18px}
