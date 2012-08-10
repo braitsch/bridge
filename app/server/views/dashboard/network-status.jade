@@ -12,7 +12,7 @@ div.navbar.navbar-fixed-top
 				- for (var k = orgs[i].inv.length - 1; k >= 0; k--)
 					- var c = orgs[i].inv[k];
 					.service
-						.cat
+						.cat(id=c.name)
 							.icon
 								img(src='/img/icons/small/icon-'+c.name+'-general.png')
 							.text
@@ -21,7 +21,7 @@ div.navbar.navbar-fixed-top
 						hr
 						- for (var n = c.fields.length - 1; n >= 0; n--)
 							- var s = c.fields[n];
-							.sub
+							.sub(id=c.name+'-'+s.name)
 								.icon
 									img(src='/img/icons/small/icon-'+c.name+'-'+s.name+'.png')
 								.text
