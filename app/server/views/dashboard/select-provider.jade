@@ -1,5 +1,6 @@
 script
 	var providers = !{JSON.stringify(providers)};
+	var session = !{JSON.stringify(session)};
 include dashboard-header
 
 #select-providers.container
@@ -19,15 +20,16 @@ include dashboard-header
 							li.reservation-phone #{providers[i].phone}
 					div.reservation-body
 						ul.l-horizontal.clearfix.reservation-entries
-							- for (var k = 0; k < 3; k++)
-								- var s = providers[i].inv[k];
+							- var total = Math.min(session.services.length, 3);
+							- for (var k = 0; k < total; k++)
+								- var s = session.services[k];
 								li
 									div.service
 										div.service-chrome
 										div.service-header
-											h2 #{s.name}
+											h2 #{s.cat}
 										div.service-thumbnail
-											img(src='/img/icons/large/icon-'+s.name+'-general.png')
+											img(src='/img/icons/large/icon-'+s.cat+'-general.png')
 										div.service-progress
 											div.v-progress
 												div.v-progress-bar
