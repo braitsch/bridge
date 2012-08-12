@@ -5,6 +5,10 @@
 .icon-back-arrow{background:url("../img/icons/ui/icon-back-arrow.png") no-repeat top left;width:33px;height:21px}
 #select-services,#select-providers{margin-top:3%}
 #live{padding-top:40px;background:#eaeaea}
+#live .brand{padding-right:0}
+#live .status-icon{width:20px;height:20px;margin:8px 0 0 10px;background:url("/img/icons/ui/status-icon.png")}
+#live ul.dropdown-menu li{height:30px}
+#live .checkbox{margin:6px 3px}
 #live .org{margin:20px}
 #live p{font-size:18px;font-weight:bold}
 #live .orgName{float:left;margin-right:10px}

@@ -1,9 +1,37 @@
 script
 	var orgs = !{JSON.stringify(orgs)};
 - var capitalize = function(s){return s.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});}
-div.navbar.navbar-fixed-top
-	div.navbar-inner
 #live
+	div.navbar.navbar-fixed-top
+		div.navbar-inner
+			div.container-fluid
+					ul.nav.pull-left
+						li
+							.brand Bridge Network Status
+						li
+							.status-icon
+						li.divider-vertical
+						li.dropdown
+							a.dropdown-toggle(href='#', data-toggle='dropdown')
+								| Jump To Provider
+								b.caret(style='margin-left:8px')
+							ul.dropdown-menu
+								- for (var i = orgs.length - 1; i >= 0; i--)
+									- var oid = orgs[i].name.replace(/\s/g, '-');
+									li
+										a(href='#'+oid).anchor #{capitalize(orgs[i].name)}
+						li.divider-vertical
+						- for (var i = services.length - 1; i >= 0; i--)
+							li
+								.checkbox.inline
+									input(type='checkbox', value=services[i].name, checked='yes')
+									| #{capitalize(services[i].name)}
+							li.divider-vertical
+						li
+							button.btn.btn-primary
+								i.icon-ok.icon-white
+								| Select All
+						li.divider-vertical
 	- for (var i = orgs.length - 1; i >= 0; i--)
 		- var oid = orgs[i].name.replace(/\s/g, '-');
 		div(id=oid).org
@@ -12,8 +40,8 @@ div.navbar.navbar-fixed-top
 			#services
 				- for (var k = services.length - 1; k >= 0; k--)
 					- var s = services[k];
-					.service
-						.cat(id=s.name)
+					.service(id=s.name)
+						.cat
 							.icon
 								img(src='/img/icons/small/icon-'+s.name+'-general.png')
 							.text
@@ -34,6 +62,7 @@ div.navbar.navbar-fixed-top
 script(src='/socket.io/socket.io.js')
 script(src='/vendor/jquery.min.js')
 script(src='/vendor/bootstrap-modal.js')
+script(src='/vendor/bootstrap-dropdown.js')
 script(src='/vendor/bootstrap-transition.js')
 script(src='/js/dashboard/network-status.js')
 script(src='/js/utils/globals.js')

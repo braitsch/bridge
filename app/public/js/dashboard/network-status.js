@@ -3,6 +3,9 @@ $(document).ready(function() {
 	
 	socket = io.connect('/bridge');
 	window.DashboardController = new function(){
+
+		initializeNav();
+
 		var div = null;
 		socket.on('bridge-event', function(org){
 			div = $('#'+org.name.replace(/\s/g, '-'));
@@ -12,18 +15,47 @@ $(document).ready(function() {
 			div = $('#'+orgs[i].name.replace(/\s/g, '-'));
 			onServiceUpdate(div, orgs[i], false);
 		}
+		function initializeNav()
+		{
+			$('button').click(function(){
+				$('.checkbox input').each(function(n, o){
+					var c = $(this);
+					c.attr('checked', true);
+					onCheckboxToggle(c.val(), true);
+				})
+			})
+			$('.checkbox input').click(function(){
+				var c = $(this);
+				onCheckboxToggle(c.val(), c.is(':checked'));
+			})
+			$(".anchor").click(function() {
+				var a = $(this).attr("href");
+					a = a.substr(a.indexOf('#'));
+				$(window).scrollTop($(a).offset().top - 60);
+				return false;
+			});
+		}
+		function onCheckboxToggle(service, active)
+		{
+			$('.service').each(function(n, o){
+				var o = $(o);
+				if (o.attr('id') == service){
+					var n = o.find('.cat').find('.avail').text();
+					$(o).css('display', (active && n != '0 / 0') ? 'inline' : 'none');
+				}
+			})
+		}
 		function onServiceUpdate(org_div, org, animate)
 		{
 			org_div.find('.service').each(function(n, s_div){
 				var s_obj = null; // service object //
-				var c_div = $(s_div).find('.cat');
-				for (var n = org.inv.length - 1; n >= 0; n--) if (org.inv[n].name == c_div.attr('id')) { s_obj = org.inv[n]; break; }
+				for (var n = org.inv.length - 1; n >= 0; n--) if (org.inv[n].name == $(s_div).attr('id')) { s_obj = org.inv[n]; break; }
 				if (s_obj == null){
 					$(this).css('display', 'none');
 				}	else{
 					$(this).css('display', 'inline');
 				// update category avail & total //
-					c_div.find('.avail').text(s_obj.avail+' / '+s_obj.total);
+					$(s_div).find('.cat').find('.avail').text(s_obj.avail+' / '+s_obj.total);
 				// iterate over subcategories //
 					$(s_div).find('.sub').each(function(n, f_div){
 						var f_obj = null;
