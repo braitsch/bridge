@@ -22,14 +22,14 @@
 .reservation{height:250px;margin-bottom:30px;background:#eee;-webkit-border-radius:10px;border-radius:10px;-webkit-box-shadow:inset 0 0 5px 3px #afafaf;box-shadow:inset 0 0 5px 3px #afafaf;overflow:hidden}
 .reservation-header{height:45px;color:#fff;font-size:16px;-webkit-border-radius:3px;border-radius:3px;border-bottom:1px solid #737373;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #5f5e5e), color-stop(1, #4b4a4a));background-image:-webkit-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:-moz-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:-o-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:-ms-linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);background-image:linear-gradient(top, #5f5e5e 0%, #4b4a4a 100%);-webkit-box-shadow:inset 0 -1px #414141,inset 1px 1px #717070,inset -1px 0 #717070,0 1px 5px 1px #afafaf;box-shadow:inset 0 -1px #414141,inset 1px 1px #717070,inset -1px 0 #717070,0 1px 5px 1px #afafaf}
 .reservation-header > .reservation-info{padding-top:14px;padding-left:27px}
-.reservation-entries{padding-top:18px;padding-left:20px}
+.reservation-entries{padding:18px 20px}
 .reservation-entries > .is-reserve{margin-left:20px}
 .modal{overflow:visible}
 .modal-centered{width:600px;margin:-250px 0 0 -300px;text-align:center}
 .modal-centered .modal-header{padding:26px 40px 21px;color:#6b6b6b;line-height:58px;border-bottom:1px solid #d5d4d4}
 .modal-centered .modal-body{font-size:15px;padding:25px 40px 25px}
 .modal-centered.stretch{width:790px;margin:-250px 0 0 -395px}
-.modal-centered .reservation-entries{padding-left:0}
+.modal-centered .reservation-entries{padding:18px 0}
 .modal-centered .modal-body,.modal-centered .modal-header p{font-size:15px}
 .modal-centered .modal-header{position:relative}
 .modal-centered .modal-header .button-close{position:absolute;top:-20px;right:-20px}
@@ -64,7 +64,7 @@ button i{padding-left:8px}
 .button-reserve{display:block;padding:0;margin-top:45px;height:50px;font-size:32px;line-height:50px;letter-spacing:2px}
 .button-reserve-fat{width:220px;height:166px;margin:0;line-height:166px}
 .button-edit{width:48px;height:48px}
-.button-back{position:relative;height:35px;padding-left:55px;padding-right:10px;margin-top:35px;font-size:22px;line-height:35px}
+.button-back{position:relative;height:35px;padding-left:55px;padding-right:10px;margin-bottom:35px;font-size:22px;line-height:35px}
 .button-back > .icon-back-arrow{position:absolute;top:6px;left:10px}
 .button-modal{min-width:200px;height:33px;font-size:20px;line-height:34px;letter-spacing:1px}
 .button-group > a{margin-left:20px}

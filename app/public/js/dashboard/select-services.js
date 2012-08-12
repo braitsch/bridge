@@ -231,6 +231,7 @@ $(document).ready(function() {
 	// var reservationConfirmModal = $('.modal-reservation-confirm');
 	// reservationConfirmModal.modal({ show : false, keyboard : true, backdrop : true });
 
-	// var reservationSuccessModal = $('.modal-reservation-success');
-	// reservationSuccessModal.modal({ show : false, keyboard : true, backdrop : true });
+	var reservationSuccessModal = $('.modal-reservation-success');
+	reservationSuccessModal.modal({ show : false, keyboard : true, backdrop : true });
+	reservationSuccessModal.modal('show');
 });

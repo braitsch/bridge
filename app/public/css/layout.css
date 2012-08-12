@@ -2,11 +2,12 @@
 .row{margin-left:0}
 .navbar + .container{margin-top:40px}
 .services-wrapper{margin-top:60px}
-.reservation-wrapper{margin-top:30px}
+.reservation-wrapper{margin-top:30px;min-width:700px}
 .reservation-wrapper:first-child{margin-top:25px}
-.l-horizontal{margin:0;padding:0;list-style-type:none;width:100%}
+.l-horizontal{margin:0;padding:0;list-style-type:none}
 .l-horizontal > li{display:inline;float:left;margin-left:10px}
 .l-horizontal > li:first-child{margin-left:0}
+.l-horizontal > li.pull-right{float:right}
 .wrapper-center{display:table;margin:0 auto}
 hr.tight{margin:18px 0 0}
 .page-container{position:fixed;background:#eee;top:40px;bottom:20px;width:100%}
