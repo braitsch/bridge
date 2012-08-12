@@ -1,3 +1,30 @@
+var inventory = [ 	{name:"van", avail: 10, total: 100}, 
+					{name:"group", avail:20, total:100}, 
+					{name:"budget", avail: 30, total: 100},
+					{name:"resume", avail: 40, total: 100},
+					{name:"attire", avail: 50, total: 100},
+					{name:"critical", avail: 60, total: 100},
+					{name:"breakfast", avail: 70, total: 100},
+					{name:"individual", avail: 80, total: 100}
+				];
+var socket = io.connect('/bridge');
+// Stub out the socket handler...
+socket.on('bridge-event', function(inv) {
+	console.log(inv);
+	// inv will be an array of eight objects mapped to the categories
+});
+
+function updateFuelBars(type) {
+	_.each(inventory, function(service) {
+		var $service, $progress, percent;
+		$service = $('div[data-'+type+'="'+service.name+'"]');
+		$progress = $service.find('.v-progress-bar');
+		// our fuel gauges are 100px high so this works out well
+		percent = parseInt(100 * (service.avail / service.total), 10);
+		$progress.css({ 'margin-top': percent + 'px' });
+	});
+}
+
 window.ReservationModel = {
 	provider: null
 };
@@ -63,5 +90,5 @@ $(document).ready(function() {
 	$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
 
 	window.ReservationController.init();
-
+	updateFuelBars('sub');
 });

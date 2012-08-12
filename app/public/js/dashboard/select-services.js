@@ -1,3 +1,30 @@
+var inventory = [ 	{name:"transportation", avail: 10, total: 100}, 
+					{name:"mental", avail:20, total:100}, 
+					{name:"financial", avail: 30, total: 100},
+					{name:"employment", avail: 40, total: 100},
+					{name:"hygiene", avail: 50, total: 100},
+					{name:"health", avail: 60, total: 100},
+					{name:"meals", avail: 70, total: 100},
+					{name:"housing", avail: 80, total: 100}
+				];
+var socket = io.connect('/bridge');
+// Stub out the socket handler...
+socket.on('bridge-event', function(inv) {
+	console.log(inv);
+	// inv will be an array of eight objects mapped to the categories
+});
+
+function updateFuelBars(type) {
+	_.each(inventory, function(service) {
+		var $service, $progress, percent;
+		$service = $('div[data-'+type+'="'+service.name+'"]');
+		$progress = $service.find('.v-progress-bar');
+		// our fuel gauges are 100px high so this works out well
+		percent = parseInt(100 * (service.avail / service.total), 10);
+		$progress.css({ 'margin-top': percent + 'px' });
+	});
+}
+
 window.ServicesModel = {
 	selections: [],
 	currentCategory: '',
@@ -219,7 +246,7 @@ $(document).ready(function() {
 	window.SelectServicesController.init('#select-services');
 	var previousSelections = session.services || null;
 	window.ServicesModel.init(previousSelections);
-
+	updateFuelBars('category');
 	// var timeoutModal = $('.modal-timeout');
 	// timeoutModal.modal({ show : false, keyboard : true, backdrop : true });
 	// timeoutModal.modal('show');

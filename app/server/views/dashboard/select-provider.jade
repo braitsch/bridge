@@ -23,7 +23,7 @@ include dashboard-header
 							- for (var k = 0; k < total; k++)
 								- var s = session.services[k];
 								li
-									div.service
+									div(data-sub="#{s.sub}").service
 										div.service-chrome
 										div.service-header
 											h2 #{s.cat}
