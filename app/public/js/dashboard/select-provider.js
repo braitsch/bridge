@@ -14,7 +14,7 @@ socket.on('bridge-event', function(inv) {
 	// inv will be an array of eight objects mapped to the categories
 });
 
-function updateFuelBars(type) {
+function updateProgressBars(type) {
 	_.each(inventory, function(service) {
 		var $service, $progress, percent;
 		$service = $('div[data-'+type+'="'+service.name+'"]');
@@ -40,12 +40,13 @@ window.ReservationController = {
 
 		_.bindAll(this);
 
-		// Add view listeners
+		// Add listeners
 		$('.button-reserve').on('click', this.onReserveClicked);
 		this.$confirmModal.find('.button-no').on('click', this.onNoClicked);
 		this.$confirmModal.find('.button-yes').on('click', this.onYesClicked);
 		this.$successModal.find('.button-logout').on('click', this.onLogOutClicked);
 		this.$successModal.find('.button-more').on('click', this.onMoreClicked);
+		$.pubsub('subscribe', 'timeout.start', this.onTimeoutStart);
 	},
 	onReserveClicked: function(event) {
 		window.ReservationModel.provider = $(event.currentTarget).data('provider');
@@ -81,6 +82,10 @@ window.ReservationController = {
 	onMoreClicked: function(event) {
 		window.ReservationModel.provider = null;
 		this.$successModal.modal('hide');
+	},
+	onTimeoutStart: function() {
+		this.$confirmModal.modal('hide');
+		this.$successModal.modal('hide');
 	}
 };
 
@@ -90,5 +95,5 @@ $(document).ready(function() {
 	$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
 
 	window.ReservationController.init();
-	updateFuelBars('sub');
+	updateProgressBars('sub');
 });

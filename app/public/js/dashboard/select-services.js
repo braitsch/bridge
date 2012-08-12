@@ -14,7 +14,7 @@ socket.on('bridge-event', function(inv) {
 	// inv will be an array of eight objects mapped to the categories
 });
 
-function updateFuelBars(type) {
+function updateProgressBars(type) {
 	_.each(inventory, function(service) {
 		var $service, $progress, percent;
 		$service = $('div[data-'+type+'="'+service.name+'"]');
@@ -192,6 +192,7 @@ window.SelectServicesModalController = {
 		// Add view listeners
 		this.$el.on('shown', this.highlightPreviousSelections);
 		$('body').on('mouseup', this.onMouseUp);
+		$.pubsub('subscribe', 'timeout.start', this.onTimeoutStart)
 	},
 	highlightPreviousSelections: function() {
 		// If the user previously selected something in this category let's
@@ -239,6 +240,9 @@ window.SelectServicesModalController = {
 			$('body').off('mouseup', this.onMouseUp);
 			this.$el.modal('hide');
 		}
+	},
+	onTimeoutStart: function() {
+		this.$el.modal('hide');
 	}
 };
 
@@ -246,8 +250,5 @@ $(document).ready(function() {
 	window.SelectServicesController.init('#select-services');
 	var previousSelections = session.services || null;
 	window.ServicesModel.init(previousSelections);
-	updateFuelBars('category');
-	// var timeoutModal = $('.modal-timeout');
-	// timeoutModal.modal({ show : false, keyboard : true, backdrop : true });
-	// timeoutModal.modal('show');
+	updateProgressBars('category');
 });

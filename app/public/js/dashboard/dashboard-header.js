@@ -30,6 +30,9 @@ $(document).ready(function() {
 		$('#client-name').text('Welcome, '+n);
 		welcomeModal.find('.username').text(n+'!');
 		welcomeModal.modal('show');
+		window.setTimeout(function() {
+			welcomeModal.modal('hide');
+		}, 5000);
 		$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
 		$.pubsub('publish', 'login.complete');
 	}
