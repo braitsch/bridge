@@ -57,6 +57,14 @@ module.exports = function(app) {
 		}
 	});
 
+	app.post('/request-provider', function(req, res){
+		if (req.session.client == null){
+			res.send('Not Logged In', 400);
+		}	else{
+			res.send('ok', 200);
+		}
+	});
+
 // account login //
 	
 	app.get('/login', function(req, res){

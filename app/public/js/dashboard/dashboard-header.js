@@ -78,4 +78,6 @@ $(document).ready(function() {
 		$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
 	}
 
+	$.pubsub('subscribe', 'logout.click', attemptClientLogout);
+
 });
