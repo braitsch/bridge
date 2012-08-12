@@ -14,7 +14,6 @@ window.TimeoutController = {
 		// Listeners
 		$.pubsub('subscribe', 'login.complete', this.onLogin);
 		$.pubsub('subscribe', 'logout.complete', this.onLogout);
-		$('.button-continue').on('click', this.onContinueClicked);
 
 		// Check to see if we already have a session
 		if (session && session.client) {
@@ -51,6 +50,14 @@ window.TimeoutController = {
 
 		// Show our modal
 		this.$modal.modal('show');
+
+		// Listen for events
+		this.$modal.find('.button-continue')
+			.on('click', this.onContinueClicked);
+		this.$modal.find('.button-close')
+			.on('click', this.onContinueClicked);
+		$('.modal-backdrop')
+			.on('click', this.onContinueClicked);
 
 		// If the user does not click confirm within a set
 		// time go ahead and force a logout
