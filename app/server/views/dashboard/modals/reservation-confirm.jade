@@ -1,4 +1,4 @@
-.modal-reservation-confirm.modal-centered.modal.hide
+.modal-reservation-confirm.modal-centered.modal.stretch.hide
 	.modal-header
 		a.button-close(data-dismiss='modal')
 			img(src="../img/icons/ui/icon-exit.png")
@@ -7,18 +7,18 @@
 	.modal-body
 		.wrapper-center
 			ul.l-horizontal.clearfix.reservation-entries
-			- for (var i = session.services.length - 1; i >= 0; i--)
-				- var s = session.services[i];
-				li
-					div.service.is-enabled
-						div.service-chrome
-						div.service-header
-							h2 #{s.sub}
-						div.service-thumbnail
-							img(src='/img/icons/large/icon-'+s.cat+'-'+s.sub+'.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
+				- for (var i = session.services.length - 1; i >= 0; i--)
+					- var s = session.services[i];
+					li
+						div.service.is-enabled
+							div.service-chrome
+							div.service-header
+								h2 #{s.sub}
+							div.service-thumbnail
+								img(src='/img/icons/large/icon-#{s.cat}-#{s.sub}.png')
+							div.service-progress
+								div.v-progress
+									div.v-progress-bar
 		.button-group
 			a.button.button-modal.button-no.quiet No, Go Back
 			a.button.button-modal.button-yes.loud Yes, Reserve

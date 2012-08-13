@@ -8,17 +8,17 @@
 	.modal-body
 		.wrapper-center
 			ul.l-horizontal.clearfix.reservation-entries
-			- for (var i = session.services.length - 1; i >= 0; i--)
-				- var s = session.services[i];
-				li
-					div.service
-						div.service-chrome
-						div.service-header
-							h2 #{s.sub}
-						div.service-thumbnail
-							img(src='/img/icons/large/icon-'+s.cat+'-'+s.sub+'.png')
-						div.service-progress
-							div.v-progress
-								div.v-progress-bar
+				- for (var i = session.services.length - 1; i >= 0; i--)
+					- var s = session.services[i];
+					li
+						div.service
+							div.service-chrome
+							div.service-header
+								h2 #{s.sub}
+							div.service-thumbnail
+								img(src='/img/icons/large/icon-'+s.cat+'-'+s.sub+'.png')
+							div.service-progress
+								div.v-progress
+									div.v-progress-bar
 		.button-group
 			a.button.button-modal.button-logout.caution OK
