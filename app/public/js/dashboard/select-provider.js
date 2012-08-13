@@ -8,7 +8,7 @@ socket.on('bridge-event', function(inv) {
 
 /*
 	progress bars are updated with real data when page loads
-	see line 34/35 of select-provider.jade
+	see line 40/41 of select-provider.jade
 */
 // function updateProgressBars(type) {
 // 	_.each(inventory, function(service) {

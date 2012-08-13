@@ -20,13 +20,16 @@ include dashboard-header
 					div.reservation-body
 						ul.l-horizontal.clearfix.reservation-entries
 							- var total = Math.min(session.services.length, 3);
+							- var sub = {avail : 50, total : 100}; // until we get real providers..
 							- for (var k = 0; k < total; k++)
 								- var s = session.services[k];
 								- for (var n = 0; n < providers[i].inv.length; n++) {
 									- if (providers[i].inv[n].name == s.cat){ var cat = providers[i].inv[n]; break; }
 								- }
-								- for (var n = 0; n < cat.fields.length; n++) {
-									- if (cat.fields[n].name == s.sub){ var sub = cat.fields[n]; break; }
+								- if (cat){
+									- for (var n = 0; n < cat.fields.length; n++) {
+										- if (cat.fields[n].name == s.sub){ var sub = cat.fields[n]; break; }
+									- }
 								- }
 								li
 									div(data-sub="#{s.sub}").service
@@ -38,6 +41,7 @@ include dashboard-header
 										div.service-progress
 											div.v-progress
 												- var percent = parseInt(100 * (sub.avail / sub.total), 10);
+												- console.log(s.cat, s.sub, 'percent =', percent);
 												div.v-progress-bar(style='margin-top : '+percent+'px')
 							li.pull-right
 								a(data-provider="#{providers[i].name}").button.button-reserve.button-reserve-fat.loud Reserve
