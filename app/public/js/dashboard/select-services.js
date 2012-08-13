@@ -60,30 +60,6 @@ window.SelectServicesController = {
 		// Clean out the model
 		window.ServicesModel.reset();
 	},
-	updateSelections: function(subCategory) {
-		var currentCategory, previousSelections, filteredSelections;
-		currentCategory = window.ServicesModel.currentCategory;
-		previousSelections = window.ServicesModel.selections;
-		// Remove any selections for the current category
-		filteredSelections = _.reject(previousSelections, function(selection) {
-			return selection.cat === currentCategory;
-		});
-		// If the subCategory is not undefined then create a new selection
-		// and add it to the set
-		if (subCategory) {
-			filteredSelections.push({ cat: currentCategory, sub: subCategory });
-		}
-		// Update the model
-		window.ServicesModel.update(filteredSelections);
-	},
-	highlightServices: function(services) {
-		var self = this;
-		self.$services.removeClass('is-selected');
-		_.each(services, function(service) {
-			self.$services.filter('div[data-category="'+service.cat+'"]')
-				.addClass('is-selected');
-		});
-	},
 	onLoginComplete: function(event, data) {
 		$('.service')
 			.removeClass('is-disabled')
@@ -107,21 +83,6 @@ window.SelectServicesController = {
 		// Remove view event listeners
 		$('.service').off('click', this.onServiceClicked);
 		$('#request-services').off('click', this.onRequestServicesClicked);
-	},
-	onServicesUpdated: function(event, data) {
-		this.highlightServices(data);
-
-		if (data && data.length) {
-			$('.button-reserve')
-					.removeClass('is-disabled')
-					.addClass('is-enabled');
-			$('#request-services').on('click', this.onRequestServicesClicked);
-		} else {
-			$('.button-reserve')
-					.removeClass('is-enabled')
-					.addClass('is-disabled');
-			$('#request-services').off('click', this.onRequestServicesClicked);
-		}
 	},
 	onServiceClicked: function(event) {
 		var serviceName, service, tmpl, compiled, serviceSelectionModal;
@@ -157,6 +118,75 @@ window.SelectServicesController = {
 		this.updateSelections(subCategory);
 
 		$selectServicesModal.detach();
+	},
+	updateSelections: function(subCategory) {
+		var currentCategory, previousSelections, filteredSelections;
+		currentCategory = window.ServicesModel.currentCategory;
+		previousSelections = window.ServicesModel.selections;
+		// Remove any selections for the current category
+		filteredSelections = _.reject(previousSelections, function(selection) {
+			return selection.cat === currentCategory;
+		});
+		// If the subCategory is not undefined then create a new selection
+		// and add it to the set
+		if (subCategory) {
+			filteredSelections.push({ cat: currentCategory, sub: subCategory });
+		}
+		// Update the model
+		window.ServicesModel.update(filteredSelections);
+	},
+	onServicesUpdated: function(event, data) {
+		this.highlightServices(data);
+
+		if (data && data.length) {
+			$('.button-reserve')
+					.removeClass('is-disabled')
+					.addClass('is-enabled');
+			$('#request-services').on('click', this.onRequestServicesClicked);
+		} else {
+			$('.button-reserve')
+					.removeClass('is-enabled')
+					.addClass('is-disabled');
+			$('#request-services').off('click', this.onRequestServicesClicked);
+		}
+	},
+	highlightServices: function(services) {
+		var self = this;
+
+		// Clean up everything
+		self.$services
+			.removeClass('is-selected')
+			.attr('data-sub', null);
+
+		// Find each element that has a selection and give it a subcategory
+		_.each(services, function(service) {
+			console.log(service.sub);
+			self.$services.filter('div[data-category="'+service.cat+'"]')
+				.attr('data-sub', service.sub);
+		});
+
+		// Find each element that has a subcategory. Highlight it and
+		// update its header/icon
+		self.$services.each(function(index, el) {
+			var $el = $(el);
+			if ($el.attr('data-sub')) {
+				// Add the highlight
+				$el.addClass('is-selected');
+				// Update the header
+				$el.find('.service-header h2')
+					.html($el.attr('data-sub'));
+				// Update the icon
+				$el.find('.service-thumbnail img')
+					.attr('src', '/img/icons/large/icon-'+$el.attr('data-category')+'-'+$el.attr('data-sub')+'.png');
+			} else {
+				// Update the header
+				$el.find('.service-header h2')
+					.html($el.attr('data-category'));
+				// Update the icon
+				$el.find('.service-thumbnail img')
+					.attr('src', '/img/icons/large/icon-'+$el.attr('data-category')+'-general.png')
+			}
+		});
 	},
 	onRequestServicesClicked: function(event) {
 		$.ajax({
