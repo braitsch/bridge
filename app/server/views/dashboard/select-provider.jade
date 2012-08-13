@@ -31,7 +31,8 @@ include dashboard-header
 											img(src='/img/icons/large/icon-'+s.cat+'-'+s.sub+'.png')
 										div.service-progress
 											div.v-progress
-												div.v-progress-bar
+												- var percent = parseInt(100 * (s.avail / s.total), 10);
+												div.v-progress-bar(style='margin-top : '+percent+'px')
 							li.pull-right
 								a(data-provider="#{providers[i].name}").button.button-reserve.button-reserve-fat.loud Reserve
 	div.striped
