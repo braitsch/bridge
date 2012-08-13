@@ -15,6 +15,10 @@ function getInventory()
 				{name : 'hygiene', avail : 100, total : 200, fields :
 					[	{name :'attire', avail : 50, total : 100},
 						{name :'shower', avail : 50, total : 100} ] },
+				{name : 'transportation', avail : 50, total : 100, fields :
+					[	{name :'van', avail : 50, total : 100} ] },
+				{name : 'financial', avail : 50, total : 100, fields :
+					[	{name :'budget', avail : 50, total : 100} ] },
 				{name : 'counseling', avail : 100, total : 200, fields :
 					[	{name :'group', avail : 50, total : 100},
 						{name :'individual', avail : 50, total : 100} ] },
