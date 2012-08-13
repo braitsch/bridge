@@ -163,8 +163,34 @@ AM.getAllOrgs = function(callback)
 }
 AM.getOrgsWithServices = function(services, callback)
 {
-// just return 3 random orgs until i can write algorithm to lookup services
-	AM.orgs.find().limit(3).toArray( function(e, res) { callback(res) });
+	var a = [];
+	for (var i = services.length - 1; i >= 0; i--) a.push({'inv.name':services[i].cat});
+	AM.orgs.find({ $and: a }).toArray( function(e, res) {
+	// iterate over matched providers //
+		var i = 0; while(i < res.length){
+	//	for (var i = res.length - 1; i >= 0; i--){
+			for (var j = res[i].inv.length - 1; j >= 0; j--){
+				var c = res[i].inv[j]; // service category //
+				for (var k = services.length - 1; k >= 0; k--){
+					var s = services[k];
+					if (c.name == s.cat) {
+		//				console.log(c.name, 'matched');
+						var hasField = false;
+						for (var m = c.fields.length - 1; m >= 0; m--){
+							if (c.fields[m].name == s.sub) {
+								var f = c.fields[m];
+								hasField = true; break;
+		//						console.log(f.name, 'matched', f.avail, f.total);
+							}
+						};
+						if (!hasField) res[i].invalid = true;
+					}
+				};
+			};
+			res[i].invalid ? res.splice(i, 1) : i++;
+		};
+		callback(res);
+	});
 }
 AM.getAllUsers = function(callback)
 {
