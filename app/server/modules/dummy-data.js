@@ -15,9 +15,9 @@ function getInventory()
 				{name : 'hygiene', avail : 100, total : 200, fields :
 					[	{name :'attire', avail : 50, total : 100},
 						{name :'shower', avail : 50, total : 100} ] },
-				{name : 'mental', avail : 100, total : 200, fields :
+				{name : 'counseling', avail : 100, total : 200, fields :
 					[	{name :'group', avail : 50, total : 100},
-						{name :'counseling', avail : 50, total : 100} ] },
+						{name :'individual', avail : 50, total : 100} ] },
 				{name : 'employment', avail : 100, total : 200, fields :
 					[	{name :'resume', avail : 50, total : 100},
 						{name :'training', avail : 50, total : 100} ] }
