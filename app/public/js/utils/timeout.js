@@ -1,5 +1,5 @@
 window.TimeoutController = {
-	activityDelay: 20000,
+	activityDelay: 200000,
 	continueDelay: 7000,
 	timeout: null,
 	$modal: null,
