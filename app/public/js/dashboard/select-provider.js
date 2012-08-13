@@ -30,6 +30,7 @@ window.ReservationController = {
 	},
 	onReserveClicked: function(event) {
 		window.ReservationModel.provider = $(event.currentTarget).data('provider');
+		this.$confirmModal.find('.provider').html(window.ReservationModel.provider + ', ');
 		this.$confirmModal.modal('show');
 	},
 	onNoClicked: function(event) {

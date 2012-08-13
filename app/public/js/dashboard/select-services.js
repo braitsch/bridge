@@ -160,7 +160,6 @@ window.SelectServicesController = {
 
 		// Find each element that has a selection and give it a subcategory
 		_.each(services, function(service) {
-			console.log(service.sub);
 			self.$services.filter('div[data-category="'+service.cat+'"]')
 				.attr('data-sub', service.sub);
 		});

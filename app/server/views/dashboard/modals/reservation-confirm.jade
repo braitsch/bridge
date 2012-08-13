@@ -2,8 +2,9 @@
 	.modal-header
 		a.button-close(data-dismiss='modal')
 			img(src="../img/icons/ui/icon-exit.png")
-		h3 Are you sure you want to make these reservations, 
-			span.username #{session.client.fname} #{session.client.lname}
+		h3 Are you sure you want to make these reservations at 
+			span.provider
+			span.username #{session.client.fname} #{session.client.lname}?
 	.modal-body
 		.wrapper-center
 			ul.l-horizontal.clearfix.reservation-entries
