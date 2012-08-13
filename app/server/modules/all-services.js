@@ -6,6 +6,6 @@ module.exports = [
 	{name : 'hygiene', fields : ['attire', 'shower']},
 	{name : 'employment', fields : ['resume', 'training']},
 	{name : 'financial', fields : ['budget']},
-	{name : 'mental', fields : ['counseling', 'group']},
+	{name : 'counseling', fields : ['individual', 'group']},
 	{name : 'transportation', fields : ['van']}
 ]
