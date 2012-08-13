@@ -23,6 +23,7 @@ var AM = {};
 	});
 	AM.orgs = AM.db.collection('orgs');
 	AM.usrs = AM.db.collection('usrs');
+	AM.resv = AM.db.collection('resv');
 	AM.clients = AM.db.collection('clients');
 
 module.exports = AM;
@@ -92,6 +93,10 @@ AM.editClient = function(o, callback){
 	AM.clients.save(o, function(){
 		AM.getAllClients(function(e, a){ callback(a); });
 	});
+}
+AM.addReservation = function(reservation, callback)
+{
+	AM.resv.insert(reservation, callback);
 }
 
 // dummy data for testing purposes //
@@ -172,6 +177,23 @@ AM.getAllClients = function(callback)
 AM.getUsersOfOrg = function(orgName, callback)
 {
 	AM.usrs.find({ org:orgName }).toArray( function(e, res) { callback(e, res) });
+}
+AM.getAllReservations = function(callback)
+{
+	AM.resv.find().sort({date : -1}).toArray( function(e, res) {
+		if (res.length == 0) {
+			callback(e, res);
+		}	else{
+			var c = 0;
+			for (var i = res.length - 1; i >= 0; i--){
+				res[i].date = moment(res[i].date).format('MMMM Do YYYY, h:mm:ss a');
+				AM.getClient(res[i].client, function(e, o){
+					res[c++].client = o.fname + ' ' + o.lname;
+					if (c == res.length) callback(e, res);
+				})
+			};
+		}
+	});
 }
 
 // password stuff //
@@ -266,5 +288,5 @@ AM.getObjectId = function(id)
 AM.delAllRecords = function(id, callback)
 {
 // reset all collections for testing //
-	AM.orgs.remove();  AM.usrs.remove(); AM.clients.remove();
+	AM.orgs.remove();  AM.usrs.remove(); AM.resv.remove(); AM.clients.remove();
 }

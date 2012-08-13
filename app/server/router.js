@@ -61,7 +61,19 @@ module.exports = function(app) {
 		if (req.session.client == null){
 			res.send('Not Logged In', 400);
 		}	else{
-			res.send('ok', 200);
+			var reservation = {
+				date : new Date().getTime(),
+				client : req.session.client._id,
+				services : req.session.services,
+				provider : req.param('provider')
+			}
+			AM.addReservation(reservation, function(e){
+				if(e){
+					res.send(e, 400);
+				}	else{
+					res.send('ok', 200);
+				}
+			})
 		}
 	});
 
@@ -329,6 +341,12 @@ module.exports = function(app) {
 					res.render('aux/print', { title : 'Bridge Data', orgs : orgs, users : users, clients : clients } );
 				})
 			})
+		})
+	});
+	
+	app.get('/reservations', function(req, res) {
+		AM.getAllReservations( function(e, o){
+			res.render('aux/reservations', { title : 'Upcoming Reservations', reservations : o } );
 		})
 	});
 	
