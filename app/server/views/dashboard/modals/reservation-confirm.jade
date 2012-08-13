@@ -3,7 +3,7 @@
 		a.button-close(data-dismiss='modal')
 			img(src="../img/icons/ui/icon-exit.png")
 		h3 Are you sure you want to make these reservations, 
-			span.username John Doe?
+			span.username #{session.client.fname} #{session.client.lname}
 	.modal-body
 		.button-group
 			a.button.button-modal.button-no.quiet No, Go Back

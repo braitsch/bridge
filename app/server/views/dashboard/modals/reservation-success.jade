@@ -3,7 +3,7 @@
 		a.button-close(data-dismiss='modal')
 			img(src="../img/icons/ui/icon-exit.png")
 		h3 You have successfully reserved the following services, 
-			span.username John Doe:
+			span.username #{session.client.fname} #{session.client.lname}
 		img.confirmed-check(src="../img/icons/ui/icon-confirmed-check.png")
 	.modal-body
 		.wrapper-center
@@ -39,5 +39,4 @@
 							div.v-progress
 								div.v-progress-bar
 		.button-group
-			a.button.button-modal.button-logout.caution Logout
-			a.button.button-modal.button-more.loud Reserve More
+			a.button.button-modal.button-logout.caution OK

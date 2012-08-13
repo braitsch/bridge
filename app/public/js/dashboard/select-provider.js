@@ -36,7 +36,7 @@ window.ReservationController = {
 		this.$confirmModal = $('.modal-reservation-confirm');
 		this.$confirmModal.modal({ show : false, keyboard : true, backdrop : true });
 		this.$successModal = $('.modal-reservation-success');
-		this.$successModal.modal({ show : false, keyboard : true, backdrop : true });
+		this.$successModal.modal({ show : false, keyboard : true, backdrop : 'static' });
 
 		_.bindAll(this);
 
