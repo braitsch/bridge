@@ -9,7 +9,13 @@ module.exports = function(app) {
 // public dashboard //
 
 	app.get('/', function(req, res){
-		res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', session:req.session, services:SV });
+		AM.getAllOrgs( function(e, orgs) {
+			if (e){
+				res.send('Error retreiving provider data', 400);
+			}	else{
+				res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', session:req.session, orgs:orgs, services:SV });
+			}
+		});
 	});
 	
 	app.get('/live', function(req, res){

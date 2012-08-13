@@ -39,7 +39,7 @@ include dashboard-header
 											img(src='/img/icons/large/icon-'+s.cat+'-'+s.sub+'.png')
 										div.service-progress
 											div.v-progress
-												- var percent = parseInt(100 * (sub.avail / sub.total), 10);
+												- var percent = parseInt(100 - (100 * (sub.avail / sub.total)), 10);
 												- // console.log(s.cat, s.sub, 'percent =', percent);
 												div.v-progress-bar(style='margin-top : '+percent+'px')
 							li.pull-right

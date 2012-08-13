@@ -19,3 +19,16 @@ var restrictInputFieldToNumbers = function(evt)
 		if (e.preventDefault) e.preventDefault();
 	}
 }
+
+function updateProgressBars(el, type, inventory)
+{
+	var $el = $(el);
+	_.each(inventory, function(service) {
+		var $service, $progress, percent;
+		$service = $el.find('div[data-'+type+'="'+service.name+'"]');
+		$progress = $service.find('.v-progress-bar');
+		// our fuel gauges are 100px high so this works out well
+		percent = parseInt(100 - (100 * (service.avail / service.total)), 10);
+		$progress.css({ 'margin-top': percent + 'px' });
+	});
+}
