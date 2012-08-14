@@ -149,7 +149,7 @@ $(document).ready(function(){
 		for (var i=0; i < a.length; i++) {
 			var s = "<div id='"+a[i]._id+"' class='member well'>";
 			s+= "<div class='image'>";
-			s+= "<img src='./img/icons/user.png' /></div>";
+			s+= "<img src='./img/icons/ui/user.png' /></div>";
 			s+= capitalize(a[i].fname)+' '+capitalize(a[i].lname);
 			s+= "<div class='edit'></div></div>";
 			$('#clients').append(s);
