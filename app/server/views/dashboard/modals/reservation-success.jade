@@ -2,7 +2,8 @@
 	.modal-header
 		a.button-close(data-dismiss='modal')
 			img(src="../img/icons/ui/icon-exit.png")
-		h3 You have successfully reserved the following services, 
+		h3 You have successfully reserved the following services at
+			span.provider 
 			span.username #{session.client.fname} #{session.client.lname}
 		img.confirmed-check(src="../img/icons/ui/icon-confirmed-check.png")
 	.modal-body

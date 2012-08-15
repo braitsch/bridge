@@ -30,7 +30,7 @@ window.ReservationController = {
 	},
 	onReserveClicked: function(event) {
 		window.ReservationModel.provider = $(event.currentTarget).data('provider');
-		this.$confirmModal.find('.provider').html(window.ReservationModel.provider + ', ');
+		this.$confirmModal.find('.provider').html(' ' + window.ReservationModel.provider + ', ');
 		this.$confirmModal.modal('show');
 	},
 	onNoClicked: function(event) {
@@ -51,6 +51,7 @@ window.ReservationController = {
 		console.log('reservation succeeded');
 		this.$confirmModal.modal('hide');
 		this.$successModal.modal('show');
+		this.$successModal.find('.provider').html(' ' + window.ReservationModel.provider + ', ');
 	},
 	onReservationFail: function() {
 		console.log('reservation failed!');
