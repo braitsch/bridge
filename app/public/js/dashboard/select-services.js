@@ -101,6 +101,12 @@ window.SelectServicesController = {
 			compiled = Mustache.render($tmpl, { service: service });
 			$selectServicesModal = $(compiled);
 
+			// Make sure the user hasn't selected too many items
+			if (window.ServicesModel.selections.length >= 3) {
+				$selectServicesModal.find('.warning')
+					.removeClass('hide');
+			}
+
 			// Assign our modal to a controller
 			window.SelectServicesModalController.init($selectServicesModal);
 

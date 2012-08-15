@@ -79,7 +79,8 @@ button i{padding-left:8px}
 .navbar i{padding-left:8px}
 .navbar.list #btn-login{top:1px;right:8px;width:160px;position:absolute}
 .username,.emphasize{color:#6eb6b5}
-span.provider{color:#e50085}
+span.provider,.warning{color:#e50085}
+.warning{font-weight:bold;margin:-5px 0 0;text-decoration:underline}
 .logged-out{color:#c12885}
 .well button{width:60px}
 .well,.form-horizontal{margin:0}
