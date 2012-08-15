@@ -45,6 +45,17 @@ $(document).ready(function() {
 				}
 			})
 		}
+		
+		function checkIfChecked(service)
+		{
+			var checked = false;
+			$('.checkbox input').each(function(n, o){
+				var c = $(this);
+				if (c.val() == service) checked = c.is(':checked');
+			});
+			return checked;
+		}
+		
 		function onServiceUpdate(org_div, org, animate)
 		{
 			org_div.find('.service').each(function(n, s_div){
@@ -52,8 +63,8 @@ $(document).ready(function() {
 				for (var n = org.inv.length - 1; n >= 0; n--) if (org.inv[n].name == $(s_div).attr('id')) { s_obj = org.inv[n]; break; }
 				if (s_obj == null){
 					$(this).css('display', 'none');
-				}	else{
-					$(this).css('display', 'inline');
+				}	else {
+					$(this).css('display', checkIfChecked($(this).attr('id')) == true ? 'inline' : 'none');
 				// update category avail & total //
 					$(s_div).find('.cat').find('.avail').text(s_obj.avail+' / '+s_obj.total);
 				// iterate over subcategories //
@@ -66,7 +77,7 @@ $(document).ready(function() {
 						// update sub-category avail & total //
 							var field_a = $(f_div).find('.avail');
 							var field_a_t = field_a.text();
-							if (animate == false){
+							if (animate == false || $(s_div).is(':visible') == false){
 								field_a.text(f_obj.avail+' / '+f_obj.total);
 							}	else{
 								var old_avail = parseInt(field_a_t.substr(0, field_a_t.indexOf('/')));
