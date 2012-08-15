@@ -55,8 +55,6 @@ window.SelectServicesController = {
 		} else {
 			this.onLogoutComplete();
 		}
-
-		$('#request-services').on('click', this.onRequestServicesClicked);
 	},
 	reset: function() {
 		// Clean out the model
@@ -71,6 +69,7 @@ window.SelectServicesController = {
 
 		// Add view event listeners
 		$('.service').on('click', this.onServiceClicked);
+		$('#request-services').on('click', this.onRequestServicesClicked);
 	},
 	onLogoutComplete: function(event, data) {
 		$('.service').removeClass('is-selected');
