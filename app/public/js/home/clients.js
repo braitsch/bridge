@@ -133,7 +133,7 @@ $(document).ready(function(){
 		$('#edit-client #client-dob-month select').val(o.birthMonth);
 		$('#edit-client #client-dob-day select').val(o.birthDay);
 		$('#edit-client #client-dob-year select').val(o.birthYear);
-		$('#edit-client #client-social input').val(o.social);
+		$('#edit-client #client-social input').val(obfuscatePassword(o.social));
 		$('#edit-client #client-lang select').val(o.language);
 		$('#edit-client #client-height-ft select').val(o.heightFeet);
 		$('#edit-client #client-height-in select').val(o.heightInches);
@@ -143,6 +143,14 @@ $(document).ready(function(){
 		$('#edit-client #client-tb select').val(o.tuberculous);
 		clientEdit.modal('show');
 	}
+	
+	var obfuscatePassword = function(s)
+	{
+		var n = '';
+		for (var i = s.length - 1; i >= 0; i--) n+='•';
+		return n;
+	}
+	
 	var drawClients = function(a)
 	{
 		$('#clients').empty();

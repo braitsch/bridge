@@ -3,6 +3,7 @@
 		vertical-align: text-top;
 	}
 .icon-back-arrow{background:url("../img/icons/ui/icon-back-arrow.png") no-repeat top left;width:33px;height:21px}
+hr{height:1px;color:#ccc;background-color:#ccc}
 #select-services,#select-providers{margin-top:3%}
 #live{padding-top:40px;background:#eaeaea}
 #live .brand{padding-right:0}
@@ -19,7 +20,7 @@
 #live .service .text{margin:0 10px 0 34px}
 #live .service .text .name{float:left}
 #live .service .text .avail{text-align:right}
-#live .service hr{margin:5px 0 3px 0}
+#live .service hr{margin:5px 0 8px 0}
 #live .service .icon img{width:24px;height:auto}
 #live .service .sub{height:22px;margin-top:6px}
 #live .service .sub .bkgd{position:absolute;margin-top:-2px;width:190px;height:22px;opacity:.5;display:none;background-color:#008000}
@@ -62,13 +63,13 @@
 .member{padding:10px;margin:10px;color:#777;border:1px solid #ddd;background-color:#fff;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;text-align:center;display:inline-block;*display:inline;*margin:0 20px 0 20px}
 .member .image{width:100px;height:100px;margin:auto;margin-bottom:10px;background-color:rgba(0,0,0,0.1);background-image:-webkit-gradient(linear,0 0,100% 100%,color-stop(.25,rgba(255,255,255,0.2)),color-stop(.25,transparent),color-stop(.5,transparent),color-stop(.5,rgba(255,255,255,0.2)),color-stop(.75,rgba(255,255,255,0.2)),color-stop(.75,transparent),to(transparent));background-image:-webkit-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:-moz-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:-o-linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);background-image:linear-gradient(-45deg,rgba(255,255,255,0.2) 25%,transparent 25%,transparent 50%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.2) 75%,transparent 75%,transparent);-webkit-background-size:30px 30px;-moz-background-size:30px 30px;background-size:30px 30px}
 #clients-page .heading{text-align:left;padding-left:20px}
-#clients-page #controls{position:absolute;top:4px;right:235px}
+#clients-page #controls{position:absolute;top:4px;right:323px}
 #clients-page #controls{padding:10px}
 #clients-page #controls .input-medium{width:225px;margin:0}
 #clients-page #controls #search{width:80px}
 #clients-page #controls #register{width:120px}
 #clients-page .member{cursor:pointer;position:relative}
-#clients-page .member .edit{width:28px;height:28px;cursor:pointer;position:absolute;top:-8px;right:-8px;background:url("/img/icons/edit.png")}
+#clients-page .member .edit{width:28px;height:28px;cursor:pointer;position:absolute;top:-8px;right:-8px;background:url("/img/icons/ui/edit.png")}
 #add-client .well{height:316px}
 #add-client #btn1,#btn2{top:445px}
 #edit-client .well{height:261px}
