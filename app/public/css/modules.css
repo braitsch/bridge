@@ -65,7 +65,7 @@ button i{padding-left:8px}
 .button-reserve{display:block;padding:0;margin-top:45px;height:50px;font-size:32px;line-height:50px;letter-spacing:2px}
 .button-reserve-fat{width:220px;height:166px;margin:0;line-height:166px}
 .button-edit{width:48px;height:48px}
-.button-back{position:relative;height:35px;padding-left:55px;padding-right:10px;margin-bottom:35px;font-size:22px;line-height:35px}
+.button-back{position:relative;height:35px;padding-left:55px;padding-right:10px;margin-top:12px;margin-bottom:20px;font-size:22px;line-height:35px}
 .button-back > .icon-back-arrow{position:absolute;top:6px;left:10px}
 .button-modal{min-width:200px;height:33px;font-size:20px;line-height:34px;letter-spacing:1px}
 .button-group > a{margin-left:20px}
