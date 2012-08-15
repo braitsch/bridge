@@ -79,6 +79,7 @@ window.SelectServicesController = {
 			.addClass('is-disabled');
 
 		this.reset();
+		this.highlightServices();
 
 		// Remove view event listeners
 		$('.service').off('click', this.onServiceClicked);
