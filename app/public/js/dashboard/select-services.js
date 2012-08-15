@@ -55,6 +55,8 @@ window.SelectServicesController = {
 		} else {
 			this.onLogoutComplete();
 		}
+
+		$('#request-services').on('click', this.onRequestServicesClicked);
 	},
 	reset: function() {
 		// Clean out the model
@@ -143,14 +145,10 @@ window.SelectServicesController = {
 			$('.button-reserve')
 					.removeClass('is-disabled')
 					.addClass('is-enabled');
-			if (data.length === 1) {
-				$('#request-services').on('click', this.onRequestServicesClicked);
-			}
 		} else {
 			$('.button-reserve')
 					.removeClass('is-enabled')
 					.addClass('is-disabled');
-			$('#request-services').off('click', this.onRequestServicesClicked);
 		}
 	},
 	highlightServices: function(services) {
@@ -191,17 +189,19 @@ window.SelectServicesController = {
 		});
 	},
 	onRequestServicesClicked: function(event) {
-		$.ajax({
-			url: '/request-services',
-			type: "POST",
-			data: { services : window.ServicesModel.selections },
-			success: function(ok) { 
-				window.location.href = '/request-provider'; 
-			},
-			error: function(jqXHR){ 
-				console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText); 
-			}
-		});
+		if (window.ServicesModel.selections.length) {
+			$.ajax({
+				url: '/request-services',
+				type: "POST",
+				data: { services : window.ServicesModel.selections },
+				success: function(ok) { 
+					window.location.href = '/request-provider'; 
+				},
+				error: function(jqXHR){ 
+					console.log('error', jqXHR.responseText+' :: '+jqXHR.statusText); 
+				}
+			});
+		}
 	}
 };
 
@@ -244,7 +244,7 @@ window.SelectServicesModalController = {
 			this.isDisabled = false; 
 		}
 	},
-	onMouseUp: function() {
+	onMouseUp: function(event) {
 		var isModal, isService, isBackdrop, isClose, $service;
 		isModal = !!$(event.target).parents('.modal').length;
 		isService = !!$(event.target).parents('.service').length;
