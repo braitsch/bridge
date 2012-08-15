@@ -15,6 +15,12 @@ $(document).ready(function() {
 			div = $('#'+orgs[i].name.replace(/\s/g, '-'));
 			onServiceUpdate(div, orgs[i], false);
 		}
+	// show every other category checked by default //
+		$('.checkbox input').each(function(n , o){
+			var o = $(o);
+			o.attr('checked', n % 2 == 0);
+			onCheckboxToggle(o.val(), n % 2 == 0);
+		});
 		function initializeNav()
 		{
 			$('button').click(function(){

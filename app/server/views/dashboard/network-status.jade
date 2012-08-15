@@ -21,7 +21,7 @@ script
 									li
 										a(href='#'+oid).anchor #{capitalize(orgs[i].name)}
 						li.divider-vertical
-						- for (var i = services.length - 1; i >= 0; i--)
+						- for (var i = 0; i < services.length; i++)
 							li
 								.checkbox.inline
 									input(type='checkbox', value=services[i].name, checked='yes')
@@ -38,7 +38,7 @@ script
 			p.orgName #{capitalize(orgs[i].name)}
 			p.orgAddy #{capitalize(orgs[i].addy1)} #{orgs[i].addy2} – #{capitalize(orgs[i].city)}, #{capitalize(orgs[i].state)} – #{capitalize(orgs[i].phone)}
 			#services
-				- for (var k = services.length - 1; k >= 0; k--)
+				- for (var k = 0; k < services.length; k++)
 					- var s = services[k];
 					.service(id=s.name)
 						.cat
