@@ -79,6 +79,7 @@ window.SelectServicesController = {
 			.addClass('is-disabled');
 
 		this.reset();
+		this.highlightServices();
 
 		// Remove view event listeners
 		$('.service').off('click', this.onServiceClicked);
@@ -100,12 +101,6 @@ window.SelectServicesController = {
 			$tmpl = $('#modal-service-selection').html();
 			compiled = Mustache.render($tmpl, { service: service });
 			$selectServicesModal = $(compiled);
-
-			// Make sure the user hasn't selected too many items
-			if (window.ServicesModel.selections.length >= 3) {
-				$selectServicesModal.find('.warning')
-					.removeClass('hide');
-			}
 
 			// Assign our modal to a controller
 			window.SelectServicesModalController.init($selectServicesModal);
@@ -148,7 +143,9 @@ window.SelectServicesController = {
 			$('.button-reserve')
 					.removeClass('is-disabled')
 					.addClass('is-enabled');
-			$('#request-services').on('click', this.onRequestServicesClicked);
+			if (data.length === 1) {
+				$('#request-services').on('click', this.onRequestServicesClicked);
+			}
 		} else {
 			$('.button-reserve')
 					.removeClass('is-enabled')
@@ -209,12 +206,20 @@ window.SelectServicesController = {
 };
 
 window.SelectServicesModalController = {
+	isDisabled: false,
 	init: function(el) {
 		this.$el = $(el);
 		this.$services = this.$el.find('.service');
 
 		// Set proper function scope
 		_.bindAll(this);
+
+		// Make sure the user hasn't selected too many items
+		if (window.ServicesModel.selections.length >= 3) {
+			$selectServicesModal.find('.warning')
+				.removeClass('hide');
+			this.isDisabled = true; // prevent the user from selecting services
+		}
 
 		// Add view listeners
 		this.$el.on('shown', this.highlightPreviousSelections);
@@ -234,6 +239,9 @@ window.SelectServicesModalController = {
 		if (prevSelection) {
 			this.$el.find('div[data-sub="'+prevSelection.sub+'"]')
 				.addClass('is-selected');
+			// If the user is just changing a previous selection
+			// don't disable the window.
+			this.isDisabled = false; 
 		}
 	},
 	onMouseUp: function() {
@@ -250,8 +258,10 @@ window.SelectServicesModalController = {
 			if ($service.hasClass('is-selected')) {
 				$service.removeClass('is-selected');
 			} else {
-				this.$services.removeClass('is-selected');
-				$service.addClass('is-selected');
+				if (!this.isDisabled) {
+					this.$services.removeClass('is-selected');
+					$service.addClass('is-selected');
+				}
 			}
 		}
 
