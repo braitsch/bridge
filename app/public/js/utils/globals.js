@@ -20,6 +20,12 @@ var restrictInputFieldToNumbers = function(evt)
 	}
 }
 
+function randomMinToMax(min, max)
+{
+	var range = max - min + 1;
+	return Math.floor(Math.random()*range+min);
+}
+
 function updateProgressBars(el, type, inventory)
 {
 	var $el = $(el);
@@ -30,5 +36,22 @@ function updateProgressBars(el, type, inventory)
 		// our fuel gauges are 100px high so this works out well
 		percent = parseInt(100 - (100 * (service.avail / service.total)), 10);
 		$progress.css({ 'margin-top': percent + 'px' });
+	});
+}
+
+function randomizeProgressBars(el) {
+	var $el = $(el), res;
+	res = [];
+	$el.find('.v-progress-bar').each(function(index, item) {
+		$(item).css({'margin-top': randomMinToMax(20, 90) + 'px'});
+		res.push({ type: $(item).data('sub'), margin: $(item).css('margin-top')});
+	});
+	return res;
+}
+
+function setProgressBars(margins, bars) {
+	var $bars = $(bars);
+	_.each(margins, function(margin, index) {
+		$($bars[index]).css({'margin-top': margin});
 	});
 }

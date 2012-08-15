@@ -220,6 +220,9 @@ window.SelectServicesModalController = {
 			this.isDisabled = true; // prevent the user from selecting services
 		}
 
+		// Randomize progress bars
+		randomizeProgressBars(this.$el);
+
 		// Add view listeners
 		this.$el.on('shown', this.highlightPreviousSelections);
 		$('body').on('mouseup', this.onMouseUp);

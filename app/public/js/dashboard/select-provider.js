@@ -9,10 +9,14 @@ window.ReservationModel = {
 	provider: null
 };
 
+window.topMargins = [];
+
 window.ReservationController = {
+	$el: null,
 	$confirmModal: null,
 	$successModal: null,
-	init: function() {
+	init: function(el) {
+		this.$el = $(el);
 		this.$confirmModal = $('.modal-reservation-confirm');
 		this.$confirmModal.modal({ show : false, keyboard : true, backdrop : true });
 		this.$successModal = $('.modal-reservation-success');
@@ -29,8 +33,16 @@ window.ReservationController = {
 		$.pubsub('subscribe', 'timeout.start', this.onTimeoutStart);
 	},
 	onReserveClicked: function(event) {
+		var $reservations, margins;
 		window.ReservationModel.provider = $(event.currentTarget).data('provider');
+		$reservations = $(event.currentTarget).parents('.reservation');
+		window.topMargins = [];
+		$reservations.find('.v-progress-bar').each(function(index, item) {
+			window.topMargins.push($(item).css('margin-top'));
+		});
+		window.topMargins.reverse();
 		this.$confirmModal.find('.provider').html(' ' + window.ReservationModel.provider + ', ');
+		setProgressBars(window.topMargins, this.$confirmModal.find('.v-progress-bar'));
 		this.$confirmModal.modal('show');
 	},
 	onNoClicked: function(event) {
@@ -48,10 +60,10 @@ window.ReservationController = {
 			.fail(this.onReservationFail);
 	},
 	onReservationSuccess: function() {
-		console.log('reservation succeeded');
 		this.$confirmModal.modal('hide');
-		this.$successModal.modal('show');
 		this.$successModal.find('.provider').html(' ' + window.ReservationModel.provider + ', ');
+		setProgressBars(window.topMargins, this.$successModal.find('.v-progress-bar'));
+		this.$successModal.modal('show');
 	},
 	onReservationFail: function() {
 		console.log('reservation failed!');
@@ -75,6 +87,6 @@ $(document).ready(function() {
 
 	$('.button-back').on('click', function(){ window.location.href = '/'});
 	$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
-	window.ReservationController.init();
-	// updateProgressBars('.reservation-wrapper', 'sub', providers);
+	window.ReservationController.init('.reservation-wrapper');
+	randomizeProgressBars('.reservation-wrapper');
 });
