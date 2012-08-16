@@ -43,19 +43,14 @@ AM.autoLogin = function(e, p, callback)
 
 AM.manualLogin = function(e, p, callback)
 {
-	console.log('AM.manualLogin', e, p)
 	AM.usrs.findOne({email:e}, function(e, o) {
 		if (!o){
-			console.log('email not found')
 			callback('User Not Found');
 		}	else{
-			console.log(p, o.passw)
 			bcrypt.compare(p, o.passw, function(err, res) {
-				console.log('ok', res, o);
 				if (res){
 					callback(null, o);
 				}	else{
-				console.log('Invalid Password');
 					callback('Invalid Password');
 				}
 			});
@@ -125,11 +120,11 @@ AM.addDummyUser = function(callback)
 {
 	AM.usrs.find().toArray(function(e, res){
 		var n = res.length;
-		console.log('AM.addDummyUser #', n);
+	//	console.log('AM.addDummyUser #', n);
 		if (n < dummies.usrs.length){
 			var o = dummies.usrs[n];
 			AM.saltAndHash(o.passw, function(hash){
-				console.log(o.name, o.passw, '=', hash);
+	//			console.log(o.name, o.passw, '=', hash);
 				o.passw = hash;
 				o.org = o.org.toLowerCase();
 				o.email = o.email.toLowerCase();
