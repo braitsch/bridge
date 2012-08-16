@@ -106,9 +106,7 @@ AM.addReservation = function(reservation, callback)
 
 // dummy data for testing purposes //
 
-var numUsers;
-AM.addDummyData = function(){
-	numUsers = 0;
+AM.addDummyData = function(callback){
 	AM.delAllRecords( );
 	for (var i = dummies.orgs.length - 1; i >= 0; i--){
 		var o = dummies.orgs[i];
@@ -121,25 +119,32 @@ AM.addDummyData = function(){
 		o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 		AM.clients.insert(o);
 	};
-	AM.addDummyUser();
+	AM.addDummyUser(callback);
 }
 AM.addDummyUser = function(callback)
 {
-	if (numUsers < dummies.usrs.length){
-		var o = dummies.usrs[numUsers ++];
-		AM.saltAndHash(o.passw, function(hash){
-			o.passw = hash;
-			o.org = o.org.toLowerCase();
-			o.email = o.email.toLowerCase();
-			o.gravatar = crypto.createHash('md5').update(o.email).digest("hex");
-		// append date stamp when record was created //
-			o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
-			AM.usrs.insert(o, function(){
-				console.log('AM.addDummyUser - done')
-				setTimeout(AM.addDummyUser, 500)
+	AM.usrs.find().toArray(function(e, res){
+		var n = res.length;
+		console.log('AM.addDummyUser #', n);
+		if (n < dummies.usrs.length){
+			var o = dummies.usrs[n];
+			AM.saltAndHash(o.passw, function(hash){
+				console.log(o.name, o.passw, '=', hash);
+				o.passw = hash;
+				o.org = o.org.toLowerCase();
+				o.email = o.email.toLowerCase();
+				o.gravatar = crypto.createHash('md5').update(o.email).digest("hex");
+			// append date stamp when record was created //
+				o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
+				AM.usrs.insert(o, function(){
+					console.log('AM.addDummyUser #', n, 'done!');
+					AM.addDummyUser(callback);
+				});
 			});
-		});
-	}
+		} else{
+			callback();
+		}
+	});
 }
 
 // retrieval methods //
@@ -316,7 +321,7 @@ AM.getObjectId = function(id)
 	return AM.db.bson_serializer.ObjectID.createFromHexString(id)
 }
 
-AM.delAllRecords = function(id, callback)
+AM.delAllRecords = function(callback)
 {
 // reset all collections for testing //
 	AM.orgs.remove();  AM.usrs.remove(); AM.resv.remove(); AM.clients.remove();
