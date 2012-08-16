@@ -43,14 +43,19 @@ AM.autoLogin = function(e, p, callback)
 
 AM.manualLogin = function(e, p, callback)
 {
+	console.log('AM.manualLogin', e, p)
 	AM.usrs.findOne({email:e}, function(e, o) {
 		if (!o){
+			console.log('email not found')
 			callback('User Not Found');
 		}	else{
+			console.log(p, o.passw)
 			bcrypt.compare(p, o.passw, function(err, res) {
+				console.log('ok', res, o);
 				if (res){
 					callback(null, o);
 				}	else{
+				console.log('Invalid Password');
 					callback('Invalid Password');
 				}
 			});
