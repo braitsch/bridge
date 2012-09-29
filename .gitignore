@@ -1,5 +1,9 @@
 .DS_Store
-node_modules
-bridge.sublime-project
-bridge.sublime-workspace
-screens/
+node_modules/emailjs
+node_modules/express
+node_modules/jade
+node_modules/moment
+node_modules/mongodb
+node_modules/nib
+node_modules/socket.io
+node_modules/stylus
