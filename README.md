@@ -1,4 +1,4 @@
-##[Bridge](http://bridge.braitsch.io/)
+##[Bridge](http://app.bridge.tl/)
 
 ####A platform for recording and sharing civic related data in real-time.
 

@@ -13,7 +13,7 @@ module.exports = function(app) {
 			if (e){
 				res.send('Error retreiving provider data', 400);
 			}	else{
-				res.render('dashboard/select-services', { title: 'Welcome to SF-Bridge', session:req.session, orgs:orgs, services:SV });
+				res.render('dashboard/select-services', { title: 'Bridge Dashboard', session:req.session, orgs:orgs, services:SV });
 			}
 		});
 	});
@@ -23,7 +23,7 @@ module.exports = function(app) {
 			if (e){
 				res.send('Error retreiving provider data', 400);
 			}	else{
-				res.render('dashboard/network-status', { title: 'Welcome to SF-Bridge', orgs:orgs, services:SV });
+				res.render('dashboard/network-status', { title: 'Bridge Network Status', orgs:orgs, services:SV });
 			}
 		});
 	});
@@ -58,7 +58,7 @@ module.exports = function(app) {
 			res.redirect('/');
 		}	else{
 			AM.getOrgsWithServices(req.session.services, function(a){
-				res.render('dashboard/select-provider', { title: 'Welcome to SF-Bridge', session:req.session, providers:a });
+				res.render('dashboard/select-provider', { title: 'Bridge', session:req.session, providers:a });
 			})
 		}
 	});
@@ -88,12 +88,12 @@ module.exports = function(app) {
 	app.get('/login', function(req, res){
 	// check if the user's credentials are saved in a cookie //
 		if (req.cookies.email == undefined || req.cookies.passw == undefined){
-			res.render('login', { title: 'Hello - Please Login To Your Account' });
+			res.render('login', { title: 'Bridge Login' });
 		}	else{
 	// attempt automatic login //
 			AM.autoLogin(req.cookies.email, req.cookies.passw, function(u){
 				if (u == null){
-					res.render('login', { title: 'Hello - Please Login To Your Account' });
+					res.render('login', { title: 'Bridge Login' });
 				}	else{
 					AM.getOrg(u.org, function(o){
 					    req.session.org = o;
@@ -146,7 +146,7 @@ module.exports = function(app) {
 	
 	app.get('/signup', function(req, res){
 		res.render('signup/signup', {
-			title : 'Join SF-Bridge', states : ST
+			title : 'Join Bridge', states : ST
 		});
 	});
 
