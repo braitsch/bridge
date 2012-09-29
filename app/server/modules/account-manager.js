@@ -6,7 +6,7 @@ var Server = require('mongodb').Server;
 
 var dbPort = 27017;
 var dbHost = global.host;
-var dbName = 'sf-bridge';
+var dbName = 'bridge-db';
 
 // use moment.js for pretty date-stamping //
 var moment = require('moment');
