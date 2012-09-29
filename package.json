@@ -1,6 +1,6 @@
 {
-    "name": "sf-bridge",
-    "version": "0.0.1",
+    "name": "app.bridge",
+    "version": "1.0.0",
     "description": "A platform for recording and exchanging civic related data in real-time",
     "author": {
         "name": "Stephen Braitsch",
@@ -8,22 +8,22 @@
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/braitsch/sf-bridge.git"
+        "url": "git@bitbucket.org:braitsch/bridge-app.git"
     },
     "private": true,
     "dependencies": {
         "express": "2.5.8",
-        "stylus": ">= 0.0.1",
+        "stylus": ">= 0.29.0",
         "nib": ">= 0.7.0",
-        "jade": ">= 0.0.1",
-        "bcrypt": ">= 0.5.0",
-        "mongodb": ">= 0.1.0",
-        "moment" : ">=1.6.2",
-        "emailjs": ">= 0.2.9",
-        "socket.io": ">= 0.9.6"
+        "jade": ">= 0.27.5",
+        "bcrypt": ">= 0.7.2",
+        "mongodb": ">= 1.1.x",
+        "moment" : ">=1.7.x",
+        "emailjs": ">= 0.3.x",
+        "socket.io": ">= 0.9.10"
   },
     "engines": {
-        "node": "0.6.17",
-        "npm":  "1.0.x"
+        "node": "0.8.x",
+        "npm":  "1.1.x"
     }
 }
