@@ -124,7 +124,7 @@ AM.addDummyUser = function(callback)
 		if (n < dummies.usrs.length){
 			var o = dummies.usrs[n];
 			AM.saltAndHash(o.passw, function(hash){
-	//			console.log(o.name, o.passw, '=', hash);
+			//	console.log(o.name, o.passw, '=', hash);
 				o.passw = hash;
 				o.org = o.org.toLowerCase();
 				o.email = o.email.toLowerCase();
@@ -132,8 +132,8 @@ AM.addDummyUser = function(callback)
 			// append date stamp when record was created //
 				o.date = moment().format('MMMM Do YYYY, h:mm:ss a');
 				AM.usrs.insert(o, function(){
+					setTimeout(AM.addDummyUser, 100, callback);
 					console.log('AM.addDummyUser #', n, 'done!');
-					AM.addDummyUser(callback);
 				});
 			});
 		} else{

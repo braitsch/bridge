@@ -71,6 +71,9 @@ button i{padding-left:8px}
 .button-group > a{margin-left:20px}
 .button-group > a:first-child{margin:0}
 .navbar button{width:100px}
+.navbar #btn-reserve{width:160px}
+.navbar #btn-provider{width:160px}
+.navbar #btn-network{width:36px}
 .navbar .nav > li > a,.navbar .nav > li > a:hover,.navbar .nav > li > #logged-in-user-name{padding:9px 10px 11px}
 .navbar .nav > li > .brand{text-align:center;min-width:130px}
 .navbar-fixed-top{min-width:1024px}

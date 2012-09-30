@@ -33,7 +33,7 @@ $(document).ready(function() {
 		window.setTimeout(function() {
 			welcomeModal.modal('hide');
 		}, 5000);
-		$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
+		$('#btn-reserve').html("<i class='icon-home icon-white'/>Log Out");
 		$.pubsub('publish', 'login.complete');
 	}
 	
@@ -48,12 +48,12 @@ $(document).ready(function() {
 			}	else{
 				$('#client-name').text('');
 				goodbyeModal.modal('hide');
-				$('#btn-login').html("<i class='icon-lock icon-white'/>Log In");
+				$('#btn-reserve').html("<i class='icon-home icon-white'/>Reserve Services");
 			}
 		}, 3000);
 	}
 	
-	$('#btn-login').click(function(){
+	$('#btn-reserve').click(function(){
 		if (activeClient){
 			attemptClientLogout();
 		}	else{
@@ -61,10 +61,8 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('#btn-about').click(function(){ aboutModal.modal('show'); });
-
-	var aboutModal = $('.modal-about');
-	aboutModal.modal({ show : false, keyboard : true, backdrop : true });
+	$('#btn-network').click(function(){ window.location.href = '/live'; });
+	$('#btn-provider').click(function(){ window.location.href = '/login'; });
 	
 	var welcomeModal = $('.modal-welcome');
 	welcomeModal.modal({ show : false, keyboard : true, backdrop : true });
@@ -74,11 +72,11 @@ $(document).ready(function() {
 
 	if (!session.client){
 		$('#client-name').text('');
-		$('#btn-login').html("<i class='icon-lock icon-white'/>Log In");
+		$('#btn-reserve').html("<i class='icon-home icon-white'/>Reserve Services");
 	}	else{
 		activeClient = session.client;
 		$('#client-name').text('Welcome, '+activeClient.fname+' '+activeClient.lname);
-		$('#btn-login').html("<i class='icon-lock icon-white'/>Log Out");
+		$('#btn-reserve').html("<i class='icon-home icon-white'/>Log Out");
 	}
 
 	$.pubsub('subscribe', 'logout.click', attemptClientLogout);
