@@ -24,7 +24,7 @@ module.exports = function()
 			socket.broadcast.emit(message, data);
 		}
 		
-	// handle connections & disconnections //	
+	// handle connections & disconnections //
 		connections[socket.id] = {}; dispatchStatus();
 		socket.on('disconnect', function() {
 			delete connections[socket.id]; dispatchStatus();

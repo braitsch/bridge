@@ -6,23 +6,16 @@
 
 var http = require('http');
 var express = require('express');
+var nib = require('nib');
+var stylus = require('stylus');
+
 var app = express();
 var server = http.createServer(app);
-var stylus = require('stylus');
-var nib = require('nib');
 
 global.host = 'localhost';
 global.socket = require('socket.io').listen(server);
 global.socket.set('log level', 1);
 global.socket.set('transports', [ 'websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']);
-
-function compile(str, path) 
-{
-	return stylus(str)
-		.set('filename', path)
-		.set('compress', true)
-		.use(nib());
-}
 
 app.configure(function(){
 	app.set('port', 8080);
@@ -35,7 +28,13 @@ app.configure(function(){
 	app.use(express.methodOverride());
 	app.use(stylus.middleware({ 
 		src: __dirname + '/app/public',
-		compile: compile 
+		compile: function compile(str, path)
+		{
+			return stylus(str)
+				.set('filename', path)
+				.set('compress', true)
+				.use(nib());
+		} 
 	}));
 	app.use(express.static(__dirname + '/app/public'));
 	app.use('/screens', express.static(__dirname + '/app/public/screens'));
