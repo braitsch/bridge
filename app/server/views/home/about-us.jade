@@ -1,25 +1,28 @@
+extends ../layout
 
-include header
+block content
+	include header
 
-.page-container(style='padding-left:20px')
-	.heading About Us
-	hr
-	p Name : #{capitalize(org.name)}
-	p Address : #{org.addy1} #{org.addy2}
-	p City : #{org.city} 
-	p State : #{org.state} 
-	p Phone : #{org.phone}
-	p Website : 
-		a(href='#{org.website}') #{org.website}
-	hr
-	button#delete.btn.btn-danger delete account
+	.page-container(style='padding-left:20px')
+		.heading About Us
+		hr
+		p Name : #{capitalize(org.name)}
+		p Address : #{org.addy1} #{org.addy2}
+		p City : #{org.city} 
+		p State : #{org.state} 
+		p Phone : #{org.phone}
+		p Website : 
+			a(href='#{org.website}') #{org.website}
+		hr
+		button#delete.btn.btn-danger delete account
 
-.footer
+	.footer
 
-include ../modals/confirm
+	include ../modals/confirm
 
-script(src='/vendor/jquery.min.js')
-script(src='/vendor/bootstrap-modal.js')
-script(src='/vendor/bootstrap-transition.js')
-script(src='/js/home/header.js')
-script(src='/js/home/about-us.js')
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/home/header.js')
+	script(src='/js/home/about-us.js')

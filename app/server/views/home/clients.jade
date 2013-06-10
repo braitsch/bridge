@@ -1,31 +1,34 @@
 
 script
 	var CLIENTS =!{JSON.stringify(clients)}
-include header
 
-#clients-page.page-container
-	.center-container
-		.heading Our Clients
-			form#controls.well.form-search
-				input(type='text').input-medium
-				button#search(type='submit').btn.search Search
-				button#register.btn.btn-primary Register Client
-		hr
-		#clients
-			- for (var i = 0; i < clients.length; i++)
-				.member.well(id=clients[i]._id)
-					.edit
-					.image
-						img(src='./img/icons/ui/user.png')
-					| #{capitalize(clients[i].fname)} #{capitalize(clients[i].lname)}
-.footer
+extends ../layout
 
-include forms/client-form
+block content
+	include header
+	#clients-page.page-container
+		.center-container
+			.heading Our Clients
+				form#controls.well.form-search
+					input(type='text').input-medium
+					button#search(type='submit').btn.search Search
+					button#register.btn.btn-primary Register Client
+			hr
+			#clients
+				- for (var i = 0; i < clients.length; i++)
+					.member.well(id=clients[i]._id)
+						.edit
+						.image
+							img(src='./img/icons/ui/user.png')
+						| #{capitalize(clients[i].fname)} #{capitalize(clients[i].lname)}
+	.footer
+	include forms/client-form
 
-script(src='/vendor/jquery.min.js')
-script(src='/vendor/jquery.form.js')
-script(src='/vendor/jquery-ui.min.js')
-script(src='/vendor/bootstrap-modal.js')
-script(src='/vendor/bootstrap-transition.js')
-script(src='/js/home/header.js')
-script(src='/js/home/clients.js')
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.form.js')
+	script(src='/vendor/jquery-ui.min.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/home/header.js')
+	script(src='/js/home/clients.js')

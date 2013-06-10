@@ -1,90 +1,95 @@
 
-ul.nav.nav-tabs(style='margin:20px')
-	li.active#tab-orgs
-		a(href="#") organizations
-	li#tab-usrs
-		a(href="#") users
-	li#tab-clients
-		a(href="#") clients
 
-div(style='margin:-18px 20px 0 20px')
-	#print-orgs
-		table.table.table-bordered.table-striped
-			thead
-				tr
-					th #
-					th Name
-					th Address
-					th City
-					th State
-					th Phone
-					th Website
-					th Date Created
-			tbody
-			- for (var i = 0; i < orgs.length; i++)
-				tr
-					td= i+1
-					td= orgs[i].name
-					td= orgs[i].addy1 + orgs[i].addy2
-					td= orgs[i].city
-					td= orgs[i].state
-					td= orgs[i].phone
-					td= orgs[i].website
-					td= orgs[i].date
-	#print-usrs
-		table.table.table-bordered.table-striped
-			thead
-				tr
-					th #
-					th Name
-					th Organization
-					th Position
-					th Phone
-					th Email
-					th Date Created
-			tbody
-			- for (var i = 0; i < users.length; i++)
-				tr
-					td= i+1
-					td= users[i].name
-					td= users[i].org
-					td= users[i].pos
-					td= users[i].phone
-					td= users[i].email
-					td= users[i].date
-	#print-clients
-		table.table.table-bordered.table-striped
-			thead
-				tr
-					th #
-					th Name
-					th Id
-					th Gender
-					th Ethnicity
-					th Birthday
-					th Social
-					th Language
-					th Height
-					th Eye Color
-					th Veteran
-					th Disabled
-					th Tuberculous
-			tbody
-			- for (var i = 0; i < clients.length; i++)
-				tr
-					td= i+1
-					td  #{clients[i].fname} #{clients[i].lname}
-					td	#{clients[i]._id}
-					td	#{clients[i].gender}
-					td	#{clients[i].ethnicity}
-					td	#{clients[i].birthMonth} #{clients[i].birthDay} #{clients[i].birthYear}
-					td	#{clients[i].social}
-					td	#{clients[i].language}
-					td	#{clients[i].heightFeet} #{clients[i].heightInches}
-					td	#{clients[i].eyeColor}
-					td	#{clients[i].veteran}
-					td	#{clients[i].disabled}
-					td	#{clients[i].tuberculous}
+extends ../layout
 
-script(src='/vendor/jquery.min.js')
-script(src='/js/aux/print.js')
+block content
+	ul.nav.nav-tabs(style='margin:20px')
+		li.active#tab-orgs
+			a(href="#") organizations
+		li#tab-usrs
+			a(href="#") users
+		li#tab-clients
+			a(href="#") clients
+
+	div(style='margin:-18px 20px 0 20px')
+		#print-orgs
+			table.table.table-bordered.table-striped
+				thead
+					tr
+						th #
+						th Name
+						th Address
+						th City
+						th State
+						th Phone
+						th Website
+						th Date Created
+				tbody
+				- for (var i = 0; i < orgs.length; i++)
+					tr
+						td= i+1
+						td= orgs[i].name
+						td= orgs[i].addy1 + orgs[i].addy2
+						td= orgs[i].city
+						td= orgs[i].state
+						td= orgs[i].phone
+						td= orgs[i].website
+						td= orgs[i].date
+		#print-usrs
+			table.table.table-bordered.table-striped
+				thead
+					tr
+						th #
+						th Name
+						th Organization
+						th Position
+						th Phone
+						th Email
+						th Date Created
+				tbody
+				- for (var i = 0; i < users.length; i++)
+					tr
+						td= i+1
+						td= users[i].name
+						td= users[i].org
+						td= users[i].pos
+						td= users[i].phone
+						td= users[i].email
+						td= users[i].date
+		#print-clients
+			table.table.table-bordered.table-striped
+				thead
+					tr
+						th #
+						th Name
+						th Id
+						th Gender
+						th Ethnicity
+						th Birthday
+						th Social
+						th Language
+						th Height
+						th Eye Color
+						th Veteran
+						th Disabled
+						th Tuberculous
+				tbody
+				- for (var i = 0; i < clients.length; i++)
+					tr
+						td= i+1
+						td  #{clients[i].fname} #{clients[i].lname}
+						td	#{clients[i]._id}
+						td	#{clients[i].gender}
+						td	#{clients[i].ethnicity}
+						td	#{clients[i].birthMonth} #{clients[i].birthDay} #{clients[i].birthYear}
+						td	#{clients[i].social}
+						td	#{clients[i].language}
+						td	#{clients[i].heightFeet} #{clients[i].heightInches}
+						td	#{clients[i].eyeColor}
+						td	#{clients[i].veteran}
+						td	#{clients[i].disabled}
+						td	#{clients[i].tuberculous}
+
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/js/aux/print.js')

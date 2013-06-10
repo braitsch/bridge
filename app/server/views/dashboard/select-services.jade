@@ -1,38 +1,42 @@
-script
-	var services = !{JSON.stringify(services)};
-	var orgs = !{JSON.stringify(orgs)};
-include dashboard-header
+extends ../layout
 
-#select-services.container
-	div.services-wrapper
+block content
+	script
+		var orgs = !{JSON.stringify(orgs)};
+		var services = !{JSON.stringify(services)};
+	include dashboard-header
+
+	#select-services.container
+		div.services-wrapper
+			div.row
+				ul
+					- for (var i = services.length - 1; i >= 0; i--)
+						li
+							div(data-category=services[i].name).service
+								img.button-edit(src="../img/icons/ui/icon-edit.png")
+								div.service-chrome
+								div.service-header
+									h2 #{services[i].name}
+								div.service-thumbnail
+									img(src='/img/icons/large/icon-'+services[i].name+'-general.png')
+								div.service-progress
+									div.v-progress
+										div.v-progress-bar
 		div.row
-			ul
-				- for (var i = services.length - 1; i >= 0; i--)
-					li
-						div(data-category=services[i].name).service
-							img.button-edit(src="../img/icons/ui/icon-edit.png")
-							div.service-chrome
-							div.service-header
-								h2 #{services[i].name}
-							div.service-thumbnail
-								img(src='/img/icons/large/icon-'+services[i].name+'-general.png')
-							div.service-progress
-								div.v-progress
-									div.v-progress-bar
-	div.row
-		a#request-services.button.button-reserve.is-disabled Reserve
-	div.striped
+			a#request-services.button.button-reserve.is-disabled Reserve
+		div.striped
 
-include modals/service-selection
+	include modals/service-selection
 
-script(src='/socket.io/socket.io.js')
-script(src='/vendor/jquery.min.js')
-script(src='/vendor/jquery.pubsub.js')
-script(src='/vendor/underscore.min.js')
-script(src='/vendor/mustache.js')
-script(src='/vendor/bootstrap-modal.js')
-script(src='/vendor/bootstrap-transition.js')
-script(src='/js/dashboard/dashboard-header.js')
-script(src='/js/dashboard/select-services.js')
-script(src='/js/utils/globals.js')
-script(src='/js/utils/timeout.js')
+block scripts
+	script(src='/socket.io/socket.io.js')
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/jquery.pubsub.js')
+	script(src='/vendor/underscore.min.js')
+	script(src='/vendor/mustache.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/dashboard/dashboard-header.js')
+	script(src='/js/dashboard/select-services.js')
+	script(src='/js/utils/globals.js')
+	script(src='/js/utils/timeout.js')

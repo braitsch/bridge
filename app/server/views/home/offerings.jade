@@ -1,37 +1,40 @@
 
-script
-	var ALL_SERVICES =!{JSON.stringify(all_services)}
-	var OUR_SERVICES =!{JSON.stringify(our_services)}
-include header
+extends ../layout
 
-#inventory.page-container-cleared.clearfix
-	#all-services
-		.heading All Services
-		hr
-		- for (var i = 0; i < all_services.length; i++)
-			- var service = all_services[i].name;
-			.service
-				.text #{capitalize(service)}
-				hr
-				.icon
-					img(src='/img/icons/large/icon-'+service+'-general.png', title=service, name=service)
-	#our-services
-		#offset
-			#all
-				.heading Our Offerings
-				hr.tight
-				.services
-			#edit-avail
-				.heading
-				hr.tight
-				.services
-.footer
+block content
+	script
+		var ALL_SERVICES =!{JSON.stringify(all_services)}
+		var OUR_SERVICES =!{JSON.stringify(our_services)}
 
-include ../modals/inv-editor
+	include header
+	#inventory.page-container-cleared.clearfix
+		#all-services
+			.heading All Services
+			hr
+			- for (var i = 0; i < all_services.length; i++)
+				- var service = all_services[i].name;
+				.service
+					.text #{capitalize(service)}
+					hr
+					.icon
+						img(src='/img/icons/large/icon-'+service+'-general.png', title=service, name=service)
+		#our-services
+			#offset
+				#all
+					.heading Our Offerings
+					hr.tight
+					.services
+				#edit-avail
+					.heading
+					hr.tight
+					.services
+	.footer
+	include ../modals/inv-editor
 
-script(src='/socket.io/socket.io.js')
-script(src='/vendor/jquery.min.js')
-script(src='/vendor/bootstrap-modal.js')
-script(src='/vendor/bootstrap-transition.js')
-script(src='/js/home/header.js')
-script(src='/js/home/offerings.js')
+block scripts
+	script(src='/socket.io/socket.io.js')
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/home/header.js')
+	script(src='/js/home/offerings.js')

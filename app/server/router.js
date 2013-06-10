@@ -29,7 +29,6 @@ module.exports = function(app) {
 	});
 	
 	app.post('/client-login', function(req, res){
-//		AM.getClient(req.param('id'), function(e, o){
 		AM.getClientByName({fname:'Jane', lname:'Doe'}, function(e, o){
 			if (e){
 				res.send(e, 400);
@@ -357,7 +356,9 @@ module.exports = function(app) {
 	});
 	
 	app.get('/reset', function(req, res) {
-		AM.addDummyData( function(){ res.redirect('/print'); });
+		AM.reset(function(){
+			res.redirect('/print');
+		});
 	});
 
 	app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });

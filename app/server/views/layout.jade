@@ -1,4 +1,4 @@
-!!!
+!!! 5
 html
 	head
 		meta(name='viewport', content='width=device-width, initial-scale=1.0')
@@ -17,4 +17,8 @@ html
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
 	body
-		!= body
+
+	- var capitalize = function(s){return s.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});}
+
+	block content
+	block scripts

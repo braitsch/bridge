@@ -1,21 +1,25 @@
 
 script
 	var TEAM =!{JSON.stringify(team)}
-include header
 
-.page-container
-	#team.center-container
-		.heading Our Team
-		hr
-		- for (var i = 0; i < team.length; i++)
-			.member.well
-				.image
-					img(src='http://www.gravatar.com/avatar/'+team[i].gravatar+'?s=100&d=http://bridge.braitsch.io/img/icons/ui/user.png')
-				div #{capitalize(team[i].name)}
-.footer
+extends ../layout
 
-script(src='/vendor/jquery.min.js')
-script(src='/vendor/bootstrap-modal.js')
-script(src='/vendor/bootstrap-transition.js')
-script(src='/js/home/header.js')
-script(src='/js/home/our-team.js')
+block content
+	include header
+	.page-container
+		#team.center-container
+			.heading Our Team
+			hr
+			- for (var i = 0; i < team.length; i++)
+				.member.well
+					.image
+						img(src='http://www.gravatar.com/avatar/'+team[i].gravatar+'?s=100&d=http://bridge.braitsch.io/img/icons/ui/user.png')
+					div #{capitalize(team[i].name)}
+	.footer
+
+block scripts
+	script(src='/vendor/jquery.min.js')
+	script(src='/vendor/bootstrap-modal.js')
+	script(src='/vendor/bootstrap-transition.js')
+	script(src='/js/home/header.js')
+	script(src='/js/home/our-team.js')
