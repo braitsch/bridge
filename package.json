@@ -6,6 +6,13 @@
 		"name": "Stephen Braitsch",
 		"email": "stephen@braitsch.io"
 	},
+	"contributors": [
+		{
+			"name": "Rob Dodson",
+			"email": "lets.email.rob@gmail.com",
+			"url": "http://robdodson.me"
+		}	
+	],
 	"website":{
 		"url": "bridge.braitsch.io"
 	},
