@@ -11,7 +11,7 @@ script(type="text/html", id="modal-service-selection")
 			.wrapper-center
 				ul.l-horizontal.clearfix.reservation-entries
 					// Mustache Template
-					{{#service.fields}}
+						{{#service.fields}}
 					li
 						div(data-sub="{{ . }}").service.is-enabled
 							div.service-chrome
@@ -22,4 +22,4 @@ script(type="text/html", id="modal-service-selection")
 							div.service-progress
 								div.v-progress
 									div.v-progress-bar
-					{{/service.fields}}
+								{{/service.fields}}

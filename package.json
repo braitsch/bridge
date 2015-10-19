@@ -2,10 +2,7 @@
 	"name": "bridge",
 	"version": "1.1.0",
 	"description": "A platform for recording and exchanging civic related data in real-time",
-	"author": {
-		"name": "Stephen Braitsch",
-		"email": "stephen@braitsch.io"
-	},
+	"author": "Stephen Braitsch <stephen@braitsch.io>",
 	"contributors": [
 		{
 			"name": "Rob Dodson",
@@ -18,20 +15,21 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@bitbucket.org:braitsch/bridge-app.git"
+		"url": "git@github.com:braitsch/bridge.git"
 	},
-	"private": true,
 	"dependencies": {
-		"express": "3.0.6",
-		"stylus": "0.50.0",
-		"jade": "1.9.2",
-		"mongodb": "1.2.7",
+		"express": "4.13.3",
+		"jade": "1.11.0",
+		"body-parser": "1.14.1",
+		"express-session": "1.11.3",
+		"mongodb": "2.0.45",
+		"stylus": "0.52.4",
 		"moment" : "1.7.2",
 		"nib": " 0.7.0",
 		"emailjs": "0.3.3",
-		"socket.io": "0.9.14"
+		"socket.io": "1.3.7"
 	},
 	"engines": {
-		"node": "0.10.29"
+		"node": "4.2.1"
 	}
 }

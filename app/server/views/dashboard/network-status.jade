@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-	script
+	script(type='text/javascript').
 		var orgs = !{JSON.stringify(orgs)};
 	#live
 		div.navbar.navbar-fixed-top
@@ -62,7 +62,7 @@ block content
 			hr
 
 block scripts
-	script(src='/socket.io/socket.io.js')
+	script(src='https://cdn.socket.io/socket.io-1.0.0.js')
 	script(src='/vendor/jquery.min.js')
 	script(src='/vendor/bootstrap-modal.js')
 	script(src='/vendor/bootstrap-dropdown.js')

@@ -5,7 +5,7 @@ module.exports = function()
 	
 	var connections = { };
 	
-	global.socket.of('/bridge').on('connection', function(socket) {
+	io.on('connection', function(socket) {	
 		socket.on('bridge-event', function(data) {
 		// append this socket's id so we know who is talking //
 			data.id = socket.id;

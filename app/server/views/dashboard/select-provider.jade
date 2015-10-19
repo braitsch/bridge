@@ -2,7 +2,7 @@
 extends ../layout
 
 block content
-	script
+	script(type='text/javascript').
 		var providers = !{JSON.stringify(providers)};
 		var session = !{JSON.stringify(session)};
 	include dashboard-header
@@ -55,7 +55,7 @@ block content
 	include modals/reservation-success
 
 block scripts
-	script(src='/socket.io/socket.io.js')
+	script(src='https://cdn.socket.io/socket.io-1.0.0.js')
 	script(src='/vendor/jquery.min.js')
 	script(src='/vendor/jquery.pubsub.js')
 	script(src='/vendor/underscore.min.js')

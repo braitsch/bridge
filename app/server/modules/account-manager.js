@@ -4,9 +4,9 @@ var MongoDB 	= require('mongodb').Db;
 var Server		= require('mongodb').Server;
 var moment		= require('moment');
 
-var dbPort		= 27017;
-var dbHost		= global.host;
-var dbName		= 'bridge-db';
+var dbName = process.env.DB_NAME || 'bridge';
+var dbHost = process.env.DB_HOST || 'localhost'
+var dbPort = process.env.DB_PORT || 27017;
 
 var dummies = require('./dummy-data');
 
